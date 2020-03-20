@@ -4,17 +4,27 @@ keywords: design
 tags: [design]
 sidebar: overview_sidebar
 permalink: develop_overview.html
-summary: An overview of the development tools / code examples available to help develop provider and consumder systems.
+summary: Implementation guidance for the FHIR medicationRequest for the ePMA to Pharmacy use case.
 ---
 
-## System Design ##
+## Section Title ##
 
-Overview of any design-time resources that are available.
+Section contents.
 
-## System Implementation ##
+## Element: medicationRequest.intent ##
 
-Overview of any implementation resources that are available.
+**Business Meaning**: Describes the nature of the medication request.
 
-## System Test ##
+[ [STU3](http://hl7.org/fhir/STU3/medicationrequest-definitions.html#MedicationRequest.intent) ]
 
-Overview of any testing resources that are available.
+Mandatory element using the pre-defined and fixed value set of;
+**proposal** | **plan** | **order** |  **instance-order**
+
+The value **order** should always be used to denote this is a medication request order.
+ 
+[ [R4](http://hl7.org/fhir/r4/medicationrequest-definitions.html#MedicationRequest.intent) ]
+
+FHIR R4 extends the value set to;
+**proposal** | **plan** | **order** | **original-order** | **reflex-order** | **filler-order** | **instance-order** | **option**
+
+The recommendation for the ePMA to Pharmacy use case is to continue to use **order** unless it is locally decided that the extended R4 value set better supports the business requirements.
