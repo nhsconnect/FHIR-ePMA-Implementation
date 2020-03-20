@@ -4,13 +4,14 @@ keywords: explore, design, reference
 tags: [design,explore]
 sidebar: overview_sidebar
 permalink: explore_overview.html
-summary: An overview of the tools and documentation available to explore the Open APIs.
+summary: An overview of this implementation guidance.
 ---
 
-## API Sandbox
+## Scope of this Implementation Guidance
 
-Details of any Open API sandbox environments.
+Blah blah blah.
 
-## API Reference
+## Version History ##
 
-Details of any Open API technical reference documentation.
+### 1.0.0-alpha ###
+First version published.
