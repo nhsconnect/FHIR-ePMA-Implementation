@@ -25,3 +25,6 @@ entries:
     - title: text
       url: /develop_medicationrequest_text.html
       output: web
+    - title: repeatInformation (STU3 extension)
+      url: /develop_medicationrequest_repeatInformation.html
+      output: web
