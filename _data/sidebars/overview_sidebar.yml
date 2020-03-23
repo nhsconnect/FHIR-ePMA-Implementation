@@ -34,3 +34,12 @@ entries:
     - title: prescriptionType (STU3 extension)
       url: /develop_medicationrequest_prescriptiontype.html
       output: web 
+    - title: identifier
+      url: /develop_medicationrequest_identifier.html
+      output: web  
+    - title: status
+      url: /develop_medicationrequest_status.html
+      output: web  
+    - title: intent
+      url: /develop_medicationrequest_intent.html
+      output: web
