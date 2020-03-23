@@ -1,6 +1,6 @@
 entries:
 - title: ePMA to Pharmacy medicationRequest Implementation Guidance
-  product: ePMA Implementation Guidance<br/>
+  product: ePMA Implementation Guidance
   version: 1.0.0-alpha
   levels: one
   folders:
@@ -11,6 +11,7 @@ entries:
     - title: Overview
       url: /explore_overview.html
       output: web
+      type: homepage
 
   - title: Develop
     output: web
@@ -23,16 +24,16 @@ entries:
       output: web  
     - title: text
       url: /develop_medicationrequest_text.html
-      output: web  
+      output: web
     - title: repeatInformation (STU3 extension)
       url: /develop_medicationrequest_repeatInformation.html
-      output: web  
+      output: web
     - title: statusReason (STU3 extension)
       url: /develop_medicationrequest_statusreason.html
       output: web  
     - title: prescriptionType (STU3 extension)
       url: /develop_medicationrequest_prescriptiontype.html
-      output: web  
+      output: web 
     - title: identifier
       url: /develop_medicationrequest_identifier.html
       output: web  
@@ -41,7 +42,7 @@ entries:
       output: web  
     - title: intent
       url: /develop_medicationrequest_intent.html
-      output: web  
+      output: web
     - title: category
       url: /develop_medicationrequest_category.html
       output: web  
@@ -50,7 +51,7 @@ entries:
       output: web
     - title: medicationReference
       url: /develop_medicationrequest_medicationreference.html
-      output: web     
+      output: web
     - title: subject
       url: /develop_medicationrequest_subject.html
       output: web  
@@ -72,7 +73,7 @@ entries:
     - title: performerType (R4)
       url: /develop_medicationrequest_performerType.html
       output: web 
-     - title: supportInformation
+    - title: supportInformation
       url: /develop_medicationrequest_supportinformation.html
       output: web
     - title: recorder
@@ -98,4 +99,5 @@ entries:
       output: web 
     - title: priorPrescription
       url: /develop_medicationrequest_priorprescription.html
-      output: web 
+      output: web
+    
