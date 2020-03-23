@@ -74,7 +74,7 @@ entries:
     - title: performerType (R4)
       url: /develop_medicationrequest_performerType.html
       output: web 
-     - title: supportInformation
+    - title: supportInformation
       url: /develop_medicationrequest_supportinformation.html
       output: web
     - title: recorder
