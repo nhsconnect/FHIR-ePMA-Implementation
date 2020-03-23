@@ -22,3 +22,6 @@ entries:
     - title: id
       url: /develop_medicationrequest_id.html
       output: web  
+    - title: text
+      url: /develop_medicationrequest_text.html
+      output: web
