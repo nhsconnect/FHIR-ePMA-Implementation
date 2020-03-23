@@ -28,3 +28,9 @@ entries:
     - title: repeatInformation (STU3 extension)
       url: /develop_medicationrequest_repeatInformation.html
       output: web
+    - title: statusReason (STU3 extension)
+      url: /develop_medicationrequest_statusreason.html
+      output: web  
+    - title: prescriptionType (STU3 extension)
+      url: /develop_medicationrequest_prescriptiontype.html
+      output: web 
