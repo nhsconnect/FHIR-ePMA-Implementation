@@ -43,3 +43,13 @@ entries:
     - title: intent
       url: /develop_medicationrequest_intent.html
       output: web
+    - title: category
+      url: /develop_medicationrequest_category.html
+      output: web  
+    - title: priority
+      url: /develop_medicationrequest_priority.html
+      output: web
+    - title: medicationReference
+      url: /develop_medicationrequest_medicationreference.html
+      output: web
+      
