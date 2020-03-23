@@ -17,5 +17,86 @@ entries:
     output: web
     folderitems:
     - title: Overview
-      url: /dosage_overview.html
+      url: /develop_overview.html
       output: web
+    - title: id
+      url: /develop_medicationrequest_id.html
+      output: web  
+    - title: text
+      url: /develop_medicationrequest_text.html
+      output: web  
+    - title: repeatInformation (STU3 extension)
+      url: /develop_medicationrequest_repeatInformation.html
+      output: web  
+    - title: statusReason (STU3 extension)
+      url: /develop_medicationrequest_statusreason.html
+      output: web  
+    - title: prescriptionType (STU3 extension)
+      url: /develop_medicationrequest_prescriptiontype.html
+      output: web  
+    - title: identifier
+      url: /develop_medicationrequest_identifier.html
+      output: web  
+    - title: status
+      url: /develop_medicationrequest_status.html
+      output: web  
+    - title: intent
+      url: /develop_medicationrequest_intent.html
+      output: web  
+    - title: category
+      url: /develop_medicationrequest_category.html
+      output: web  
+    - title: priority
+      url: /develop_medicationrequest_priority.html
+      output: web
+    - title: medicationReference
+      url: /develop_medicationrequest_medicationreference.html
+      output: web     
+    - title: subject
+      url: /develop_medicationrequest_subject.html
+      output: web  
+    - title: context
+      url: /develop_medicationrequest_context.html
+      output: web  
+    - title: supportInformation
+      url: /develop_medicationrequest_supportinformation.html
+      output: web
+    - title: authoredOn
+      url: /develop_medicationrequest_authoredon.html
+      output: web  
+    - title: requester
+      url: /develop_medicationrequest_requester.html
+      output: web  
+    - title: performer (R4)
+      url: /develop_medicationrequest_performer.html
+      output: web  
+    - title: performerType (R4)
+      url: /develop_medicationrequest_performerType.html
+      output: web 
+     - title: supportInformation
+      url: /develop_medicationrequest_supportinformation.html
+      output: web
+    - title: recorder
+      url: /develop_medicationrequest_recorder.html
+      output: web  
+    - title: reasonCode
+      url: /develop_medicationrequest_reasoncode.html
+      output: web  
+    - title: reasonReference
+      url: /develop_medicationrequest_reasonreference.html
+      output: web  
+    - title: note
+      url: /develop_medicationrequest_note.html
+      output: web 
+    - title: dosageInstruction
+      url: /develop_medicationrequest_dosageinstruction.html
+      output: web 
+    - title: dispenseRequest
+      url: /develop_medicationrequest_dispenserequest.html
+      output: web 
+    - title: substitution
+      url: /develop_medicationrequest_substitution.html
+      output: web 
+    - title: priorPrescription
+      url: /develop_medicationrequest_priorprescription.html
+      output: web 
