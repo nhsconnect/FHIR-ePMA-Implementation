@@ -67,3 +67,36 @@ entries:
     - title: requester
       url: /develop_medicationrequest_requester.html
       output: web  
+    - title: performer (R4)
+      url: /develop_medicationrequest_performer.html
+      output: web  
+    - title: performerType (R4)
+      url: /develop_medicationrequest_performerType.html
+      output: web 
+    - title: supportInformation
+      url: /develop_medicationrequest_supportinformation.html
+      output: web
+    - title: recorder
+      url: /develop_medicationrequest_recorder.html
+      output: web  
+    - title: reasonCode
+      url: /develop_medicationrequest_reasoncode.html
+      output: web  
+    - title: reasonReference
+      url: /develop_medicationrequest_reasonreference.html
+      output: web  
+    - title: note
+      url: /develop_medicationrequest_note.html
+      output: web 
+    - title: dosageInstruction
+      url: /develop_medicationrequest_dosageinstruction.html
+      output: web 
+    - title: dispenseRequest
+      url: /develop_medicationrequest_dispenserequest.html
+      output: web 
+    - title: substitution
+      url: /develop_medicationrequest_substitution.html
+      output: web 
+    - title: priorPrescription
+      url: /develop_medicationrequest_priorprescription.html
+      output: web
