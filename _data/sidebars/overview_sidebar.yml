@@ -11,13 +11,15 @@ entries:
     - title: Overview
       url: /explore_overview.html
       output: web
+      type: homepage
 
   - title: Develop
     output: web
     folderitems:
     - title: Overview
-      url: /develop_overview.html
+      url: /dosage_overview.html
       output: web
+      type: homepage
     - title: id
       url: /develop_medicationrequest_id.html
       output: web  
