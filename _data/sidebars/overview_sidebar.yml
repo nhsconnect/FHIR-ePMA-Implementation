@@ -52,4 +52,18 @@ entries:
     - title: medicationReference
       url: /develop_medicationrequest_medicationreference.html
       output: web
-      
+    - title: subject
+      url: /develop_medicationrequest_subject.html
+      output: web  
+    - title: context
+      url: /develop_medicationrequest_context.html
+      output: web  
+    - title: supportInformation
+      url: /develop_medicationrequest_supportinformation.html
+      output: web
+    - title: authoredOn
+      url: /develop_medicationrequest_authoredon.html
+      output: web  
+    - title: requester
+      url: /develop_medicationrequest_requester.html
+      output: web  
