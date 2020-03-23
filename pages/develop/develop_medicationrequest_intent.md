@@ -1,9 +1,9 @@
 ---
-title: Element: intent
+title: medicationRequest.intent
 keywords: design
 tags: [design]
 sidebar: overview_sidebar
-permalink: develop_intent.html
+permalink: develop_medicationrequest_intent.html
 summary: Implementation guidance for medicationRequest.intent
 ---
 
