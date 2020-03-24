@@ -7,18 +7,18 @@ permalink: develop_medicationrequest_intent.html
 summary: Implementation guidance for medicationRequest.intent
 ---
 
-## Element: medicationRequest.intent ##
+## Element: medicationRequest.intent
 
 **Business Meaning**: Describes the nature of the medication request.
 
-[ [STU3](http://hl7.org/fhir/STU3/medicationrequest-definitions.html#MedicationRequest.intent) ]
+[ STU3 | CareConnect ]
 
 Mandatory element using the pre-defined and fixed value set of;
 **proposal** | **plan** | **order** |  **instance-order**
 
 The value **order** should always be used to denote this is a medication request order.
  
-[ [R4](http://hl7.org/fhir/r4/medicationrequest-definitions.html#MedicationRequest.intent) ]
+[ R4 ]
 
 FHIR R4 extends the value set to;
 **proposal** | **plan** | **order** | **original-order** | **reflex-order** | **filler-order** | **instance-order** | **option**
