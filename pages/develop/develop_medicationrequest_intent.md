@@ -1,5 +1,5 @@
 ---
-title: Element: intent
+title: medicationRequest.intent
 keywords: design
 tags: [design]
 sidebar: overview_sidebar
