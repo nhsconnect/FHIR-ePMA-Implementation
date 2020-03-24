@@ -2,7 +2,7 @@ topnav:
 - title: Topnav
   items:
     - title: News
-      url: news.html
+      external_url: http://www.bbc.co.uk/
 
 topnav_dropdowns:
 - title: Topnav dropdowns
@@ -12,8 +12,4 @@ topnav_dropdowns:
         - title: External Link 1
           external_url: http://www.google.com/
         - title: External Link 2
-          external_url: http://www.yahoo.com/        
-    - title: Capability Packs
-      folderitems:
-        - title: Capability One
-          url: capability_one.html
+          external_url: http://www.yahoo.com/
