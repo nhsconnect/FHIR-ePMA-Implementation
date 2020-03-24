@@ -25,15 +25,6 @@ entries:
     - title: text
       url: /develop_medicationrequest_text.html
       output: web
-    - title: repeatInformation (STU3 extension)
-      url: /develop_medicationrequest_repeatInformation.html
-      output: web
-    - title: statusReason (STU3 extension)
-      url: /develop_medicationrequest_statusreason.html
-      output: web  
-    - title: prescriptionType (STU3 extension)
-      url: /develop_medicationrequest_prescriptiontype.html
-      output: web 
     - title: identifier
       url: /develop_medicationrequest_identifier.html
       output: web  
@@ -55,7 +46,7 @@ entries:
     - title: subject
       url: /develop_medicationrequest_subject.html
       output: web  
-    - title: context
+    - title: context (STU3|CareConnect)
       url: /develop_medicationrequest_context.html
       output: web  
     - title: supportInformation
@@ -67,12 +58,6 @@ entries:
     - title: requester
       url: /develop_medicationrequest_requester.html
       output: web  
-    - title: performer (R4)
-      url: /develop_medicationrequest_performer.html
-      output: web  
-    - title: performerType (R4)
-      url: /develop_medicationrequest_performerType.html
-      output: web 
     - title: supportInformation
       url: /develop_medicationrequest_supportinformation.html
       output: web
@@ -100,3 +85,28 @@ entries:
     - title: priorPrescription
       url: /develop_medicationrequest_priorprescription.html
       output: web
+    - title: repeatInformation (CareConnect)
+      url: /develop_medicationrequest_cc_repeatInformation.html
+      output: web
+    - title: statusReason (CareConnect)
+      url: /develop_medicationrequest_cc_statusreason.html
+      output: web  
+    - title: prescriptionType (CareConnect)
+      url: /develop_medicationrequest_cc_prescriptiontype.html
+      output: web 
+    - title: performer (R4)
+      url: /develop_medicationrequest_performer.html
+      output: web  
+    - title: performerType (R4)
+      url: /develop_medicationrequest_performerType.html
+      output: web 
+    - title: statusReason (R4)
+      url: /develop_medicationrequest_statusreason.html
+      output: web
+    - title: doNotPerform (R4)
+      url: /develop_medicationrequest_donotperform.html
+      output: web  
+    - title: reported[x] (R4)
+      url: /develop_medicationrequest_reported.html
+      output: web  
+ 
