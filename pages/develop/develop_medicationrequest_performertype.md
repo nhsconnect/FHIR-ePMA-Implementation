@@ -11,7 +11,7 @@ summary: Implementation guidance for medicationRequest.performerType
 
 **Business Meaning**: Indicates the type of performer of the administration of the medication.
 
-[ STU3 | CareConnect ]
+[ STU3 / CareConnect ]
 
 This element does not exist in STU3 or CareConnect.
  

@@ -17,6 +17,6 @@ It is recommended that this structure is omitted in the Hospital ePMA to Hospita
  
 Note the value set for the extension aligns with the legacy HL7v3 'PrescriptionTreatmentType' vocab; **acute** | **repeat** | **repeat dispensing** | **delayed prescribing**. If this extension is also added to FHIR R4 then it should ideally be given a different name.
 
-[ STU3 | R4 ]
+[ STU3 / R4 ]
 
 This extension does not exist within STU3 or R4.
