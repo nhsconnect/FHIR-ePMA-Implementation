@@ -11,7 +11,7 @@ summary: Implementation guidance for medicationRequest.intent
 
 **Business Meaning**: Describes the nature of the medication request.
 
-[ *STU3* | *CareConnect* ]
+[ *STU3* / *CareConnect* ]
 
 Mandatory element using the pre-defined and fixed value set of;
 **proposal** | **plan** | **order** |  **instance-order**

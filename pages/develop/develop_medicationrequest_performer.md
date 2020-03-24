@@ -11,7 +11,7 @@ summary: Implementation guidance for medicationRequest.performer
 
 **Business Meaning**: The specified desired performer of the medication treatment (e.g. the performer of the medication administration).
 
-[ *STU3* | *CareConnect* ]
+[ *STU3* / *CareConnect* ]
 
 This element is included as a child of **dispenseRequest** and references a FHIR Organization resource.
  

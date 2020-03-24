@@ -15,6 +15,6 @@ summary: Implementation guidance for medicationRequest.repeatInformation
 
 It is recommended that this structure is omitted in the Hospital ePMA to Hospital Dispensing system use case.
  
-[ STU3 | R4 ]
+[ STU3 / R4 ]
 
 This element does not exist within STU3 or R4.
