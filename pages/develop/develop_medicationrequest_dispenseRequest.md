@@ -1,5 +1,5 @@
 ---
-title: Element: dispenseRequest
+title: medicationRequest.dispenseRequest
 keywords: design
 tags: [design]
 sidebar: overview_sidebar
@@ -7,11 +7,9 @@ permalink: develop_medicationrequest_dispenserequest.html
 summary: Implementation guidance for medicationRequest.dispenseRequest
 ---
 
-## Element: medicationRequest.dispenseRequest ##
+## Element: medicationRequest.dispenseRequest
 
 **Business Meaning**: Information related to the dispensing of the medication.
-
-[ [STU3] | [R4] ]
 
 Refer to https://developer.nhs.uk/apis/dose-syntax-implementation-1-3-1-alpha/index.html (or any subsequent version).
 
