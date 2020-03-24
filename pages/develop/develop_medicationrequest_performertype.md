@@ -1,10 +1,10 @@
 ---
-title: Element: medicationRequest.performerType
+title: medicationRequest.performerType
 keywords: design
 tags: [design]
 sidebar: overview_sidebar
 permalink: develop_medicationrequest_performertype.html
-summary: Implementation guidance for medicationRequest.medicationRequest.performerType
+summary: Implementation guidance for medicationRequest.performerType
 ---
 
 ## Element: medicationRequest.performerType
