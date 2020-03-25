@@ -5,14 +5,24 @@ entries:
   levels: one
   folders:
 
+  - title: Overview
+    output: web
+    folderitems:
+    - title: Introduction
+      url: /index.html
+      output: web
+      type: homepage
+    - title: Version History
+      url: /overview_versions.html
+      output: web
+      
   - title: Explore
     output: web
     folderitems:
     - title: Overview
       url: /explore_overview.html
       output: web
-      type: homepage
-
+      
   - title: Develop
     output: web
     folderitems:
@@ -49,8 +59,8 @@ entries:
     - title: context (STU3|CareConnect)
       url: /develop_medicationrequest_context.html
       output: web  
-    - title: supportInformation
-      url: /develop_medicationrequest_supportinformation.html
+    - title: supportingInformation
+      url: /develop_medicationrequest_supportinginformation.html
       output: web
     - title: authoredOn
       url: /develop_medicationrequest_authoredon.html
