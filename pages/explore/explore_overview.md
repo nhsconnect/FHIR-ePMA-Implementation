@@ -7,10 +7,20 @@ permalink: explore_overview.html
 summary: An overview of this implementation guidance.
 ---
 
-## Title
+## Structure of this Guidance
 
-Content
+This guidance document provides background information on the target ePMA to pharmacy system use case within this **Explore** section.
 
-### Sub Title
+Guidance for the use of each element of the medicationRequest FHIR resource is provided within the **Develop** section.
 
-Content
+## What is an Electronic Patient Medication Administration (ePMA) System?
+
+TBC
+
+## What is an Hospital Pharmacy System?
+
+TBC
+
+## What is the Interoperability Requirement?
+
+TBC

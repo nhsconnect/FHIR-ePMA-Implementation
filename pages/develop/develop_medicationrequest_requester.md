@@ -29,3 +29,8 @@ Where an implementation does not currently record the prescribing clinician then
 **Note**: If the user is not a qualified prescriber but performing the task of data entry then they are instead acting as the [recorder](develop_medicationrequest_recorder.html).
 
 **TBC**: What if a nurse is requesting more supply of a drug from an original prescription?
+
+[ *STU3* / *CareConnect* ]
+
+STU3 allowed a request on behalf of another organisation to be defined using **requester.onBehalfOf**. This has been removed from R4 so is recommended not to be used within any STU3 or CareConnect implementation.
+

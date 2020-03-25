@@ -11,10 +11,10 @@ summary: Implementation guidance for medicationRequest.repeatInformation
 
 **Business Meaning**: Extension to support primary care repeat dispensing processes.
 
-[ CareConnect ]
+[ *CareConnect* ]
 
 It is recommended that this structure is omitted in the Hospital ePMA to Hospital Dispensing system use case.
  
-[ STU3 / R4 ]
+[ *STU3 / R4* ]
 
 This element does not exist within STU3 or R4.
