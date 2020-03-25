@@ -27,6 +27,8 @@ This guidance is aligned to the following FHIR standards;
 - [CareConnect](https://fhir.hl7.org.uk/) based on STU3
 - [R4](https://hl7.org/fhir/R4/index.html)
 
+### Alignment with FHIR Standards
+
 Where guidance relates to a specific version of the FHIR standard, it shall be labelled as such;
 
 [ *STU3* ]
@@ -37,7 +39,7 @@ Guidance that only applies to an STU3 implementation...
 
 Guidance that only applies to a CareConnect implementation...
 
-[ *STU3* | *CareConnect* ]
+[ *STU3* / *CareConnect* ]
 
 Guidance that applies to either an STU3 or CareConnect implementation...
 
