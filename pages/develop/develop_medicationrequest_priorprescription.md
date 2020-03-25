@@ -14,7 +14,9 @@ summary: Implementation guidance for medicationRequest.priorPrescription
 The published FHIR specifications described this element is slightly different ways in different parts of the FHIR specification;
 
 "*A link to a resource representing an earlier order related order or prescription*" 
+
 and 
+
 "*An order/prescription that is being replaced*".
 
 The following guidance applies to each use case.

@@ -15,7 +15,7 @@ Recommended as a mandatory element for most implementations.
 
 Recommended to be the prescribing clinician recorded on the ePMA system for the medication request, as a reference to a FHIR **Practitioner** resource.
 
-The requester can be a reference to a number of different FHIR resources; *Practitioner* | *PractitionerRole* | *Organization* | *Patient* | *RelatedPerson* | *Device*. For this use case it is recommended to always use **Practitioner** unless an implementation supports use cases like requests direct from patients or automated requests from medical or monitoring devices.
+The requester can be a reference to a number of different FHIR resources; *Practitioner*, *PractitionerRole*, *Organization*, *Patient*, *RelatedPerson* or *Device*. For this use case it is recommended to always use **Practitioner** unless an implementation supports use cases like requests direct from patients or automated requests from medical or monitoring devices.
 
 ### Additional Guidance
 
