@@ -46,8 +46,3 @@ Guidance that applies to either an STU3 or CareConnect implementation...
 Guidance that only applies to an R4 implementation...
 
 Where no FHIR standard label is used the guidance is applicable to all three versions of the FHIR standard. 
-
-## Version History
-
-### 1.0.0-alpha
-First version published. March 2020.
