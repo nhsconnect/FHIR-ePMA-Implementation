@@ -8,11 +8,14 @@ entries:
   - title: Explore
     output: web
     folderitems:
+    - title: Introduction
+      url: /index.html
+      output: web
+      type: homepage
     - title: Overview
       url: /explore_overview.html
       output: web
-      type: homepage
-
+      
   - title: Develop
     output: web
     folderitems:
@@ -49,8 +52,8 @@ entries:
     - title: context (STU3|CareConnect)
       url: /develop_medicationrequest_context.html
       output: web  
-    - title: supportInformation
-      url: /develop_medicationrequest_supportinformation.html
+    - title: supportingInformation
+      url: /develop_medicationrequest_supportinginformation.html
       output: web
     - title: authoredOn
       url: /develop_medicationrequest_authoredon.html
