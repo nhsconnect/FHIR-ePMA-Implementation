@@ -5,13 +5,20 @@ entries:
   levels: one
   folders:
 
-  - title: Explore
+  - title: Overview
     output: web
     folderitems:
     - title: Introduction
       url: /index.html
       output: web
       type: homepage
+    - title: Version History
+      url: /overview_versions.html
+      output: web
+      
+  - title: Explore
+    output: web
+    folderitems:
     - title: Overview
       url: /explore_overview.html
       output: web
