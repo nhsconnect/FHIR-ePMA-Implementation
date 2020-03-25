@@ -30,6 +30,8 @@ For the purposes of this guidance, the scope of **status** extends to dispensing
 
 ### ePMA/Pharmacy Interoperability for Status Transitions
 
+![Status Transitions](images/medicationrequest_status_diagram.jpg)
+
 | Previous Status | Future Status | Interoperability Guidance |
 | -- | -- | -- |
 | Draft | Active | This transition will trigger the sending/sharing of the medicationRequest from the ePMA system to the pharmacy system to start dispensing activities. Within a RESTful implementation this would be typically implemented as an HTTP POST. |
