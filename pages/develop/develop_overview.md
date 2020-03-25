@@ -20,7 +20,7 @@ The following elements from the medicationRequest resource are common across STU
 | identifier | _ |
 | [status](develop_medicationrequest_status.html) | Drafted for internal review |
 | [intent](develop_medicationrequest_intent.html) | Drafted for internal review |
-| category | _ |
+| [category](develop_medicationrequest_category.html) | Drafted for internal review |
 | priority | _ |
 | medicationReference | _ |
 | subject | _ |
@@ -35,7 +35,7 @@ The following elements from the medicationRequest resource are common across STU
 | dosageInstruction | _ |
 | dispenseRequest | _ |
 | substitution | _ |
-| [priorPrescription](develop_medicationrequest_priorPrescription.html) | Drafted for internal review |
+| [priorPrescription](develop_medicationrequest_priorprescription.html) | Drafted for internal review |
 
 ### Resource Elements Extended with CareConnect-MedicationRequest-1
 
@@ -45,7 +45,7 @@ The following elements have been introduced into the CareConnect standard as ext
 | -- | -- | -- |
 | [repeatInformation](develop_medicationrequest_cc_repeatinformation.html) | Drafted for internal review |
 | [statusReason](develop_medicationrequest_cc_statusreason.html) | Drafted for internal review |
-| [repeatInformation](develop_medicationrequest_cc_repeatinformation.html) | Drafted for internal review |
+| [prescriptionType](develop_medicationrequest_cc_prescriptiontype.html) | Drafted for internal review |
 
 ### Resource Elements New in FHIR R4
 
