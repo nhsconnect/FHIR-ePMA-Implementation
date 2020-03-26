@@ -1,13 +1,13 @@
 ---
-title: medicationRequest.subject
+title: MedicationRequest.subject
 keywords: design
 tags: [design]
 sidebar: overview_sidebar
 permalink: develop_medicationrequest_subject.html
-summary: Implementation guidance for medicationRequest.subject
+summary: Implementation guidance for MedicationRequest.subject
 ---
 
-## Element: medicationRequest.subject
+## Element: MedicationRequest.subject
 
 **Business Meaning**: A link to a resource representing the person or set of individuals to whom the medication will be given.
 
@@ -17,7 +17,7 @@ The method by which the Patient resource is linked will be a local implementatio
 
  1. Referenced by URL to a FHIR Server
  2. Referenced by an identifier to a Patient resource within the same FHIR Bundle
- 3. Referenced by an identifier to a "contained" resource within the medicationRequest resource
+ 3. Referenced by an identifier to a "contained" resource within the MedicationRequest resource
 
 FHIR snippets using XML notation are as follows;
 
@@ -67,7 +67,7 @@ CareConnect added a number of extensions to the STU3 Patient resource. The only 
 
 [ *STU3* / *R4* ]
 
-Whilst not identical, the elements required to be populated within a **Patient** resource is the same for both versions of FHIR. 
+Whilst not identical, the elements required to be populated within a **Patient** resource are the same for both versions of FHIR. 
 
 ### Minimum Data Set for a Patient Resource
 

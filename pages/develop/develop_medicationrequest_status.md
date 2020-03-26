@@ -1,13 +1,13 @@
 ---
-title: medicationRequest.status
+title: MedicationRequest.status
 keywords: design
 tags: [design]
 sidebar: overview_sidebar
 permalink: develop_medicationrequest_status.html
-summary: Implementation guidance for medicationRequest.status
+summary: Implementation guidance for MedicationRequest.status
 ---
 
-## Element: medicationRequest.status
+## Element: MedicationRequest.status
 
 **Business Meaning**: A code specifying the current state of the medication order.
 
@@ -34,13 +34,13 @@ For the purposes of this guidance, the scope of **status** extends to dispensing
 
 | Previous Status | Future Status | Interoperability Guidance |
 | -- | -- | -- |
-| Draft | Active | This transition will trigger the sending/sharing of the medicationRequest from the ePMA system to the pharmacy system to start dispensing activities. Within a RESTful implementation this would be typically implemented as an HTTP POST. |
+| Draft | Active | This transition will trigger the sending/sharing of the MedicationRequest from the ePMA system to the pharmacy system to start dispensing activities. Within a RESTful implementation this would be typically implemented as an HTTP POST. |
 | Draft | Cancelled | Contained within the ePMA system. |
 | Draft | On-Hold | Contained within the ePMA system. |
 | On-Hold | Draft | Contained within the ePMA system. |
-| On-Hold | Active | This transition will trigger an update to the medicationRequest from the ePMA system to the pharmacy system to restart dispensing activities. Within a RESTful implementation this would be typically implemented as either an HTTP PUT or PATCH. |
-| Active | Active | Not a medicationRequest status transition but the pharmacy system would send/share dispensing activities with the ePMA system, typically using a FHIR profile based on **medicationDispense**. Within a RESTful implementation this would be typically implemented as an HTTP POST. |
-| Active | On-Hold | This transition will trigger an update to the medicationRequest from the ePMA system to the pharmacy system to suspend dispensing activities. Within a RESTful implementation this would be typically implemented as either an HTTP PUT or PATCH. |
-| Active | Entered in Error | This transition will trigger an update to the medicationRequest from the ePMA system to the pharmacy system to stop dispensing activities. Within a RESTful implementation this would be typically implemented as either an HTTP PUT or PATCH. |
-| Active | Stopped | This transition will trigger an update to the medicationRequest from the ePMA system to the pharmacy system to stop dispensing activities. Within a RESTful implementation this would be typically implemented as either an HTTP PUT or PATCH. |
-| Active | Completed | Contained within the ePMA system. All dispensing activity has been received from the pharmacy system within **medicationDispense** FHIR resources. The ePMA system has completed the recorded of medicine administration events. |
+| On-Hold | Active | This transition will trigger an update to the MedicationRequest from the ePMA system to the pharmacy system to restart dispensing activities. Within a RESTful implementation this would be typically implemented as either an HTTP PUT or PATCH. |
+| Active | Active | Not a MedicationRequest status transition but the pharmacy system would send/share dispensing activities with the ePMA system, typically using a FHIR profile based on **MedicationDispense**. Within a RESTful implementation this would be typically implemented as an HTTP POST. |
+| Active | On-Hold | This transition will trigger an update to the MedicationRequest from the ePMA system to the pharmacy system to suspend dispensing activities. Within a RESTful implementation this would be typically implemented as either an HTTP PUT or PATCH. |
+| Active | Entered in Error | This transition will trigger an update to the MedicationRequest from the ePMA system to the pharmacy system to stop dispensing activities. Within a RESTful implementation this would be typically implemented as either an HTTP PUT or PATCH. |
+| Active | Stopped | This transition will trigger an update to the MedicationRequest from the ePMA system to the pharmacy system to stop dispensing activities. Within a RESTful implementation this would be typically implemented as either an HTTP PUT or PATCH. |
+| Active | Completed | Contained within the ePMA system. All dispensing activity has been received from the pharmacy system within **MedicationDispense** FHIR resources. The ePMA system has completed the recorded of medicine administration events. |
