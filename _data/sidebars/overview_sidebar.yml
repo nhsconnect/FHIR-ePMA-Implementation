@@ -1,6 +1,6 @@
 entries:
-- title: ePMA to Pharmacy medicationRequest Implementation Guidance
-  product: ePMA Implementation Guidance
+- title: ePMA to Pharmacy FHIR MedicationRequest Implementation Guidance
+  product: ePMA FHIR Implementation Guidance
   version: 1.0.0-alpha
   levels: one
   folders:
@@ -59,7 +59,7 @@ entries:
     - title: subject
       url: /develop_medicationrequest_subject.html
       output: web  
-    - title: context (STU3|CareConnect)
+    - title: context (STU3)
       url: /develop_medicationrequest_context.html
       output: web  
     - title: supportingInformation

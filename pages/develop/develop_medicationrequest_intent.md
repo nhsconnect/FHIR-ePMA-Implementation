@@ -1,26 +1,24 @@
 ---
-title: medicationRequest.intent
+title: MedicationRequest.intent
 keywords: design
 tags: [design]
 sidebar: overview_sidebar
 permalink: develop_medicationrequest_intent.html
-summary: Implementation guidance for medicationRequest.intent
+summary: Implementation guidance for MedicationRequest.intent
 ---
 
-## Element: medicationRequest.intent
+## Element: MedicationRequest.intent
 
 **Business Meaning**: Describes the nature of the medication request.
 
 [ *STU3* / *CareConnect* ]
 
-Mandatory element using the pre-defined and fixed value set of;
-**proposal** | **plan** | **order** |  **instance-order**
+Mandatory element using the pre-defined and fixed value set of; *proposal*, *plan*, *order* and  *instance-order*.
 
 The value **order** should always be used to denote this is a medication request order.
  
 [ *R4* ]
 
-FHIR R4 extends the value set to;
-**proposal** | **plan** | **order** | **original-order** | **reflex-order** | **filler-order** | **instance-order** | **option**
+FHIR R4 extends the value set to; *proposal*, *plan*, *order*, *original-order*, *reflex-order*, *filler-order*, *instance-order* and *option*.
 
 The recommendation for the ePMA to Pharmacy use case is to continue to use **order** unless it is locally decided that the extended R4 value set better supports the business requirements.
