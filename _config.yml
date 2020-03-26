@@ -2,13 +2,13 @@
 output: web
 # this property is useful for conditional filtering of content that is separate from the PDF.
 
-topnav_title: Site Title and Tag Line
+topnav_title: ePMA to Pharmacy Implementation Guidance
 # this appears on the top navigation bar next to the home button
 
-site_title: Site Title
+site_title: ePMA to Pharmacy
 # this appears in the html browser tab for the site title (seen mostly by search engines, not users)
 
-company_name: Company Name
+company_name: NHS Digital
 # this appears in the footer
 
 github_editme_path: /edit/master/
@@ -89,9 +89,8 @@ defaults:
 
 sidebars:
 - overview_sidebar
-- capability_one_sidebar
 
-description: "Description of the site."
+description: "Implementation guidance for the use of the FHIR medicationRequest resource created by a hospital electronic patient medication administration (ePMA) system and shared with a hospital pharmacy system."
 # the description is used in the feed.xml file
 
 sitemap: true
