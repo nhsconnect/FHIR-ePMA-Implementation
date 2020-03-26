@@ -58,8 +58,8 @@ The following elements are only found in FHIR R4.
 | doNotPerform | No | _ |
 | reported[x] | No | _ |
 | encounter | No | _ |
-| performer | No | Draft in progress |
-| performerType | No | Draft in progress |
+| [performer](develop_medicationrequest_performer.html) | No | Draft in progress |
+| [performerType](develop_medicationrequest_performertype.html) | No | Draft in progress |
 | instantiatesCanonical | No | _ |
 | instantiatesUri | No | _ |
 | courseOfTherapyType | No | _ |

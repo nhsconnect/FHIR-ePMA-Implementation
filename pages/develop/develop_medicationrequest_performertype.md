@@ -1,20 +1,20 @@
 ---
-title: medicationRequest.performerType
+title: MedicationRequest.performerType
 keywords: design
 tags: [design]
 sidebar: overview_sidebar
 permalink: develop_medicationrequest_performertype.html
-summary: Implementation guidance for medicationRequest.performerType
+summary: Implementation guidance for MedicationRequest.performerType
 ---
 
-## Element: medicationRequest.performerType
+## Element: MedicationRequest.performerType
 
 **Business Meaning**: Indicates the type of performer of the administration of the medication.
 
-[ STU3 / CareConnect ]
+[ *STU3* / *CareConnect* ]
 
 This element does not exist in STU3 or CareConnect.
  
-[ R4 ]
+[ *R4* ]
 
 TBC
