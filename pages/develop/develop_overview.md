@@ -23,9 +23,9 @@ The following elements from the medicationRequest resource are common across STU
 | [category](develop_medicationrequest_category.html) | Drafted for internal review |
 | priority | _ |
 | medicationReference | _ |
-| subject | _ |
+| [subject](develop_medicationrequest_subject.html) | Drafted for internal review |
 | supportingInformation | _ |
-| authoredOn | _ |
+| [authoredOn](develop_medicationrequest_authoredon.html) | Drafted for internal review |
 | [requester](develop_medicationrequest_requester.html) | Drafted for internal review |
 | supportInformation | Draft in progress |
 | [recorder](develop_medicationrequest_recorder.html) | Drafted for internal review |
