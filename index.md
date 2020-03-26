@@ -10,7 +10,7 @@ summary: A brief introduction to getting started.
 
 ## Scope of this Implementation Guidance
 
-This guidance for the population of a **medicationRequest** resource for the use case of;
+This guidance for the population of a **MedicationRequest** resource for the use case of;
 
 **Medication (prescription) requests from a hospital electronic patient medication administration (ePMA) system to a hospital pharmacy system.**
 

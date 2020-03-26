@@ -58,10 +58,7 @@ entries:
       output: web
     - title: subject
       url: /develop_medicationrequest_subject.html
-      output: web  
-    - title: context (STU3)
-      url: /develop_medicationrequest_context.html
-      output: web  
+      output: web    
     - title: supportingInformation
       url: /develop_medicationrequest_supportinginformation.html
       output: web
@@ -97,6 +94,9 @@ entries:
       output: web 
     - title: priorPrescription
       url: /develop_medicationrequest_priorprescription.html
+      output: web
+    - title: context (STU3)
+      url: /develop_medicationrequest_context.html
       output: web
     - title: repeatInformation (CareConnect)
       url: /develop_medicationrequest_cc_repeatInformation.html

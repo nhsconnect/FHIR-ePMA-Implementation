@@ -1,13 +1,13 @@
 ---
-title: medicationRequest.authoredOn
+title: MedicationRequest.authoredOn
 keywords: design
 tags: [design]
 sidebar: overview_sidebar
 permalink: develop_medicationrequest_authoredon.html
-summary: Implementation guidance for medicationRequest.authoredOn
+summary: Implementation guidance for MedicationRequest.authoredOn
 ---
 
-## Element: medicationRequest.authoredOn
+## Element: MedicationRequest.authoredOn
 
 **Business Meaning**: The date, and maybe also time, when the prescription was initially written.
 

@@ -35,7 +35,7 @@ The following elements from the MedicationRequest resource are common across STU
 | [note](develop_medicationrequest_note.html) | No | Drafted for internal review |
 | dosageInstruction | YES | _ |
 | dispenseRequest | No | _ |
-| substitution | YES | _ |
+| [substitution](develop_medicationrequest_substitution.html) | YES | Drafted for internal review |
 | [priorPrescription](develop_medicationrequest_priorprescription.html) | No | Drafted for internal review |
 
 ### Resource Elements Extended with CareConnect-MedicationRequest-1
