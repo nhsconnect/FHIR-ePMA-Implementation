@@ -31,19 +31,7 @@ entries:
     folderitems:
     - title: Overview
       url: /develop_overview.html
-      output: web 
-    - title: Test ABC
       output: web
-      folderitems:
-      - title: A
-        url: /a.html
-        output: web
-      - title: B
-        url: /b.html
-        output: web
-      - title: C
-        url: /c.html
-        output: web
     - title: id
       url: /develop_medicationrequest_id.html
       output: web  
