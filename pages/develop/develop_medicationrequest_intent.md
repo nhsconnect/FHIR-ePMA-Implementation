@@ -27,7 +27,7 @@ The recommendation for the ePMA to Pharmacy use case is to continue to use **ord
 
 <table class='resource-attributes'>
   <tr>
-   <td><b>Data type:</b></td>
+   <td><b>Data Type:</b></td>
    <td><code>Code</code></td>
   </tr>
   <tr>
@@ -35,7 +35,7 @@ The recommendation for the ePMA to Pharmacy use case is to continue to use **ord
    <td>Mandatory 1..1</td>
   </tr>
   <tr>
-    <td><b>Supported in:</b> </td>
+    <td><b>Version Supported:</b> </td>
     <td><code>STU3</code> <code>CareConnect</code> <code>R4</code></td>
   </tr>
   <tr>
