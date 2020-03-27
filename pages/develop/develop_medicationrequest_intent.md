@@ -7,7 +7,7 @@ permalink: develop_medicationrequest_intent.html
 summary: Implementation guidance for MedicationRequest.intent
 ---
 
-## Element: MedicationRequest.intent
+### intent
 
 **Business Meaning**: Describes the nature of the medication request.
 
@@ -22,3 +22,23 @@ The value **order** should always be used to denote this is a medication request
 FHIR R4 extends the value set to; *proposal*, *plan*, *order*, *original-order*, *reflex-order*, *filler-order*, *instance-order* and *option*.
 
 The recommendation for the ePMA to Pharmacy use case is to continue to use **order** unless it is locally decided that the extended R4 value set better supports the business requirements.
+
+### intent
+
+<table class='resource-attributes'>
+  <tr>
+    <td><b>Data type:</b> <code>Code</code></td>
+    <td><b>Business Required:</b> Mandatory</td>
+    <td><b>Cardinality:</b> 1..1</td>
+  </tr>
+  <tr>
+  <td colspan=3><b>Business meaning:</b> Describes the nature of the medication request.</td>
+  </tr>
+  <tr>
+  <td colspan=3><b>FHIR versions:</b> <code>STU3</code> / <code>CareConnect</code> / <code>R4</code></td>
+  </tr>
+</table>
+
+The value `order` should always be used to denote this is a medication request order.
+
+FHIR R4 extends the value set to; `proposal`, `plan`, `order`, `original-order`, `reflex-order`, `filler-order`, `instance-order` and `option`, but the recommendation for the target use case is to continue to use `order` unless it is locally decided that the extended R4 value set better supports the business requirements.
