@@ -124,3 +124,94 @@ For the purposes of this guidance, the scope of **status** extends to dispensing
 | `Active` | `Completed` | Contained within the ePMA system. All dispensing activity has been received from the pharmacy system within **MedicationDispense** FHIR resources. The ePMA system has completed the recorded of medicine administration events. |
 
 <hr/>
+
+## statusReason
+
+<table class='resource-attributes'>
+  <tr>
+   <td><b>Data Type:</b></td>
+   <td><code>CodeableConcept</code></td>
+  </tr>
+  <tr>
+   <td><b>Required/Cardinality:</b></td>
+   <td>Optional 0..1</td>
+  </tr>
+  <tr>
+    <td><b>Version Support:</b> </td>
+    <td><code>STU3</code> <code>R4</code></td>
+  </tr>
+  <tr>
+   <td><b>Description:</b></td>
+   <td>TBC</td>
+  </tr>
+</table>
+
+<hr/>
+
+## intent
+
+<table class='resource-attributes'>
+  <tr>
+   <td><b>Data Type:</b></td>
+   <td><code>code</code></td>
+  </tr>
+  <tr>
+   <td><b>Required/Cardinality:</b></td>
+   <td>Mandatory 1..1</td>
+  </tr>
+  <tr>
+    <td><b>Version Support:</b> </td>
+    <td><code>STU3</code>  <code>R4</code></td>
+  </tr>
+  <tr>
+   <td><b>Description:</b></td>
+   <td>Describes the nature of the medication request.</td>
+  </tr>
+</table>
+
+The value `order` should always be used to denote this is a medication request order.
+
+FHIR R4 extends the value set to; `proposal`, `plan`, `order`, `original-order`, `reflex-order`, `filler-order`, `instance-order` and `option`, but the recommendation for the target use case is to continue to use `order` unless it is locally decided that the extended R4 value set better supports the business requirements.
+
+<hr/>
+
+## category
+
+<table class='resource-attributes'>
+  <tr>
+   <td><b>Data Type:</b></td>
+   <td><code>CodeableConcept</code></td>
+  </tr>
+  <tr>
+   <td><b>Required/Cardinality:</b></td>
+   <td>Required 0..*</td>
+  </tr>
+  <tr>
+    <td><b>Version Support:</b> </td>
+    <td><code>STU3</code>  <code>R4</code></td>
+  </tr>
+  <tr>
+   <td><b>Description:</b></td>
+   <td>Type of medication usage. Indicates the type of medication request. For example, where the medication is expected to be consumed or administered, i.e. inpatient or outpatient.</td>
+  </tr>
+</table>
+
+It is expected that any implementation will need to distinguish between medication orders for processes for dispensing and/or administration so this element is business required. 
+
+The STU3 suggested value-set is defined as; `inpatient`, `outpatient` and `community`. The R4 suggested value-set is extended with *discharge*. For a UK implementation, it is recommended to further extend with `leave`.
+
+### Suggested Value-Set and Implementation Guidance
+
+The business meaning for some **Category** values for a UK implementation differs from the FHIR international standard definitions. The suggested value-set applicable for implementation within the UK is as follows;
+
+| Category | Implementation Guidance |
+| -- | -- |
+| `inpatient` | Requests for medications to be administered on a hospital ward or another acute care setting including Accident and Emergency (A&E). Typically requests would be dispensed by the **hospital pharmacy** and administered to the patient on the ward. |
+| `outpatient` | Requests for medication from an outpatient clinic. Typically requests would be dispensed by the **hospital pharmacy** for the patient to self-administer at home. |
+| `community` | Requests for medication to be dispensed by a community pharmacy (akin to an NHS FP10HP paper prescription) or other dispenser outside the hospital, such as a Homecare medicines provider. **Note**: This category is likely to be used for all medication requests from Primary Care (e.g. GPs) to community pharmacies or Dispensing Appliance Contractors (akin to an NHS FP10 paper prescription). |
+| `discharge` | Requests for medication the patient will take away with them on discharge from an inpatient stay. Typically requests would be dispensed by the **hospital pharmacy** for the patient to self-administer at home. |
+| `leave` | Requests for medications that the patient will take away with them during any short break from inpatient care. Typically requests would be dispensed by the **hospital pharmacy** to be self-administered at home with or without the assistance of community based nursing staff. |
+
+For the target ePMA to hospital pharmacy systems use case, it would be expected the the ePMA system is capable to creating medication requests for all five categories. The only category that does not trigger the sending/sharing of a FHIR medicationRequest resource with the hospital pharmacy would be a `community` medication request. A `community` medication request would either trigger the printing and signing of a paper FP10HP prescription, or (when implemented by the Trust) an electronic prescription sent to the NHS Electronic Prescription Service.
+
+<hr/>
