@@ -32,10 +32,9 @@ The recommendation for the ePMA to Pharmacy use case is to continue to use **ord
     <td><b>Cardinality:</b> 1..1</td>
   </tr>
   <tr>
-  <td colspan=3><b>Business meaning:</b> Describes the nature of the medication request.</td>
-  </tr>
-  <tr>
-  <td colspan=3><b>FHIR versions:</b> <code>STU3</code> / <code>CareConnect</code> / <code>R4</code></td>
+    <td><b>Versions:</b> <code>STU3</code><br/><code>CareConnect</code><br/><code>R4</code></td>
+    <td><b>Description:</b> Describes the nature of the medication request.</td>
+    <td></td>
   </tr>
 </table>
 
