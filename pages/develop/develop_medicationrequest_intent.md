@@ -31,15 +31,11 @@ The recommendation for the ePMA to Pharmacy use case is to continue to use **ord
    <td><code>Code</code></td>
   </tr>
   <tr>
-   <td><b>Business Required:</b></td>
-   <td>Mandatory</td>
+   <td><b>Required/Cardinality:</b></td>
+   <td>Mandatory 1..1</td>
   </tr>
   <tr>
-   <td><b>Cardinality:</b></td>
-   <td>1..1</td>
-  </tr>
-  <tr>
-    <td><b>Supported In:</b> </td>
+    <td><b>Supported in:</b> </td>
     <td><code>STU3</code> <code>CareConnect</code> <code>R4</code></td>
   </tr>
   <tr>
