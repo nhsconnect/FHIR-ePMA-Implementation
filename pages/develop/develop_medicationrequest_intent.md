@@ -27,14 +27,24 @@ The recommendation for the ePMA to Pharmacy use case is to continue to use **ord
 
 <table class='resource-attributes'>
   <tr>
-    <td><b>Data type:</b> <code>Code</code></td>
-    <td><b>Business Required:</b> Mandatory</td>
-    <td><b>Cardinality:</b> 1..1</td>
+   <td><b>Data type:</b></td>
+   <td><code>Code</code></td>
   </tr>
   <tr>
-    <td><b>Versions:</b> <code>STU3</code><br/><code>CareConnect</code><br/><code>R4</code></td>
-    <td><b>Description:</b> Describes the nature of the medication request.</td>
-    <td></td>
+   <td><b>Business Required:</b></td>
+   <td>Mandatory</td>
+  </tr>
+  <tr>
+   <td><b>Cardinality:</b></td>
+   <td>1..1</td>
+  </tr>
+  <tr>
+    <td><b>Supported In:</b> </td>
+    <td><code>STU3</code> <code>CareConnect</code> <code>R4</code></td>
+  </tr>
+  <tr>
+   <td><b>Description:</b></td>
+   <td>Describes the nature of the medication request.</td>
   </tr>
 </table>
 
