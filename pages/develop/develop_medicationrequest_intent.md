@@ -36,7 +36,7 @@ The recommendation for the ePMA to Pharmacy use case is to continue to use **ord
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
-    <td><code>STU3</code> <code>CareConnect</code> <code>R4</code></td>
+    <td><code>STU3</code> <code>R4</code></td>
   </tr>
   <tr>
    <td><b>Description:</b></td>
