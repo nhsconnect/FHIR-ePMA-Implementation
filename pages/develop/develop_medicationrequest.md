@@ -15,7 +15,7 @@ Here
 
 Here
 
-## Minimum Viable Product (MVP)
+### Minimum Viable Product (MVP)
 
 Elements marked as **MVP** denote those recommended to be required for an MVP for the target use case.
 
@@ -316,7 +316,67 @@ If to be used, consider only initially supporting `routine` and `urgent` and set
   </tr>
 </table>
 
-Guidance TBC.
+The method by which the Medication resource is linked will be a local implementation decision. There are three options;
+
+ 1. Referenced by URL to a FHIR Server
+ 2. Referenced by an identifier to a Medication resource within the same FHIR Bundle
+ 3. Referenced by an identifier to a "contained" Medication resource within the MedicationRequest resource
+
+FHIR snippets using XML notation are as follows;
+
+    <!-- 1. by URL -->
+    <MedicationRequest>
+	    <medicationReference>
+	    	<reference value="https://acmefhirserver/medication/87652004"/>
+	    	<display value="Atenolol"/>
+	    </medicationReference>
+    </MedicationRequest>
+    
+    <!-- 2. by identifier within the Bundle -->
+    <Bundle>
+	    <entry>
+		    <fullUrl value="medication-87652004"/>
+		    <resource>
+			    <Medication>
+				    <!-- medication details for Atenolol -->
+			    </Medication>
+		    </resource>
+		</entry>
+		<entry>
+			<resource>
+			    <MedicationRequest>
+				    <medicationReference>
+					    <reference value="#medication-87652004"/>
+					    <display value="Atenolol"/>
+					</medicationReference>
+				</MedicationRequest>
+			</resource>
+		</entry>
+    </Bundle>
+    
+    <!-- 3. by identifier to a contained resource -->
+    <MedicationRequest>
+	    <contained>
+		    <Medication>
+			    <id value="medication-87652004"/>
+			    <!-- medication details for Atenolol -->
+		    </Medication>
+	    </contained>
+	    <<medicationReference>>
+		    <reference value="#medication-87652004"/>
+		    <display value="Atenolol"/>
+		</<medicationReference>>
+	</MedicationRequest>
+
+It is recommended that an implementation uses a reference by URL to a trusted SNOMED/dm+d FHIR Medication Resource Server. It is recommended that the `reference.display` is populated with the medication description selected by the user.
+
+**Note**: At the time of writing an alpha implementation of a FHIR dm+d server is available from the North East CSU as a [demonstrator](https://dmdsite-uks-test-web.azurewebsites.net/Dosage) and associated [API]([https://apidmd001.azurewebsites.net/index.html](https://apidmd001.azurewebsites.net/index.html)).
+
+Where a trusted FHIR dm+d server is not available or not used within an implementation, the reference to the Medication resource should be within a Bundle.
+
+Q) In this instance the Medication.text can be populated. QUESTION: Are we happy about how the Medication resource is populated, in particular about when the drug name in the system the clinician is using is different to the of dm+d?
+
+The use of a contained Medication resource should be the last option considered. Note that when a Medication resource is contained inside the MedicationRequest resource the `Medication.text` element **should not be populated**. This is because the Medication resource is contained inside a MedicationRequest resource and all text should be represented in the `MedicationRequest.text` element, including data from the contained Medication resource.
 
 <hr/>
 
@@ -347,13 +407,14 @@ The method by which the Patient resource is linked will be a local implementatio
 
  1. Referenced by URL to a FHIR Server
  2. Referenced by an identifier to a Patient resource within the same FHIR Bundle
- 3. Referenced by an identifier to a "contained" resource within the MedicationRequest resource
+ 3. Referenced by an identifier to a "contained" Patient resource within the MedicationRequest resource
 
 FHIR snippets using XML notation are as follows;
 
     <!-- 1. by URL -->
     <subject>
     	<reference value="https://acmefhirserver/patient/2245386903"/>
+    	<display value="Joe Bloggs"/>
     </subject>
     
     <!-- 2. by identifier within the Bundle -->
@@ -362,7 +423,7 @@ FHIR snippets using XML notation are as follows;
 		    <fullUrl value="patient-2245386903"/>
 		    <resource>
 			    <Patient>
-				    <!-- patient details -->
+				    <!-- patient details for Joe Bloggs -->
 			    </Patient>
 		    </resource>
 		</entry>
@@ -371,6 +432,7 @@ FHIR snippets using XML notation are as follows;
 			    <MedicationRequest>
 				    <subject>
 					    <reference value="#patient-2245386903"/>
+					    <display value="Joe Bloggs"/>
 					</subject>
 				</MedicationRequest>
 			</resource>
@@ -382,13 +444,22 @@ FHIR snippets using XML notation are as follows;
 	    <contained>
 		    <Patient>
 			    <id value="patient-2245386903"/>
-			    <!-- patient details -->
+			    <!-- patient details for Joe Bloggs -->
 		    </Patient>
 	    </contained>
 	    <subject>
 		    <reference value="#patient-2245386903"/>
+		    <display value="Joe Bloggs"/>
 		</subject>
 	</MedicationRequest>
+
+It is recommended that an implementation uses a reference by URL to a trusted Patient Administration FHIR Server. It is recommended that the `reference.display` is populated with the full name of the patient.
+
+**Note**: It is acknowledged that a typical Hospital Patient Administration System (PAS) will not expose a FHIR interface so the above option will most likely not be available for some time so is an aspirational recommendation.
+
+Where a trusted Patient Administration FHIR Server is not available or not used within an implementation, the reference to the Patient resource should be within a Bundle.
+
+The use of a contained Patient resource should be the last option considered.
 
 <hr/>
 
@@ -617,7 +688,7 @@ Can be used to support local requirements not supported elsewhere within the res
   </tr>
 </table>
 
-Refer to [FHIR Dose Syntax Implementation Guidance](https://developer.nhs.uk/apis/dose-syntax-implementation-1-3-1-alpha/index.html) (or any subsequent version) for guidance.
+Refer to [FHIR Dose Syntax Implementation Guidance](https://developer.nhs.uk/apis/dose-syntax-implementation-1-3-2-alpha/) (or any subsequent version) for guidance.
 
 <hr/>
 
@@ -646,7 +717,7 @@ It is recommended that this structure is **omitted**, unless required data to be
 
 Many elements within this structure are to support primary care prescribing processes using VMP and AMP dm+d concepts and where a structured dosage instruction is not populated.
 
-Refer to [FHIR Dose Syntax Implementation Guidance](https://developer.nhs.uk/apis/dose-syntax-implementation-1-3-1-alpha/index.html) (or any subsequent version) for further guidance.
+Refer to [FHIR Dose Syntax Implementation Guidance](https://developer.nhs.uk/apis/dose-syntax-implementation-1-3-2-alpha/) (or any subsequent version) for further guidance.
 
 <hr/>
 
