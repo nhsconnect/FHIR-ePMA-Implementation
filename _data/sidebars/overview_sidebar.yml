@@ -15,9 +15,6 @@ entries:
     - title: Version History
       url: /overview_versions.html
       output: web
-    - title: Glossary
-      url: /overview_glossary.html
-      output: web
       
   - title: Explore
     output: web

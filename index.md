@@ -27,24 +27,6 @@ This guidance is aligned to the following FHIR standards;
 - [CareConnect](https://fhir.hl7.org.uk/) based on STU3
 - [R4](https://hl7.org/fhir/R4/index.html)
 
-### Alignment with FHIR Standards
+## Glossary of Terms
 
-Where guidance relates to a specific version of the FHIR standard, it shall be labelled as such;
-
-[ *STU3* ]
-
-Guidance that only applies to an STU3 implementation...
-
-[ *CareConnect* ]
-
-Guidance that only applies to a CareConnect implementation...
-
-[ *STU3* / *CareConnect* ]
-
-Guidance that applies to either an STU3 or CareConnect implementation...
-
-[ *R4* ]
-
-Guidance that only applies to an R4 implementation...
-
-Where no FHIR standard label is used the guidance is applicable to all three versions of the FHIR standard. 
+Refer to the [NHS Digital Glossary of Developer Terms](https://digital.nhs.uk/developer/developer-reference/glossary-of-developer-terms).
