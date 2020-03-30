@@ -7,19 +7,19 @@ permalink: develop_medicationrequest.html
 summary: Implementation guidance for populating and consuming the FHIR MedicationRequest resource
 ---
 
-# Introduction
+## Introduction
 
 Here
 
-# Overarching principles
+### Overarching principles
 
 Here
 
-# Minimum Viable Product (MVP)
+## Minimum Viable Product (MVP)
 
 Elements marked as **MVP** denote those recommended to be required for an MVP for the target use case.
 
-| Element |  | CareConnect Ext |  | New in R4 |  | Removed from R4 |  |
+| Common Elements |  | CareConnect Extension |  | New in R4 |  | Removed from R4 |  |
 | -- | -- | -- | -- | -- | -- | -- | -- |  -- | -- |
 | **id** | **MVP** | repeatInformation |  | statusReason |  | context |  | 
 | text |  | statusReason |  | doNotPerform |  | definition |  | 
@@ -42,9 +42,9 @@ Elements marked as **MVP** denote those recommended to be required for an MVP fo
 | **substitution** | **MVP** |  | | | |
 | priorPrescription |  |  | | | |
 
-# MedicationRequest elements
+## MedicationRequest elements
 
-## id
+### id
 
 <table class='resource-attributes'>
   <tr>
@@ -89,9 +89,7 @@ For this reason, within an implementation where multiple clients are POSTing to 
 
 <hr/>
 
-<hr/>
-
-## identifier
+### identifier
 
 <table class='resource-attributes'>
   <tr>
@@ -114,12 +112,12 @@ For this reason, within an implementation where multiple clients are POSTing to 
 
 Guidance TBC.
 
-## text
+### text
 
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>TBC</code></td>
+   <td><code>Narrative</code></td>
   </tr>
   <tr>
    <td><b>Required/Cardinality:</b></td>
@@ -139,7 +137,7 @@ Guidance TBC.
 
 <hr/>
 
-## status
+### status
 
 <table class='resource-attributes'>
   <tr>
@@ -177,7 +175,7 @@ For the purposes of this guidance, the scope of **status** extends to dispensing
 | `Entered in Error` | Some of the actions that are implied by the medication request may have occurred. For example, the medication may have been dispensed and the patient may have taken some of the medication. Clinical decision support systems should take this status into account. | The order needs to be stopped due to human data entry error. An update needs to be sent to the pharmacy so that no further medication is dispensed. |
 | `Unknown` | The authoring/source system does not know which of the status values currently applies for this observation. Note: This concept is not to be used for 'other' - one of the listed statuses is presumed to apply, but the authoring/source system does not know which. | Recommended not to be supported as the use case for this status value is unclear. |
 
-### Status Transitions 
+#### Status Transitions 
 
 ![Status Transitions](images/medicationrequest_status_diagram.jpg)
 
@@ -196,7 +194,7 @@ For the purposes of this guidance, the scope of **status** extends to dispensing
 
 <hr/>
 
-## intent
+### intent
 
 <table class='resource-attributes'>
   <tr>
@@ -223,7 +221,7 @@ FHIR R4 extends the value set to; `proposal`, `plan`, `order`, `original-order`,
 
 <hr/>
 
-## category
+### category
 
 <table class='resource-attributes'>
   <tr>
@@ -244,11 +242,9 @@ FHIR R4 extends the value set to; `proposal`, `plan`, `order`, `original-order`,
   </tr>
 </table>
 
-It is expected that any implementation will need to distinguish between medication orders for processes for dispensing and/or administration so this element is business required. 
+It is expected that any implementation will need to distinguish between medication orders for processes for dispensing and/or administration so this element is **business required**. 
 
 The STU3 suggested value-set is defined as; `inpatient`, `outpatient` and `community`. The R4 suggested value-set is extended with *discharge*. For a UK implementation, it is recommended to further extend with `leave`.
-
-### Suggested Value-Set
 
 The business meaning for some **Category** values for a UK implementation differs from the FHIR international standard definitions. The suggested value-set applicable for implementation within the UK is as follows;
 
@@ -260,20 +256,22 @@ The business meaning for some **Category** values for a UK implementation differ
 | `discharge` | Requests for medication the patient will take away with them on discharge from an inpatient stay. Typically requests would be dispensed by the **hospital pharmacy** for the patient to self-administer at home. |
 | `leave` | Requests for medications that the patient will take away with them during any short break from inpatient care. Typically requests would be dispensed by the **hospital pharmacy** to be self-administered at home with or without the assistance of community based nursing staff. |
 
-For the target ePMA to hospital pharmacy systems use case, it would be expected the the ePMA system is capable to creating medication requests for all five categories. The only category that does not trigger the sending/sharing of a FHIR medicationRequest resource with the hospital pharmacy would be a `community` medication request. A `community` medication request would either trigger the printing and signing of a paper FP10HP prescription, or (when implemented by the Trust) an electronic prescription sent to the NHS Electronic Prescription Service.
+For the target ePMA to hospital pharmacy systems use case, it would be expected the the ePMA system is capable to creating medication requests for all five categories.
+
+The only category that does not trigger the sending/sharing of a FHIR medicationRequest resource with the hospital pharmacy would be a `community` medication request. A `community` medication request would either trigger the printing and signing of a paper FP10HP prescription, or (when implemented by the Trust) an electronic prescription sent to the NHS Electronic Prescription Service.
 
 <hr/>
 
-## priority
+### priority
 
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>TBC</code></td>
+   <td><code>Code</code></td>
   </tr>
   <tr>
    <td><b>Required/Cardinality:</b></td>
-   <td>TBC</td>
+   <td>Optional 0..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -281,22 +279,32 @@ For the target ePMA to hospital pharmacy systems use case, it would be expected 
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>Indicates how quickly the medication request should be addressed with respect to other requests.</td>
   </tr>
 </table>
 
+Recommended **not** to be used within an implementation or used **with caution**.
+
+The stating of a priority, in any business context including healthcare, is often de-valued as given the choice, every clinician wants medication urgently for their patients.
+
+The FHIR standard uses a fixed value-set of `routine`, `urgent`, `asap` and `stat`, which denote a priority in increasing orders of magnitude, with `stat` being the highest possible priority, e.g. an emergency.
+
+The use of the term `stat` is potentially confusing as when used within a dosage instruction can also mean "*give once immediately*".
+
+If to be used, consider only initially supporting `routine` and `urgent` and set clear criteria for when a medication request should be marked as `urgent`.
+
 <hr/>
 
-## medicationReference
+### medicationReference
 
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>TBC</code></td>
+   <td><code>Reference</code></td>
   </tr>
   <tr>
    <td><b>Required/Cardinality:</b></td>
-   <td>TBC</td>
+   <td>Mandatory 1..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -304,14 +312,15 @@ For the target ePMA to hospital pharmacy systems use case, it would be expected 
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>Medication requested to be dispensed.</td>
   </tr>
 </table>
 
+Guidance TBC.
+
 <hr/>
 
-
-## subject
+### subject
 
 <table class='resource-attributes'>
   <tr>
@@ -383,7 +392,7 @@ FHIR snippets using XML notation are as follows;
 
 <hr/>
 
-## supportingInformation
+### supportingInformation
 
 <table class='resource-attributes'>
   <tr>
@@ -410,7 +419,7 @@ Do we agree?
 
 <hr/>
 
-## authoredOn
+### authoredOn
 
 <table class='resource-attributes'>
   <tr>
@@ -439,7 +448,7 @@ Recommended that the date and time is the same as recorded and visible within th
 
 <hr/>
 
-## requester
+### requester
 
 <table class='resource-attributes'>
   <tr>
@@ -466,7 +475,7 @@ Recommended to be the prescribing clinician recorded on the ePMA system for the 
 
 The requester can be a reference to a number of different FHIR resources; *Practitioner*, *PractitionerRole*, *Organization*, *Patient*, *RelatedPerson* or *Device*. For this use case it is recommended to always use **Practitioner** unless an implementation supports use cases like requests direct from patients or automated requests from medical or monitoring devices.
 
-### Additional Guidance
+#### Additional Guidance
 
 Where an implementation does not currently record the prescribing clinician then consider the following;
 - If the prescribing clinician is authorising new medication then populate with their details.
@@ -483,7 +492,7 @@ Where an implementation does not currently record the prescribing clinician then
 
 <hr/>
 
-## recorder
+### recorder
 
 <table class='resource-attributes'>
   <tr>
@@ -508,7 +517,7 @@ Optional for most implementations and requires all system users to be individual
 
 <hr/>
 
-## reasonCode
+### reasonCode
 
 <table class='resource-attributes'>
   <tr>
@@ -537,16 +546,16 @@ FHIR 4 has several additional structures here?
 
 <hr/>
 
-## reasonReference
+### reasonReference
 
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>TBC</code></td>
+   <td><code>Reference</code></td>
   </tr>
   <tr>
    <td><b>Required/Cardinality:</b></td>
-   <td>TBC</td>
+   <td>Optional 0..*</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -554,13 +563,15 @@ FHIR 4 has several additional structures here?
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>Condition or observation that supports why the prescription is being written.</td>
   </tr>
 </table>
 
+Guidance TBC.
+
 <hr/>
 
-## note
+### note
 
 <table class='resource-attributes'>
   <tr>
@@ -585,16 +596,16 @@ Can be used to support local requirements not supported elsewhere within the res
 
 <hr/>
 
-## dosageInstruction
+### dosageInstruction
 
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>TBC</code></td>
+   <td><code>Dosage</code></td>
   </tr>
   <tr>
    <td><b>Required/Cardinality:</b></td>
-   <td>TBC</td>
+   <td>Required 0..*</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -606,9 +617,11 @@ Can be used to support local requirements not supported elsewhere within the res
   </tr>
 </table>
 
+Refer to [FHIR Dose Syntax Implementation Guidance](https://developer.nhs.uk/apis/dose-syntax-implementation-1-3-1-alpha/index.html) (or any subsequent version) for guidance.
+
 <hr/>
 
-## dispenseRequest
+### dispenseRequest
 
 <table class='resource-attributes'>
   <tr>
@@ -637,7 +650,7 @@ Refer to [FHIR Dose Syntax Implementation Guidance](https://developer.nhs.uk/api
 
 <hr/>
 
-## substitution
+### substitution
 
 <table class='resource-attributes'>
   <tr>
@@ -662,13 +675,13 @@ Within UK healthcare, substitution is not the norm so the international FHIR def
 
 It could be unwise to assume all UK implementations will prevent substitution if not explicitly stated, especially if the same clinical system has been previously implemented outside the UK. It is therefore recommended that this element is **business required** with a default boolean value of `false` to denote substitution is **not** allowed.
 
-### Allowing Substitution
+#### Allowing Substitution
 
 Where substitution to be be allowed, set to "**true**". The inclusion of the coded reason is optional as the value-set defined in FHIR is of limited benefit to UK healthcare.
 
 <hr/>
 
-## priorPrescription
+### priorPrescription
 
 <table class='resource-attributes'>
   <tr>
@@ -699,19 +712,19 @@ and
 
 The following guidance applies to each use case.
 
-### Linking to an earlier order
+#### Linking to an earlier order
 
 A medication request that is a repeat of an earlier request would be referenced within **priorPrescription**. This would allow both the ePMA and pharmacy systems to logically link requests and add verification checks to flag any differences to the user.
 
 An order for the same medication but for a different dose can still be linked using **priorPrescription**. In this scenario it would be expected that the prescribing clinician provides **supporting information** for the pharmacy to confirm the change in the medication request.
 
-### Linking to an order that is being replaced
+#### Linking to an order that is being replaced
 
 The medicationRequest being replaced will be referenced within **priorPrescription**. It would be expected that the referenced resource would be updated with a **status** of *cancelled*, *entered-in-error* or *stopped*. This will allow both the ePMA and pharmacy systems to make it clear to the human user that one medication request replaces another.
 
 <hr/>
 
-## extension (repeatInformation)
+### extension (repeatInformation)
 
 <table class='resource-attributes'>
   <tr>
@@ -736,7 +749,7 @@ It is recommended that this structure is **omitted** for the target use case.
 
 <hr/>
 
-## extension (statusReason)
+### extension (statusReason)
 
 <table class='resource-attributes'>
   <tr>
@@ -761,7 +774,7 @@ It is recommended that this structure is **omitted** for the target use case.
 
 <hr/>
 
-## extension (prescriptionType)
+### extension (prescriptionType)
 
 <table class='resource-attributes'>
   <tr>
@@ -788,7 +801,7 @@ It is recommended that this structure is **omitted** for the target use case.
 
 <hr/>
 
-## statusReason
+### statusReason
 
 <table class='resource-attributes'>
   <tr>
@@ -809,9 +822,11 @@ It is recommended that this structure is **omitted** for the target use case.
   </tr>
 </table>
 
+Guidance TBC.
+
 <hr/>
 
-## doNotPerform
+### doNotPerform
 
 <table class='resource-attributes'>
   <tr>
@@ -832,9 +847,11 @@ It is recommended that this structure is **omitted** for the target use case.
   </tr>
 </table>
 
+Guidance TBC.
+
 <hr/>
 
-## reported[x]
+### reported[x]
 
 <table class='resource-attributes'>
   <tr>
@@ -855,9 +872,11 @@ It is recommended that this structure is **omitted** for the target use case.
   </tr>
 </table>
 
+Guidance TBC.
+
 <hr/>
 
-## encounter
+### encounter
 
 <table class='resource-attributes'>
   <tr>
@@ -878,9 +897,11 @@ It is recommended that this structure is **omitted** for the target use case.
   </tr>
 </table>
 
+Guidance TBC.
+
 <hr/>
 
-## performer
+### performer
 
 <table class='resource-attributes'>
   <tr>
@@ -905,7 +926,7 @@ It is recommended that this structure is **omitted** for the target use case.
 
 <hr/>
 
-## performerType
+### performerType
 
 <table class='resource-attributes'>
   <tr>
@@ -926,9 +947,11 @@ It is recommended that this structure is **omitted** for the target use case.
   </tr>
 </table>
 
+Guidance TBC.
+
 <hr/>
 
-## instantiatesCanonical [ *R4* ]
+### instantiatesCanonical
 
 <table class='resource-attributes'>
   <tr>
@@ -949,9 +972,11 @@ It is recommended that this structure is **omitted** for the target use case.
   </tr>
 </table>
 
+Guidance TBC.
+
 <hr/>
 
-## instantiatesUri [ *R4* ]
+### instantiatesUri
 
 <table class='resource-attributes'>
   <tr>
@@ -972,9 +997,11 @@ It is recommended that this structure is **omitted** for the target use case.
   </tr>
 </table>
 
+Guidance TBC.
+
 <hr/>
 
-## courseOfTherapyType [ *R4* ]
+### courseOfTherapyType
 
 <table class='resource-attributes'>
   <tr>
@@ -995,9 +1022,11 @@ It is recommended that this structure is **omitted** for the target use case.
   </tr>
 </table>
 
+Guidance TBC.
+
 <hr/>
 
-## insurance [ *R4* ]
+### insurance
 
 <table class='resource-attributes'>
   <tr>
@@ -1018,9 +1047,11 @@ It is recommended that this structure is **omitted** for the target use case.
   </tr>
 </table>
 
+Guidance TBC.
+
 <hr/>
 
-## context [ *STU3* ]
+### context
 
 <table class='resource-attributes'>
   <tr>
@@ -1037,13 +1068,19 @@ It is recommended that this structure is **omitted** for the target use case.
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>A link to an encounter or episode of care, that identifies the particular occurrence or set occurrences of contact between patient and health care provider.</td>
   </tr>
 </table>
 
+This element has been removed from the FHIR R4 standard.
+
+If implemented as a reference to an **Encounter** resource, within R4 this is supported by a new **encounter** element, giving a clear migration path.
+
+Any reference to an **EpisodeOfCare** resource within an STU3 or CareConnect implementation will not be supported if migrated to FHIR R4. It is recommended not to reference an EpisodeOfCare resource within an STU3 implementation.
+
 <hr/>
 
-## definition [ *STU3* ]
+### definition
 
 <table class='resource-attributes'>
   <tr>
@@ -1060,8 +1097,10 @@ It is recommended that this structure is **omitted** for the target use case.
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>Protocol or definition followed by this request.</td>
   </tr>
 </table>
+
+This element has been removed from FHIR R4 therefore it's use within an STU3 or CareConnect implementation is **not recommended**.
 
 <hr/>
