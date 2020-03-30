@@ -17,32 +17,30 @@ Here
 
 # Minimum Viable Product (MVP)
 
-## Resource Elements Common across STU3, CareConnect and R4
+Elements marked as **MVP** denote those recommended to be required for an MVP for the target use case.
 
-The following elements from the MedicationRequest resource are common across STU3, CareConnect and R4.
-
-| Common | MVP | CareConnect | MVP | New R4 | MVP | Removed R4 | MVP |
+| Element |  | CareConnect Ext |  | New in R4 |  | Removed from R4 |  |
 | -- | -- | -- | -- | -- | -- | -- | -- |  -- | -- |
-| id | YES | repeatInformation | No | statusReason | No | context | No | 
-| text | No | statusReason | No | doNotPerform | No | definition | No | 
-| identifier | No | prescriptionType | No | reported[x] | No | requester. agent | No | 
-| status | YES | | | encounter | No | requester. onBehalfOf | No |
-| intent | YES | | | performer | No | | |
-| category | YES | | | performerType | No |  | |
-| priority | No | | |  instantiatesCanonical | No |  | |
-| medicationReference | YES | | | instantiatesUri | No |  | |
-| subject | YES | | | courseOfTherapyType | No |  | |
-| supportingInformation | No | | | insurance | No |  | |
-| authoredOn | YES | | | dispenseRequest. initialFill | No |  | |
-| requester | YES | | | dispenseRequest. initialFill.quantity | No |  | |
-| recorder | No | | | dispenseRequest. initialFill.duration | No |  | |
-| reasonCode | No |  | | dispenseRequest. dispenseInterval | No |  | |
-| reasonReference | No |  | | dispenseRequest. numberOfRepeatsAllowed | No |  | |
-| note | No | | | | |
-| dosageInstruction | YES |  | | | |
-| dispenseRequest | No |  | | | |
-| substitution | YES |  | | | |
-| priorPrescription | No |  | | | |
+| **id** | **MVP** | repeatInformation |  | statusReason |  | context |  | 
+| text |  | statusReason |  | doNotPerform |  | definition |  | 
+| identifier |  | prescriptionType |  | reported[x] |  | requester. agent |  | 
+| **status** | **MVP** | | | encounter |  | requester. onBehalfOf |  |
+| **intent** | **MVP** | | | performer |  | | |
+| **category** | **MVP** | | | performerType |  |  | |
+| priority |  | | |  instantiatesCanonical |  |  | |
+| **medicationReference** | **MVP** | | | instantiatesUri |  |  | |
+| **subject** | **MVP** | | | courseOfTherapyType |  |  | |
+| supportingInformation |  | | | insurance |  |  | |
+| **authoredOn** | **MVP** | | | dispenseRequest. initialFill |  |  | |
+| **requester** | **MVP** | | | dispenseRequest. initialFill.quantity |  |  | |
+| recorder |  | | | dispenseRequest. initialFill.duration |  |  | |
+| reasonCode |  |  | | dispenseRequest. dispenseInterval |  |  | |
+| reasonReference |  |  | | dispenseRequest. numberOfRepeatsAllowed |  |  | |
+| note |  | | | | |
+| **dosageInstruction** | **MVP** |  | | | |
+| dispenseRequest |  |  | | | |
+| **substitution** | **MVP** |  | | | |
+| priorPrescription |  |  | | | |
 
 # MedicationRequest elements
 
@@ -90,6 +88,31 @@ If a client system creates the logical id and there are multiple clients sending
 For this reason, within an implementation where multiple clients are POSTing to a FHIR server, it is highly recommenced that the FHIR server creates the logical id to remove the risk of duplication.
 
 <hr/>
+
+<hr/>
+
+## identifier
+
+<table class='resource-attributes'>
+  <tr>
+   <td><b>Data Type:</b></td>
+   <td><code>Identifier</code></td>
+  </tr>
+  <tr>
+   <td><b>Required/Cardinality:</b></td>
+   <td>Optional 0..*</td>
+  </tr>
+  <tr>
+    <td><b>Version Support:</b> </td>
+    <td><code>STU3</code> <code>R4</code></td>
+  </tr>
+  <tr>
+   <td><b>Description:</b></td>
+   <td>External ids for this request. Identifiers associated with this medication request that are defined by business processes and/or used to refer to it when a direct URL reference to the resource itself is not appropriate. They are business identifiers assigned to this resource by the performer or other systems and remain constant as the resource is updated and propagates from server to server.</td>
+  </tr>
+</table>
+
+Guidance TBC.
 
 ## text
 
@@ -170,29 +193,6 @@ For the purposes of this guidance, the scope of **status** extends to dispensing
 | `Active` | `Entered in Error` | This transition will trigger an update to the MedicationRequest from the ePMA system to the pharmacy system to stop dispensing activities. Within a RESTful implementation this would be typically implemented as either an HTTP PUT or PATCH. |
 | `Active` | `Stopped` | This transition will trigger an update to the MedicationRequest from the ePMA system to the pharmacy system to stop dispensing activities. Within a RESTful implementation this would be typically implemented as either an HTTP PUT or PATCH. |
 | `Active` | `Completed` | Contained within the ePMA system. All dispensing activity has been received from the pharmacy system within **MedicationDispense** FHIR resources. The ePMA system has completed the recorded of medicine administration events. |
-
-<hr/>
-
-## statusReason
-
-<table class='resource-attributes'>
-  <tr>
-   <td><b>Data Type:</b></td>
-   <td><code>CodeableConcept</code></td>
-  </tr>
-  <tr>
-   <td><b>Required/Cardinality:</b></td>
-   <td>Optional 0..1</td>
-  </tr>
-  <tr>
-    <td><b>Version Support:</b> </td>
-    <td><code>STU3</code> <code>R4</code></td>
-  </tr>
-  <tr>
-   <td><b>Description:</b></td>
-   <td>TBC</td>
-  </tr>
-</table>
 
 <hr/>
 
@@ -328,13 +328,13 @@ For the target ePMA to hospital pharmacy systems use case, it would be expected 
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>A link to a resource representing the person or set of individuals to whom the medication will be given. Refer to (Patient)[develop_patient.html] resource. </td>
+   <td>A link to a resource representing the person or set of individuals to whom the medication will be given. </td>
   </tr>
 </table>
 
-The scope of the target use case relates to individual patients only, not groups of patients therefore the linked resource shall only be a FHIR **Patient** resource.
+The scope of the target use case relates to individual patients only, not groups of patients therefore the linked resource shall only be a FHIR **Patient** resource. Refer to the [Patient](develop_patient.html) resource implementation guidance.
 
-The method by which the (Patient)[develop_patient.html] resource is linked will be a local implementation decision. There are three options;
+The method by which the Patient resource is linked will be a local implementation decision. There are three options;
 
  1. Referenced by URL to a FHIR Server
  2. Referenced by an identifier to a Patient resource within the same FHIR Bundle
@@ -388,11 +388,11 @@ FHIR snippets using XML notation are as follows;
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>TBC</code></td>
+   <td><code>Reference</code></td>
   </tr>
   <tr>
    <td><b>Required/Cardinality:</b></td>
-   <td>TBC</td>
+   <td>Optional 0..*</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -400,9 +400,13 @@ FHIR snippets using XML notation are as follows;
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>Information to support ordering of the medication.</td>
   </tr>
 </table>
+
+The FHIR specification suggests information such as the patient height and weight could be included within this element to support the medication order.
+
+Do we agree?
 
 <hr/>
 
@@ -440,11 +444,11 @@ Recommended that the date and time is the same as recorded and visible within th
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>TBC</code></td>
+   <td><code>Reference</code></td>
   </tr>
   <tr>
    <td><b>Required/Cardinality:</b></td>
-   <td>TBC</td>
+   <td>Required 0..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -452,9 +456,30 @@ Recommended that the date and time is the same as recorded and visible within th
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>The clinician requesting the medication.</td>
   </tr>
 </table>
+
+Recommended as a required business element for most implementations.
+
+Recommended to be the prescribing clinician recorded on the ePMA system for the medication request, as a reference to a FHIR **Practitioner** resource.
+
+The requester can be a reference to a number of different FHIR resources; *Practitioner*, *PractitionerRole*, *Organization*, *Patient*, *RelatedPerson* or *Device*. For this use case it is recommended to always use **Practitioner** unless an implementation supports use cases like requests direct from patients or automated requests from medical or monitoring devices.
+
+### Additional Guidance
+
+Where an implementation does not currently record the prescribing clinician then consider the following;
+- If the prescribing clinician is authorising new medication then populate with their details.
+- If the prescribing clinician is re-ordering from a previous medication request that they authorised then populate with their details, and consider populating **priorPrescription**.
+- If the prescribing clinician is acting on behalf of a colleague to authorise new medication then populate with the details of the colleague and consider also populating **recorder**.
+- If the prescribing clinician is re-ordering from a previous medication request authorised by a colleague then populate with their details (not the colleagues) and consider populating **priorPrescription**.
+- If the prescribing clinician is acting on behalf of a colleague to re-order from a previous medication request authorised by someone else then populate with the details of the colleague and consider also populating **recorder** and **priorPrescription**.
+
+**Note**: If the user is not a qualified prescriber but performing the task of data entry then they are instead acting as the **recorder**.
+
+**TBC**: What if a nurse is requesting more supply of a drug from an original prescription?
+
+**Note**: STU3 allowed a request on behalf of another organisation to be defined using **requester.onBehalfOf**. This has been removed from R4 so is recommended not to be used within any STU3 or CareConnect implementation.
 
 <hr/>
 
@@ -463,11 +488,11 @@ Recommended that the date and time is the same as recorded and visible within th
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>TBC</code></td>
+   <td><code>Reference</code></td>
   </tr>
   <tr>
    <td><b>Required/Cardinality:</b></td>
-   <td>TBC</td>
+   <td>Optional 0..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -475,9 +500,11 @@ Recommended that the date and time is the same as recorded and visible within th
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>The user who entered the data entry to record the medication request.</td>
   </tr>
 </table>
+
+Optional for most implementations and requires all system users to be individual authenticated. The primary purpose of capturing the recorder would be for the local audit trail. The data recorder will be of little relevance for most pharmacy implementations.
 
 <hr/>
 
@@ -486,11 +513,11 @@ Recommended that the date and time is the same as recorded and visible within th
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>TBC</code></td>
+   <td><code>CodeableConcept</code></td>
   </tr>
   <tr>
    <td><b>Required/Cardinality:</b></td>
-   <td>TBC</td>
+   <td>Optional 0..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -498,9 +525,15 @@ Recommended that the date and time is the same as recorded and visible within th
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>Reason or indication for requesting the medication for the patient.</td>
   </tr>
 </table>
+
+Optional but useful to the wider clinical team as an additional safety check, especially if the requested medication is normally prescribed for different reasons, to avoid confusion between clinical teams. Recording an indication against a medication request also gives valuable insight when data is collated for secondary uses, especially if linked with outcome data.
+
+Where possible this should be a coded term from the SNOMED-CT hierarchy as a descendant of the concept 404684003 (Clinical finding) however but free-text reasons are also acceptable.
+
+FHIR 4 has several additional structures here?
 
 <hr/>
 
@@ -532,11 +565,11 @@ Recommended that the date and time is the same as recorded and visible within th
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>TBC</code></td>
+   <td><code>Annotation</code></td>
   </tr>
   <tr>
    <td><b>Required/Cardinality:</b></td>
-   <td>TBC</td>
+   <td>Optional 0..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -544,9 +577,11 @@ Recommended that the date and time is the same as recorded and visible within th
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>Information about the prescription.</td>
   </tr>
 </table>
+
+Can be used to support local requirements not supported elsewhere within the resource. Any data contained can only be processed by a human user. Unless required for local business processes, **do not** include this element.
 
 <hr/>
 
@@ -578,11 +613,11 @@ Recommended that the date and time is the same as recorded and visible within th
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>TBC</code></td>
+   <td><code>BackboneElement</code></td>
   </tr>
   <tr>
    <td><b>Required/Cardinality:</b></td>
-   <td>TBC</td>
+   <td>Optional 0..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -590,9 +625,15 @@ Recommended that the date and time is the same as recorded and visible within th
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>Information related to the dispensing of the medication.</td>
   </tr>
 </table>
+
+It is recommended that this structure is **omitted**, unless required data to be shared cannot be appropriately populated elsewhere within the resource.
+
+Many elements within this structure are to support primary care prescribing processes using VMP and AMP dm+d concepts and where a structured dosage instruction is not populated.
+
+Refer to [FHIR Dose Syntax Implementation Guidance](https://developer.nhs.uk/apis/dose-syntax-implementation-1-3-1-alpha/index.html) (or any subsequent version) for further guidance.
 
 <hr/>
 
@@ -601,11 +642,11 @@ Recommended that the date and time is the same as recorded and visible within th
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>TBC</code></td>
+   <td><code>BackboneElement</code></td>
   </tr>
   <tr>
    <td><b>Required/Cardinality:</b></td>
-   <td>TBC</td>
+   <td>Required 0..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -613,9 +654,17 @@ Recommended that the date and time is the same as recorded and visible within th
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>Indicates whether or not substitution can or should be part of the dispense. In some cases, substitution must happen, in other cases substitution must not happen. This block explains the prescriber's intent. If nothing is specified substitution may be done.</td>
   </tr>
 </table>
+
+Within UK healthcare, substitution is not the norm so the international FHIR definition where "*If nothing is specified substitution may be done.*" does to align with UK healthcare prescribing best practice.
+
+It could be unwise to assume all UK implementations will prevent substitution if not explicitly stated, especially if the same clinical system has been previously implemented outside the UK. It is therefore recommended that this element is **business required** with a default boolean value of `false` to denote substitution is **not** allowed.
+
+### Allowing Substitution
+
+Where substitution to be be allowed, set to "**true**". The inclusion of the coded reason is optional as the value-set defined in FHIR is of limited benefit to UK healthcare.
 
 <hr/>
 
@@ -662,7 +711,7 @@ The medicationRequest being replaced will be referenced within **priorPrescripti
 
 <hr/>
 
-## extension (repeatInformation) [ *CareConnect* ]
+## extension (repeatInformation)
 
 <table class='resource-attributes'>
   <tr>
@@ -687,7 +736,7 @@ It is recommended that this structure is **omitted** for the target use case.
 
 <hr/>
 
-## extension (statusReason) [ *CareConnect* ]
+## extension (statusReason)
 
 <table class='resource-attributes'>
   <tr>
@@ -712,7 +761,7 @@ It is recommended that this structure is **omitted** for the target use case.
 
 <hr/>
 
-## extension (prescriptionType) [ *CareConnect* ]
+## extension (prescriptionType)
 
 <table class='resource-attributes'>
   <tr>
@@ -739,7 +788,7 @@ It is recommended that this structure is **omitted** for the target use case.
 
 <hr/>
 
-## statusReason [ *R4* ]
+## statusReason
 
 <table class='resource-attributes'>
   <tr>
@@ -762,7 +811,7 @@ It is recommended that this structure is **omitted** for the target use case.
 
 <hr/>
 
-## doNotPerform [ *R4* ]
+## doNotPerform
 
 <table class='resource-attributes'>
   <tr>
@@ -785,7 +834,7 @@ It is recommended that this structure is **omitted** for the target use case.
 
 <hr/>
 
-## reported[x] [ *R4* ]
+## reported[x]
 
 <table class='resource-attributes'>
   <tr>
@@ -808,7 +857,7 @@ It is recommended that this structure is **omitted** for the target use case.
 
 <hr/>
 
-## encounter [ *R4* ]
+## encounter
 
 <table class='resource-attributes'>
   <tr>
@@ -831,16 +880,16 @@ It is recommended that this structure is **omitted** for the target use case.
 
 <hr/>
 
-## performer [ *R4* ]
+## performer
 
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>TBC</code></td>
+   <td><code>Reference</code></td>
   </tr>
   <tr>
    <td><b>Required/Cardinality:</b></td>
-   <td>TBC</td>
+   <td>Optional 0..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -848,22 +897,24 @@ It is recommended that this structure is **omitted** for the target use case.
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>The specified desired performer of the medication treatment, e.g. the performer of the medication administration.</td>
   </tr>
 </table>
 
+**IMPORTANT**: Do not confuse this element with **dispenseRequest.performer** which defines any intended dispenser for the medication request using a referenced FHIR [Organization](develop_organization.html) resource.
+
 <hr/>
 
-## performerType [ *R4* ]
+## performerType
 
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>TBC</code></td>
+   <td><code>CodeableConcept</code></td>
   </tr>
   <tr>
    <td><b>Required/Cardinality:</b></td>
-   <td>TBC</td>
+   <td>Optional 0..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -871,7 +922,7 @@ It is recommended that this structure is **omitted** for the target use case.
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>Indicates the type of performer of the administration of the medication.</td>
   </tr>
 </table>
 
