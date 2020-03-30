@@ -52,7 +52,7 @@ Elements marked as **MVP** denote those recommended to be required for an MVP fo
    <td><code>Id</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>Required 0..1</td>
   </tr>
   <tr>
@@ -87,7 +87,7 @@ If a client system creates the logical id and there are multiple clients sending
 
 For this reason, within an implementation where multiple clients are POSTing to a FHIR server, it is highly recommenced that the FHIR server creates the logical id to remove the risk of duplication.
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### identifier
 
@@ -97,7 +97,7 @@ For this reason, within an implementation where multiple clients are POSTing to 
    <td><code>Identifier</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>Optional 0..*</td>
   </tr>
   <tr>
@@ -112,6 +112,8 @@ For this reason, within an implementation where multiple clients are POSTing to 
 
 Guidance TBC.
 
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
+
 ### text
 
 <table class='resource-attributes'>
@@ -120,7 +122,7 @@ Guidance TBC.
    <td><code>Narrative</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>Optional 0..1</td>
   </tr>
   <tr>
@@ -135,7 +137,7 @@ Guidance TBC.
 
 Guidance TBC.
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### status
 
@@ -145,7 +147,7 @@ Guidance TBC.
    <td><code>Code</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>Mandatory 1..1</td>
   </tr>
   <tr>
@@ -175,7 +177,7 @@ For the purposes of this guidance, the scope of **status** extends to dispensing
 | `Entered in Error` | Some of the actions that are implied by the medication request may have occurred. For example, the medication may have been dispensed and the patient may have taken some of the medication. Clinical decision support systems should take this status into account. | The order needs to be stopped due to human data entry error. An update needs to be sent to the pharmacy so that no further medication is dispensed. |
 | `Unknown` | The authoring/source system does not know which of the status values currently applies for this observation. Note: This concept is not to be used for 'other' - one of the listed statuses is presumed to apply, but the authoring/source system does not know which. | Recommended not to be supported as the use case for this status value is unclear. |
 
-#### Status Transitions 
+#### Status transitions 
 
 ![Status Transitions](images/medicationrequest_status_diagram.jpg)
 
@@ -192,7 +194,7 @@ For the purposes of this guidance, the scope of **status** extends to dispensing
 | `Active` | `Stopped` | This transition will trigger an update to the MedicationRequest from the ePMA system to the pharmacy system to stop dispensing activities. Within a RESTful implementation this would be typically implemented as either an HTTP PUT or PATCH. |
 | `Active` | `Completed` | Contained within the ePMA system. All dispensing activity has been received from the pharmacy system within **MedicationDispense** FHIR resources. The ePMA system has completed the recorded of medicine administration events. |
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### intent
 
@@ -202,7 +204,7 @@ For the purposes of this guidance, the scope of **status** extends to dispensing
    <td><code>code</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>Mandatory 1..1</td>
   </tr>
   <tr>
@@ -219,7 +221,7 @@ The value `order` should always be used to denote this is a medication request o
 
 FHIR R4 extends the value set to; `proposal`, `plan`, `order`, `original-order`, `reflex-order`, `filler-order`, `instance-order` and `option`, but the recommendation for the target use case is to continue to use `order` unless it is locally decided that the extended R4 value set better supports the business requirements.
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### category
 
@@ -229,7 +231,7 @@ FHIR R4 extends the value set to; `proposal`, `plan`, `order`, `original-order`,
    <td><code>CodeableConcept</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>Required 0..*</td>
   </tr>
   <tr>
@@ -260,7 +262,7 @@ For the target ePMA to hospital pharmacy systems use case, it would be expected 
 
 The only category that does not trigger the sending/sharing of a FHIR medicationRequest resource with the hospital pharmacy would be a `community` medication request. A `community` medication request would either trigger the printing and signing of a paper FP10HP prescription, or (when implemented by the Trust) an electronic prescription sent to the NHS Electronic Prescription Service.
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### priority
 
@@ -270,7 +272,7 @@ The only category that does not trigger the sending/sharing of a FHIR medication
    <td><code>Code</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>Optional 0..1</td>
   </tr>
   <tr>
@@ -293,7 +295,7 @@ The use of the term `stat` is potentially confusing as when used within a dosage
 
 If to be used, consider only initially supporting `routine` and `urgent` and set clear criteria for when a medication request should be marked as `urgent`.
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### medicationReference
 
@@ -303,7 +305,7 @@ If to be used, consider only initially supporting `routine` and `urgent` and set
    <td><code>Reference</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>Mandatory 1..1</td>
   </tr>
   <tr>
@@ -362,10 +364,10 @@ FHIR snippets using XML notation are as follows;
 			    <!-- medication details for Atenolol -->
 		    </Medication>
 	    </contained>
-	    <<medicationReference>>
+	    <medicationReference>>
 		    <reference value="#medication-87652004"/>
 		    <display value="Atenolol"/>
-		</<medicationReference>>
+		</<medicationReference>
 	</MedicationRequest>
 
 It is recommended that an implementation uses a reference by URL to a trusted SNOMED/dm+d FHIR Medication Resource Server. It is recommended that the `reference.display` is populated with the medication description selected by the user.
@@ -378,7 +380,7 @@ Q) In this instance the Medication.text can be populated. QUESTION: Are we happy
 
 The use of a contained Medication resource should be the last option considered. Note that when a Medication resource is contained inside the MedicationRequest resource the `Medication.text` element **should not be populated**. This is because the Medication resource is contained inside a MedicationRequest resource and all text should be represented in the `MedicationRequest.text` element, including data from the contained Medication resource.
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### subject
 
@@ -388,7 +390,7 @@ The use of a contained Medication resource should be the last option considered.
    <td><code>Reference</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>Mandatory 1..1</td>
   </tr>
   <tr>
@@ -461,7 +463,7 @@ Where a trusted Patient Administration FHIR Server is not available or not used 
 
 The use of a contained Patient resource should be the last option considered.
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### supportingInformation
 
@@ -471,7 +473,7 @@ The use of a contained Patient resource should be the last option considered.
    <td><code>Reference</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>Optional 0..*</td>
   </tr>
   <tr>
@@ -498,7 +500,7 @@ Do we agree?
    <td><code>dateTime</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>Required 0..1</td>
   </tr>
   <tr>
@@ -517,7 +519,7 @@ Recommended to specify as a complete date and time, e.g. "2020-03-26T15:00:00".
 
 Recommended that the date and time is the same as recorded and visible within the ePMA system.
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### requester
 
@@ -527,7 +529,7 @@ Recommended that the date and time is the same as recorded and visible within th
    <td><code>Reference</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>Required 0..1</td>
   </tr>
   <tr>
@@ -546,7 +548,7 @@ Recommended to be the prescribing clinician recorded on the ePMA system for the 
 
 The requester can be a reference to a number of different FHIR resources; *Practitioner*, *PractitionerRole*, *Organization*, *Patient*, *RelatedPerson* or *Device*. For this use case it is recommended to always use **Practitioner** unless an implementation supports use cases like requests direct from patients or automated requests from medical or monitoring devices.
 
-#### Additional Guidance
+#### Additional guidance
 
 Where an implementation does not currently record the prescribing clinician then consider the following;
 - If the prescribing clinician is authorising new medication then populate with their details.
@@ -571,7 +573,7 @@ Where an implementation does not currently record the prescribing clinician then
    <td><code>Reference</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>Optional 0..1</td>
   </tr>
   <tr>
@@ -586,7 +588,7 @@ Where an implementation does not currently record the prescribing clinician then
 
 Optional for most implementations and requires all system users to be individual authenticated. The primary purpose of capturing the recorder would be for the local audit trail. The data recorder will be of little relevance for most pharmacy implementations.
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### reasonCode
 
@@ -596,7 +598,7 @@ Optional for most implementations and requires all system users to be individual
    <td><code>CodeableConcept</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>Optional 0..1</td>
   </tr>
   <tr>
@@ -615,7 +617,7 @@ Where possible this should be a coded term from the SNOMED-CT hierarchy as a des
 
 FHIR 4 has several additional structures here?
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### reasonReference
 
@@ -625,7 +627,7 @@ FHIR 4 has several additional structures here?
    <td><code>Reference</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>Optional 0..*</td>
   </tr>
   <tr>
@@ -640,7 +642,57 @@ FHIR 4 has several additional structures here?
 
 Guidance TBC.
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
+
+### basedOn
+
+<table class='resource-attributes'>
+  <tr>
+   <td><b>Data Type:</b></td>
+   <td><code>Reference</code></td>
+  </tr>
+  <tr>
+   <td><b>Required / Cardinality:</b></td>
+   <td>Optional 0..*</td>
+  </tr>
+  <tr>
+    <td><b>Version Support:</b> </td>
+    <td><code>STU3</code> <code>R4</code></td>
+  </tr>
+  <tr>
+   <td><b>Description:</b></td>
+   <td>TBC</td>
+  </tr>
+</table>
+
+Guidance TBC.
+
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
+
+### groupIdentifier
+
+<table class='resource-attributes'>
+  <tr>
+   <td><b>Data Type:</b></td>
+   <td><code>Identifier</code></td>
+  </tr>
+  <tr>
+   <td><b>Required / Cardinality:</b></td>
+   <td>Optional 0..1</td>
+  </tr>
+  <tr>
+    <td><b>Version Support:</b> </td>
+    <td><code>STU3</code> <code>R4</code></td>
+  </tr>
+  <tr>
+   <td><b>Description:</b></td>
+   <td>TBC</td>
+  </tr>
+</table>
+
+Guidance TBC.
+
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### note
 
@@ -650,7 +702,7 @@ Guidance TBC.
    <td><code>Annotation</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>Optional 0..1</td>
   </tr>
   <tr>
@@ -665,7 +717,7 @@ Guidance TBC.
 
 Can be used to support local requirements not supported elsewhere within the resource. Any data contained can only be processed by a human user. Unless required for local business processes, **do not** include this element.
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### dosageInstruction
 
@@ -675,7 +727,7 @@ Can be used to support local requirements not supported elsewhere within the res
    <td><code>Dosage</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>Required 0..*</td>
   </tr>
   <tr>
@@ -684,7 +736,7 @@ Can be used to support local requirements not supported elsewhere within the res
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>How the medication should be taken.</td>
   </tr>
 </table>
 
@@ -700,7 +752,7 @@ Refer to [FHIR Dose Syntax Implementation Guidance](https://developer.nhs.uk/api
    <td><code>BackboneElement</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>Optional 0..1</td>
   </tr>
   <tr>
@@ -717,9 +769,7 @@ It is recommended that this structure is **omitted**, unless required data to be
 
 Many elements within this structure are to support primary care prescribing processes using VMP and AMP dm+d concepts and where a structured dosage instruction is not populated.
 
-Refer to [FHIR Dose Syntax Implementation Guidance](https://developer.nhs.uk/apis/dose-syntax-implementation-1-3-2-alpha/) (or any subsequent version) for further guidance.
-
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### substitution
 
@@ -729,7 +779,7 @@ Refer to [FHIR Dose Syntax Implementation Guidance](https://developer.nhs.uk/api
    <td><code>BackboneElement</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>Required 0..1</td>
   </tr>
   <tr>
@@ -746,11 +796,11 @@ Within UK healthcare, substitution is not the norm so the international FHIR def
 
 It could be unwise to assume all UK implementations will prevent substitution if not explicitly stated, especially if the same clinical system has been previously implemented outside the UK. It is therefore recommended that this element is **business required** with a default boolean value of `false` to denote substitution is **not** allowed.
 
-#### Allowing Substitution
+#### Allowing substitution
 
 Where substitution to be be allowed, set to "**true**". The inclusion of the coded reason is optional as the value-set defined in FHIR is of limited benefit to UK healthcare.
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### priorPrescription
 
@@ -760,7 +810,7 @@ Where substitution to be be allowed, set to "**true**". The inclusion of the cod
    <td><code>Reference</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>Optional 0..1</td>
   </tr>
   <tr>
@@ -791,9 +841,9 @@ An order for the same medication but for a different dose can still be linked us
 
 #### Linking to an order that is being replaced
 
-The medicationRequest being replaced will be referenced within **priorPrescription**. It would be expected that the referenced resource would be updated with a **status** of *cancelled*, *entered-in-error* or *stopped*. This will allow both the ePMA and pharmacy systems to make it clear to the human user that one medication request replaces another.
+The medicationRequest being replaced will be referenced within **priorPrescription**. It would be expected that the referenced resource would be updated with a **status** of `cancelled`, `entered-in-error` or `stopped`. This will allow both the ePMA and pharmacy systems to make it clear to the human user that one medication request replaces another.
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### extension (repeatInformation)
 
@@ -803,7 +853,7 @@ The medicationRequest being replaced will be referenced within **priorPrescripti
    <td><code>Extension</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>Optional 0..1</td>
   </tr>
   <tr>
@@ -818,7 +868,7 @@ The medicationRequest being replaced will be referenced within **priorPrescripti
 
 It is recommended that this structure is **omitted** for the target use case.
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### extension (statusReason)
 
@@ -828,7 +878,7 @@ It is recommended that this structure is **omitted** for the target use case.
    <td><code>Extension</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>Optional 0..1</td>
   </tr>
   <tr>
@@ -841,9 +891,9 @@ It is recommended that this structure is **omitted** for the target use case.
   </tr>
 </table>
 
-**Note**: This extension was added to the international standard within FHIR R4.
+This extension was added to the international standard within FHIR R4 so provides a migration path from STU3 to R4.
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### extension (prescriptionType)
 
@@ -853,7 +903,7 @@ It is recommended that this structure is **omitted** for the target use case.
    <td><code>Extension</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>Optional 0..1</td>
   </tr>
   <tr>
@@ -870,7 +920,7 @@ It is recommended that this structure is **omitted** for the target use case.
  
 **Note**: The value set for this STU3 extension aligns with the legacy HL7v3 'PrescriptionTreatmentType' vocab; `acute`, `repeat`, `repeat dispensing` and `delayed prescribing`. If UK Core R4 is extended to support this type of data then the extension name should ideally not be called 'prescriptionType' as it confused with a different legacy HL7v3 vocab for 'prescriptionType' which serves a different purpose.
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### statusReason
 
@@ -880,7 +930,7 @@ It is recommended that this structure is **omitted** for the target use case.
    <td><code>TBC</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>TBC</td>
   </tr>
   <tr>
@@ -895,7 +945,7 @@ It is recommended that this structure is **omitted** for the target use case.
 
 Guidance TBC.
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### doNotPerform
 
@@ -905,7 +955,7 @@ Guidance TBC.
    <td><code>TBC</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>TBC</td>
   </tr>
   <tr>
@@ -920,7 +970,7 @@ Guidance TBC.
 
 Guidance TBC.
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### reported[x]
 
@@ -930,7 +980,7 @@ Guidance TBC.
    <td><code>TBC</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>TBC</td>
   </tr>
   <tr>
@@ -945,7 +995,7 @@ Guidance TBC.
 
 Guidance TBC.
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### encounter
 
@@ -955,7 +1005,7 @@ Guidance TBC.
    <td><code>TBC</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>TBC</td>
   </tr>
   <tr>
@@ -970,7 +1020,7 @@ Guidance TBC.
 
 Guidance TBC.
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### performer
 
@@ -980,7 +1030,7 @@ Guidance TBC.
    <td><code>Reference</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>Optional 0..1</td>
   </tr>
   <tr>
@@ -995,7 +1045,7 @@ Guidance TBC.
 
 **IMPORTANT**: Do not confuse this element with **dispenseRequest.performer** which defines any intended dispenser for the medication request using a referenced FHIR [Organization](develop_organization.html) resource.
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### performerType
 
@@ -1005,7 +1055,7 @@ Guidance TBC.
    <td><code>CodeableConcept</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>Optional 0..1</td>
   </tr>
   <tr>
@@ -1020,7 +1070,7 @@ Guidance TBC.
 
 Guidance TBC.
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### instantiatesCanonical
 
@@ -1030,7 +1080,7 @@ Guidance TBC.
    <td><code>TBC</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>TBC</td>
   </tr>
   <tr>
@@ -1045,7 +1095,7 @@ Guidance TBC.
 
 Guidance TBC.
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### instantiatesUri
 
@@ -1055,7 +1105,7 @@ Guidance TBC.
    <td><code>TBC</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>TBC</td>
   </tr>
   <tr>
@@ -1070,7 +1120,7 @@ Guidance TBC.
 
 Guidance TBC.
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### courseOfTherapyType
 
@@ -1080,7 +1130,7 @@ Guidance TBC.
    <td><code>TBC</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>TBC</td>
   </tr>
   <tr>
@@ -1095,7 +1145,7 @@ Guidance TBC.
 
 Guidance TBC.
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### insurance
 
@@ -1105,7 +1155,7 @@ Guidance TBC.
    <td><code>TBC</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>TBC</td>
   </tr>
   <tr>
@@ -1120,7 +1170,7 @@ Guidance TBC.
 
 Guidance TBC.
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### context
 
@@ -1130,7 +1180,7 @@ Guidance TBC.
    <td><code>Reference</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>Optional 0..1</td>
   </tr>
   <tr>
@@ -1149,7 +1199,7 @@ If implemented as a reference to an **Encounter** resource, within R4 this is su
 
 Any reference to an **EpisodeOfCare** resource within an STU3 or CareConnect implementation will not be supported if migrated to FHIR R4. It is recommended not to reference an EpisodeOfCare resource within an STU3 implementation.
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
 
 ### definition
 
@@ -1159,7 +1209,7 @@ Any reference to an **EpisodeOfCare** resource within an STU3 or CareConnect imp
    <td><code>Reference</code></td>
   </tr>
   <tr>
-   <td><b>Required/Cardinality:</b></td>
+   <td><b>Required / Cardinality:</b></td>
    <td>Optional 0..*</td>
   </tr>
   <tr>
@@ -1174,4 +1224,4 @@ Any reference to an **EpisodeOfCare** resource within an STU3 or CareConnect imp
 
 This element has been removed from FHIR R4 therefore it's use within an STU3 or CareConnect implementation is **not recommended**.
 
-<hr/>
+Jump to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
