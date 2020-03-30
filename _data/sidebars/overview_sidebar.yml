@@ -29,9 +29,6 @@ entries:
   - title: Develop
     output: web
     folderitems:
-    - title: Overview
-      url: /develop_overview.html
-      output: web
     - title: MedicationRequest
       url: /develop_medicationrequest.html
       output: web
