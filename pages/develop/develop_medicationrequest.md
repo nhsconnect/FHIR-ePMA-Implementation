@@ -15,6 +15,35 @@ Here
 
 Here
 
+# Minimum Viable Product (MVP)
+
+## Resource Elements Common across STU3, CareConnect and R4
+
+The following elements from the MedicationRequest resource are common across STU3, CareConnect and R4.
+
+| Common | MVP | CareConnect | MVP | New R4 | MVP | Removed R4 | MVP |
+| -- | -- | -- | -- | -- | -- | -- | -- |  -- | -- |
+| id | YES | repeatInformation | No | statusReason | No | context | No | 
+| text | No | statusReason | No | doNotPerform | No | definition | No | 
+| identifier | No | prescriptionType | No | reported[x] | No | requester. agent | No | 
+| status | YES | | | encounter | No | requester. onBehalfOf | No |
+| intent | YES | | | performer | No | | |
+| category | YES | | | performerType | No |  | |
+| priority | No | | |  instantiatesCanonical | No |  | |
+| medicationReference | YES | | | instantiatesUri | No |  | |
+| subject | YES | | | courseOfTherapyType | No |  | |
+| supportingInformation | No | | | insurance | No |  | |
+| authoredOn | YES | | | dispenseRequest. initialFill | No |  | |
+| requester | YES | | | dispenseRequest. initialFill.quantity | No |  | |
+| recorder | No | | | dispenseRequest. initialFill.duration | No |  | |
+| reasonCode | No |  | | dispenseRequest. dispenseInterval | No |  | |
+| reasonReference | No |  | | dispenseRequest. numberOfRepeatsAllowed | No |  | |
+| note | No | | | | |
+| dosageInstruction | YES |  | | | |
+| dispenseRequest | No |  | | | |
+| substitution | YES |  | | | |
+| priorPrescription | No |  | | | |
+
 # MedicationRequest elements
 
 ## id
@@ -71,7 +100,7 @@ For this reason, within an implementation where multiple clients are POSTing to 
   </tr>
   <tr>
    <td><b>Required/Cardinality:</b></td>
-   <td>TBC</td>
+   <td>Optional 0..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -79,9 +108,11 @@ For this reason, within an implementation where multiple clients are POSTing to 
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>Text summary of the resource, for human interpretation</td>
   </tr>
 </table>
+
+Guidance TBC.
 
 <hr/>
 
@@ -285,11 +316,11 @@ For the target ePMA to hospital pharmacy systems use case, it would be expected 
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>TBC</code></td>
+   <td><code>Reference</code></td>
   </tr>
   <tr>
    <td><b>Required/Cardinality:</b></td>
-   <td>TBC</td>
+   <td>Mandatory 1..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -297,9 +328,58 @@ For the target ePMA to hospital pharmacy systems use case, it would be expected 
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>A link to a resource representing the person or set of individuals to whom the medication will be given. Refer to (Patient)[develop_patient.html] resource. </td>
   </tr>
 </table>
+
+The scope of the target use case relates to individual patients only, not groups of patients therefore the linked resource shall only be a FHIR **Patient** resource.
+
+The method by which the (Patient)[develop_patient.html] resource is linked will be a local implementation decision. There are three options;
+
+ 1. Referenced by URL to a FHIR Server
+ 2. Referenced by an identifier to a Patient resource within the same FHIR Bundle
+ 3. Referenced by an identifier to a "contained" resource within the MedicationRequest resource
+
+FHIR snippets using XML notation are as follows;
+
+    <!-- 1. by URL -->
+    <subject>
+    	<reference value="https://acmefhirserver/patient/2245386903"/>
+    </subject>
+    
+    <!-- 2. by identifier within the Bundle -->
+    <Bundle>
+	    <entry>
+		    <fullUrl value="patient-2245386903"/>
+		    <resource>
+			    <Patient>
+				    <!-- patient details -->
+			    </Patient>
+		    </resource>
+		</entry>
+		<entry>
+			<resource>
+			    <MedicationRequest>
+				    <subject>
+					    <reference value="#patient-2245386903"/>
+					</subject>
+				</MedicationRequest>
+			</resource>
+		</entry>
+    </Bundle>
+    
+    <!-- 3. by identifier to a contained resource -->
+    <MedicationRequest>
+	    <contained>
+		    <Patient>
+			    <id value="patient-2245386903"/>
+			    <!-- patient details -->
+		    </Patient>
+	    </contained>
+	    <subject>
+		    <reference value="#patient-2245386903"/>
+		</subject>
+	</MedicationRequest>
 
 <hr/>
 
@@ -331,11 +411,11 @@ For the target ePMA to hospital pharmacy systems use case, it would be expected 
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>TBC</code></td>
+   <td><code>dateTime</code></td>
   </tr>
   <tr>
    <td><b>Required/Cardinality:</b></td>
-   <td>TBC</td>
+   <td>Required 0..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -343,9 +423,15 @@ For the target ePMA to hospital pharmacy systems use case, it would be expected 
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>The date, and maybe also time, when the prescription was initially written.</td>
   </tr>
 </table>
+
+Recommended as a mandatory element for most implementations.
+
+Recommended to specify as a complete date and time, e.g. "2020-03-26T15:00:00".
+
+Recommended that the date and time is the same as recorded and visible within the ePMA system.
 
 <hr/>
 
@@ -538,11 +624,11 @@ For the target ePMA to hospital pharmacy systems use case, it would be expected 
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>TBC</code></td>
+   <td><code>Reference</code></td>
   </tr>
   <tr>
    <td><b>Required/Cardinality:</b></td>
-   <td>TBC</td>
+   <td>Optional 0..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -550,9 +636,29 @@ For the target ePMA to hospital pharmacy systems use case, it would be expected 
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>An order/prescription that is being replaced AND a link to a resource representing an earlier order related order or prescription.</td>
   </tr>
 </table>
+
+The published FHIR specifications described this element is slightly different ways in different parts of the FHIR specification;
+
+"*A link to a resource representing an earlier order related order or prescription*" 
+
+and 
+
+"*An order/prescription that is being replaced*".
+
+The following guidance applies to each use case.
+
+### Linking to an earlier order
+
+A medication request that is a repeat of an earlier request would be referenced within **priorPrescription**. This would allow both the ePMA and pharmacy systems to logically link requests and add verification checks to flag any differences to the user.
+
+An order for the same medication but for a different dose can still be linked using **priorPrescription**. In this scenario it would be expected that the prescribing clinician provides **supporting information** for the pharmacy to confirm the change in the medication request.
+
+### Linking to an order that is being replaced
+
+The medicationRequest being replaced will be referenced within **priorPrescription**. It would be expected that the referenced resource would be updated with a **status** of *cancelled*, *entered-in-error* or *stopped*. This will allow both the ePMA and pharmacy systems to make it clear to the human user that one medication request replaces another.
 
 <hr/>
 
@@ -561,11 +667,11 @@ For the target ePMA to hospital pharmacy systems use case, it would be expected 
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>TBC</code></td>
+   <td><code>Extension</code></td>
   </tr>
   <tr>
    <td><b>Required/Cardinality:</b></td>
-   <td>TBC</td>
+   <td>Optional 0..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -573,9 +679,11 @@ For the target ePMA to hospital pharmacy systems use case, it would be expected 
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>Medication repeat information extension to support the NHS Electronic Prescription Service and electronic repeat dispensing.</td>
   </tr>
 </table>
+
+It is recommended that this structure is **omitted** for the target use case.
 
 <hr/>
 
@@ -584,11 +692,11 @@ For the target ePMA to hospital pharmacy systems use case, it would be expected 
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>TBC</code></td>
+   <td><code>Extension</code></td>
   </tr>
   <tr>
    <td><b>Required/Cardinality:</b></td>
-   <td>TBC</td>
+   <td>Optional 0..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -596,9 +704,11 @@ For the target ePMA to hospital pharmacy systems use case, it would be expected 
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>To record the reason the medication (plan or order) was stopped and the date this occurred.</td>
   </tr>
 </table>
+
+**Note**: This extension was added to the international standard within FHIR R4.
 
 <hr/>
 
@@ -607,11 +717,11 @@ For the target ePMA to hospital pharmacy systems use case, it would be expected 
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>TBC</code></td>
+   <td><code>Extension</code></td>
   </tr>
   <tr>
    <td><b>Required/Cardinality:</b></td>
-   <td>TBC</td>
+   <td>Optional 0..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -619,9 +729,13 @@ For the target ePMA to hospital pharmacy systems use case, it would be expected 
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>To record the type of prescription. An extension to support the NHS Electronic Prescription Service for the NHSBSA to identify the type of prescription.</td>
   </tr>
 </table>
+
+It is recommended that this structure is **omitted** for the target use case.
+ 
+**Note**: The value set for this STU3 extension aligns with the legacy HL7v3 'PrescriptionTreatmentType' vocab; `acute`, `repeat`, `repeat dispensing` and `delayed prescribing`. If UK Core R4 is extended to support this type of data then the extension name should ideally not be called 'prescriptionType' as it confused with a different legacy HL7v3 vocab for 'prescriptionType' which serves a different purpose.
 
 <hr/>
 
