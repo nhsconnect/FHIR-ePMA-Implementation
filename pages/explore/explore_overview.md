@@ -56,7 +56,7 @@ Typically within UK hospitals, ePMA systems support two types of medication requ
 
 ### One-off Medication Request
 
-A request for medication for a given patient. Each request shall be for one medication treatment or course. The structured dosage instruction shall specify the administration requirement, e.g. "50mg daily with food" and any time or dosing bounds, e.g. "for 7 days", all represented in the structured and machine readable FHIR [**dosage**](develop_medicationrequest.html#dosageinstruction) structure.
+A request for medication for a given patient. Each request shall be for one medication treatment or course. The structured dosage instruction shall specify the administration requirement, e.g. "50mg daily with food", and any time or dosing bounds, e.g. "for 7 days", all represented in the structured and machine readable FHIR [dosage](develop_medicationrequest.html#dosageinstruction) structure.
 
 Most ePMA medication requests are deemed to be on-going unless specifically stated within the dosage instruction with date, time or dose bounds. Where no end criteria is specified the hospital pharmacy will typically dispense a quantity of medication as per their local agreed best practice. For example, sufficient medication for a given number of days, depending on how frequently the ward and pharmacy want to re-order medication. When more medication is required, a re-fill medication request is submitted.
 
@@ -64,14 +64,14 @@ Most ePMA medication requests are deemed to be on-going unless specifically stat
 
 When a patient requires a re-fill or re-order of the same medication as previously ordered then this is typically known as a "re-fill" order.
 
-For a minimum viable product (MVP) implementation it is recommended to reference a previous MedicationRequest using the [**priorPrescription**](develop_medicationrequest.html#priorprescription) element. This can either reference the last MedicationRequest or the first MedicationRequest. This choice can be a local implementation decision.
+For a minimum viable product (MVP) implementation it is recommended to reference a previous MedicationRequest using the [priorPrescription](develop_medicationrequest.html#priorprescription) element. This can either reference the last MedicationRequest or the first MedicationRequest. This choice can be a local implementation decision.
 
 Elements within the re-fill MedicationRequest that will differ from any previous order shall be;
-- [**authoredOn**](develop_medicationrequest.html#authoredon) shall be the date/time of the re-fill request
-- [**requster**](develop_medicationrequest.html#requester) shall be the prescribing clinician, that may be a different clinician to who original ordered the medication
+- [authoredOn](develop_medicationrequest.html#authoredon) shall be the date/time of the re-fill request
+- [requster](develop_medicationrequest.html#requester) shall be the prescribing clinician, that may be a different clinician to who original ordered the medication
 
 The **dosage** could be different in a re-fill order for the same medication.
 
 Dosage changes that do not affect the pharmacy dispensing process can be implemented as re-fills. For example a change in administration timing, e.g. from morning to evening.
 
-Dosage changes that do change the pharmacy dispensing process can be implemented as re-fills but it is recommended that the [**note**](develop_medicationrequest.html#note) element is populated with clear instructions to the pharmacist for the nature of the change. For example, if changing from an oral solid to an oral liquid, then include this within a **note** entered by the ePMA user, e.g. "please note change from solid or liquid".
+Dosage changes that do change the pharmacy dispensing process can be implemented as re-fills but it is recommended that the [note](develop_medicationrequest.html#note) element is populated with clear instructions to the pharmacist for the nature of the change. For example, if changing from an oral solid to an oral liquid, then include this within a **note** entered by the ePMA user, e.g. "please note change from solid or liquid".
