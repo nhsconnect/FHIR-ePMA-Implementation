@@ -9,9 +9,31 @@ summary: Implementation guidance for populating and consuming the FHIR Medicatio
 
 ## Introduction
 
-Here
+Some intro blurb...
 
 ### Overarching principles
+
+Stuff to include in this section...
+
+#### Using FHIR references
+
+The method by which other FHIR resources, e.g. **Medication** or **Patient**, are referenced within the MedicationRequest will be a local implementation decision. There are three options;
+
+ 1. Referenced by URL to a FHIR Server
+ 2. Referenced by an identifier to a resource within the same FHIR Bundle
+ 3. Referenced by an identifier to a "contained" resource within the MedicationRequest resource
+
+FHIR snippets using XML notation are as follows;
+
+<script src="https://gist.github.com/RobertGoochUK/8cd2ea86de816b00d5cc1e4f3d663194.js"></script>
+
+Using references by URL is the recommended / target solution where FHIR servers are available. These may be future nationally available FHIR servers, or locally implemented FHIR servers. When referencing by URL it is recommended that the `reference.display` is populated with appropriate text. See guidance within this page for those elements that use references.
+
+Where a FHIR server is not available or not used within an implementation, the reference by identifier within the same Bundle is the next recommended implementation option.
+
+The use of a contained FHIR resource should be the last option considered. For resources like Patient this could introduce duplication within the complete FHIR payload. Also resource **.text** elements should then not be populated. This is because the resource is contained inside the MedicationRequest resource and all text should be represented in the **MedicationRequest.text** element, including data from the contained resource.
+
+#### Another sub-section
 
 Here
 
@@ -325,67 +347,9 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
   </tr>
 </table>
 
-The method by which the Medication resource is linked will be a local implementation decision. There are three options;
-
- 1. Referenced by URL to a FHIR Server
- 2. Referenced by an identifier to a Medication resource within the same FHIR Bundle
- 3. Referenced by an identifier to a "contained" Medication resource within the MedicationRequest resource
-
-FHIR snippets using XML notation are as follows;
-
-    <!-- 1. by URL -->
-    <MedicationRequest>
-	    <medicationReference>
-	    	<reference value="https://acmefhirserver/medication/87652004"/>
-	    	<display value="Atenolol"/>
-	    </medicationReference>
-    </MedicationRequest>
-    
-    <!-- 2. by identifier within the Bundle -->
-    <Bundle>
-	    <entry>
-		    <fullUrl value="medication-87652004"/>
-		    <resource>
-			    <Medication>
-				    <!-- medication details for Atenolol -->
-			    </Medication>
-		    </resource>
-		</entry>
-		<entry>
-			<resource>
-			    <MedicationRequest>
-				    <medicationReference>
-					    <reference value="#medication-87652004"/>
-					    <display value="Atenolol"/>
-					</medicationReference>
-				</MedicationRequest>
-			</resource>
-		</entry>
-    </Bundle>
-    
-    <!-- 3. by identifier to a contained resource -->
-    <MedicationRequest>
-	    <contained>
-		    <Medication>
-			    <id value="medication-87652004"/>
-			    <!-- medication details for Atenolol -->
-		    </Medication>
-	    </contained>
-	    <medicationReference>>
-		    <reference value="#medication-87652004"/>
-		    <display value="Atenolol"/>
-		</<medicationReference>
-	</MedicationRequest>
-
-It is recommended that an implementation uses a reference by URL to a trusted SNOMED/dm+d FHIR Medication Resource Server. It is recommended that the `reference.display` is populated with the medication description selected by the user.
-
 **Note**: At the time of writing an alpha implementation of a FHIR dm+d server is available from the North East CSU as a [demonstrator](https://dmdsite-uks-test-web.azurewebsites.net/Dosage) and associated [API]([https://apidmd001.azurewebsites.net/index.html](https://apidmd001.azurewebsites.net/index.html)).
 
-Where a trusted FHIR dm+d server is not available or not used within an implementation, the reference to the Medication resource should be within a Bundle.
-
-Q) In this instance the Medication.text can be populated. QUESTION: Are we happy about how the Medication resource is populated, in particular about when the drug name in the system the clinician is using is different to the of dm+d?
-
-The use of a contained Medication resource should be the last option considered. Note that when a Medication resource is contained inside the MedicationRequest resource the `Medication.text` element **should not be populated**. This is because the Medication resource is contained inside a MedicationRequest resource and all text should be represented in the `MedicationRequest.text` element, including data from the contained Medication resource.
+Q) How should `Medication.text` be populated? Should it be with the pukka dm+d description or the drug name as selected by the clinician, which may be slightly different is the clinical system has not fully implemented dm+d?
 
 Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
 <hr/>
@@ -411,65 +375,7 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
   </tr>
 </table>
 
-The scope of the target use case relates to individual patients only, not groups of patients therefore the linked resource shall only be a FHIR **Patient** resource. Refer to the [Patient](develop_patient.html) resource implementation guidance.
-
-The method by which the Patient resource is linked will be a local implementation decision. There are three options;
-
- 1. Referenced by URL to a FHIR Server
- 2. Referenced by an identifier to a Patient resource within the same FHIR Bundle
- 3. Referenced by an identifier to a "contained" Patient resource within the MedicationRequest resource
-
-FHIR snippets using XML notation are as follows;
-
-    <!-- 1. by URL -->
-    <subject>
-    	<reference value="https://acmefhirserver/patient/2245386903"/>
-    	<display value="Joe Bloggs"/>
-    </subject>
-    
-    <!-- 2. by identifier within the Bundle -->
-    <Bundle>
-	    <entry>
-		    <fullUrl value="patient-2245386903"/>
-		    <resource>
-			    <Patient>
-				    <!-- patient details for Joe Bloggs -->
-			    </Patient>
-		    </resource>
-		</entry>
-		<entry>
-			<resource>
-			    <MedicationRequest>
-				    <subject>
-					    <reference value="#patient-2245386903"/>
-					    <display value="Joe Bloggs"/>
-					</subject>
-				</MedicationRequest>
-			</resource>
-		</entry>
-    </Bundle>
-    
-    <!-- 3. by identifier to a contained resource -->
-    <MedicationRequest>
-	    <contained>
-		    <Patient>
-			    <id value="patient-2245386903"/>
-			    <!-- patient details for Joe Bloggs -->
-		    </Patient>
-	    </contained>
-	    <subject>
-		    <reference value="#patient-2245386903"/>
-		    <display value="Joe Bloggs"/>
-		</subject>
-	</MedicationRequest>
-
-It is recommended that an implementation uses a reference by URL to a trusted Patient Administration FHIR Server. It is recommended that the `reference.display` is populated with the full name of the patient.
-
-**Note**: It is acknowledged that a typical Hospital Patient Administration System (PAS) will not expose a FHIR interface so the above option will most likely not be available for some time so is an aspirational recommendation.
-
-Where a trusted Patient Administration FHIR Server is not available or not used within an implementation, the reference to the Patient resource should be within a Bundle.
-
-The use of a contained Patient resource should be the last option considered.
+**Note**: It is acknowledged that a typical Hospital Patient Administration System (PAS) available today will not expose a FHIR interface so referencing by URL will most likely not be available for some time. However this should be a target architecture so that the FHIR-enabled PAS can be used as a trusted source of Patient resources across multiple hospital systems.
 
 Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
 <hr/>
