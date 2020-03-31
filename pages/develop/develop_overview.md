@@ -1,83 +1,34 @@
 ---
-title: Development Overview
+title: Develop Overview
 keywords: design
 tags: [design]
 sidebar: overview_sidebar
 permalink: develop_overview.html
-summary: Implementation guidance for the FHIR MedicationRequest for the ePMA to Pharmacy use case.
+summary: Overarching development principles when using FHIR
 ---
 
-This section provides implementation guidance for the use of each element within the **MedicationRequest** FHIR resource, as defined within either the STU3 or R4 standards, or the CareConnect-MedicationRequest-1 standard based on STU3.
+## Introduction
 
-Elements listed as MVP "**YES**" are recommended to be supported for a Minimum Viable Product (MVP).
+Some intro blurb...
 
-### Resource Elements Common across STU3, CareConnect and R4
+## Overarching Principles
 
-The following elements from the MedicationRequest resource are common across STU3, CareConnect and R4.
+Stuff to include in this section...
 
-| Resource Element | MVP | Available Guidance |
-| -- | -- | -- |
-| [id](develop_medicationrequest_id.html) | YES | Drafted for internal review |
-| text | No | Draft in progress |
-| identifier | No | _ |
-| [status](develop_medicationrequest_status.html) | YES | Drafted for internal review |
-| [intent](develop_medicationrequest_intent.html) | YES | Drafted for internal review |
-| [category](develop_medicationrequest_category.html) | YES | Drafted for internal review |
-| priority | No | _ |
-| medicationReference | YES | _ |
-| [subject](develop_medicationrequest_subject.html) | YES | Drafted for internal review |
-| supportingInformation | No | _ |
-| [authoredOn](develop_medicationrequest_authoredon.html) | YES | Drafted for internal review |
-| [requester](develop_medicationrequest_requester.html) | YES | Drafted for internal review |
-| [recorder](develop_medicationrequest_recorder.html) | No | Drafted for internal review |
-| reasonCode | No | _ |
-| reasonReference | No | _ |
-| [note](develop_medicationrequest_note.html) | No | Drafted for internal review |
-| dosageInstruction | YES | _ |
-| dispenseRequest | No | _ |
-| [substitution](develop_medicationrequest_substitution.html) | YES | Drafted for internal review |
-| [priorPrescription](develop_medicationrequest_priorprescription.html) | No | Drafted for internal review |
+## Using FHIR References
 
-### Resource Elements Extended with CareConnect-MedicationRequest-1
+The method by which other FHIR resources, e.g. **Medication** or **Patient**, are referenced within the MedicationRequest will be a local implementation decision. There are three options;
 
-The following elements have been introduced into the CareConnect standard as extensions.
+ 1. Referenced by URL to a FHIR Server
+ 2. Referenced by an identifier to a resource within the same FHIR Bundle
+ 3. Referenced by an identifier to a "contained" resource within the MedicationRequest resource
 
-| Resource Element |  MVP | Available Guidance |
-| -- | -- | -- |
-| [repeatInformation](develop_medicationrequest_cc_repeatinformation.html) | No | Drafted for internal review |
-| [statusReason](develop_medicationrequest_cc_statusreason.html) | No | Drafted for internal review |
-| [prescriptionType](develop_medicationrequest_cc_prescriptiontype.html) | No | Drafted for internal review |
+FHIR snippets using XML notation are as follows;
 
-### Resource Elements New in FHIR R4
+<script src="https://gist.github.com/RobertGoochUK/8cd2ea86de816b00d5cc1e4f3d663194.js"></script>
 
-The following elements are only found in FHIR R4.
+Using references by URL is the recommended / target solution where FHIR servers are available. These may be future nationally available FHIR servers or locally implemented FHIR servers. When referencing by URL it is recommended that the `reference.display` is populated with appropriate text. See guidance within this page for elements that use references.
 
-| Resource Element | MVP | Available Guidance |
-| -- | -- | -- |
-| statusReason | No | _ |
-| doNotPerform | No | _ |
-| reported[x] | No | _ |
-| encounter | No | _ |
-| [performer](develop_medicationrequest_performer.html) | No | Draft in progress |
-| [performerType](develop_medicationrequest_performertype.html) | No | Draft in progress |
-| instantiatesCanonical | No | _ |
-| instantiatesUri | No | _ |
-| courseOfTherapyType | No | _ |
-| insurance | No | _ |
-| dispenseRequest.initialFill | No | _ |
-| dispenseRequest.initialFill.quantity | No | _ |
-| dispenseRequest.initialFill.duration | No | _ |
-| dispenseRequest.dispenseInterval | No | _ |
-| dispenseRequest.numberOfRepeatsAllowed | No | _ |
+Where a FHIR server is not available or not used within an implementation, the reference by identifier within the same Bundle is the next recommended implementation option.
 
-### Resource Elements Removed from FHIR R4 
-
-The following elements have been removed from FHIR R4 but exist within STU3 and CareConnect.
-
-| Resource Element | MVP | Available Guidance |
-| -- | -- | -- |
-| context | No | _ |
-| definition | No | _ |
-| [requester.agent](develop_medicationrequest_requester.html) | No | Drafted for internal review |
-| [requester.onBehalfOf](develop_medicationrequest_requester.html) | No | Drafted for internal review |
-
+The use of a contained FHIR resource should be the last option considered. For resources like **Patient** this could introduce duplication within the complete FHIR payload. Also resource **.text** elements should then not be populated. This is because the resource is contained inside the MedicationRequest resource and all text should be represented in the **MedicationRequest.text** element, including data from the contained resource.
