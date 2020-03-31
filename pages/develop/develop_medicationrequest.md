@@ -27,15 +27,11 @@ FHIR snippets using XML notation are as follows;
 
 <script src="https://gist.github.com/RobertGoochUK/8cd2ea86de816b00d5cc1e4f3d663194.js"></script>
 
-Using references by URL is the recommended / target solution where FHIR servers are available. These may be future nationally available FHIR servers, or locally implemented FHIR servers. When referencing by URL it is recommended that the `reference.display` is populated with appropriate text. See guidance within this page for those elements that use references.
+Using references by URL is the recommended / target solution where FHIR servers are available. These may be future nationally available FHIR servers or locally implemented FHIR servers. When referencing by URL it is recommended that the `reference.display` is populated with appropriate text. See guidance within this page for elements that use references.
 
 Where a FHIR server is not available or not used within an implementation, the reference by identifier within the same Bundle is the next recommended implementation option.
 
-The use of a contained FHIR resource should be the last option considered. For resources like Patient this could introduce duplication within the complete FHIR payload. Also resource **.text** elements should then not be populated. This is because the resource is contained inside the MedicationRequest resource and all text should be represented in the **MedicationRequest.text** element, including data from the contained resource.
-
-#### Another sub-section
-
-Here
+The use of a contained FHIR resource should be the last option considered. For resources like **Patient** this could introduce duplication within the complete FHIR payload. Also resource **.text** elements should then not be populated. This is because the resource is contained inside the MedicationRequest resource and all text should be represented in the **MedicationRequest.text** element, including data from the contained resource.
 
 ### Minimum Viable Product (MVP)
 
@@ -58,7 +54,7 @@ Elements marked as **MVP** denote those recommended to be required for an MVP fo
 | recorder |  | | | dispenseRequest. initialFill.duration |  |  | |
 | reasonCode |  |  | | dispenseRequest. dispenseInterval |  |  | |
 | reasonReference |  |  | | dispenseRequest. numberOfRepeatsAllowed |  |  | |
-| note |  | | | | |
+| **note** | **MVP** | | | | |
 | **dosageInstruction** | **MVP** |  | | | |
 | dispenseRequest |  |  | | | |
 | **substitution** | **MVP** |  | | | |
@@ -401,9 +397,17 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
   </tr>
 </table>
 
-The FHIR specification suggests information such as the patient height and weight could be included within this element to support the medication order.
+Guidance TBC.
 
-Do we agree?
+Can reference any number of FHIR resources...
+
+Reference an **Observation** resource to share data like the patient's height and weight.
+
+Reference a **Condition** resource to share a patient's condition if this influences the pharmacy dispensing process.
+
+Reference an **AllergyIntolorance** resource to share a patient's allergy to make it clear why certain medication is being requested.
+
+Reference a **CarePlan** resource where medication dispensing is considered as part of a specific treatment regimen.
 
 Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
 <hr/>
@@ -626,7 +630,7 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
   </tr>
   <tr>
    <td><b>Required / Cardinality:</b></td>
-   <td>Optional 0..1</td>
+   <td>Required 0..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -634,11 +638,13 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>Information about the prescription.</td>
+   <td>Information about the prescription for the dispenser.</td>
   </tr>
 </table>
 
-Can be used to support local requirements not supported elsewhere within the resource. Any data contained can only be processed by a human user. Unless required for local business processes, **do not** include this element.
+A **business required** element for when the ePMA user wishes to provides supporting textual information to the pharmacy. For example, if there has been a change in dosing requirements that changes what the pharmacy is required to dispense, e.g. a change from an oral solid to an oral liquid formulation of the same medicine.
+
+Where no supporting information is required, this element can be omitted.
 
 Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
 <hr/>
