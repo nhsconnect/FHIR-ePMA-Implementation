@@ -79,7 +79,7 @@ If a client system creates the logical id and there are multiple clients sending
 
 For this reason, within an implementation where multiple clients are POSTing to a FHIR server, it is highly recommenced that the FHIR server creates the logical id to remove the risk of duplication.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### identifier
@@ -103,12 +103,12 @@ Jump back to [top](develop_medicationrequest.htm)
   </tr>
 </table>
 
-Guidance TBC.
+Use if a local implementation requires bespoke identifiers to track medication requests between the ePMA and pharmacy systems.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
-### text
+### text (to thrash out)
 
 <table class='resource-attributes'>
   <tr>
@@ -129,9 +129,13 @@ Jump back to [top](develop_medicationrequest.htm)
   </tr>
 </table>
 
-Guidance TBC.
+It is recommended this element is **not implemented** as part of an MVP.
 
-Jump back to [top](develop_medicationrequest.htm)
+or
+
+This element may benefit an implementation if populated with a concatenation of the elements that form the MVP for a medication request. The **text** elements supports markdown formatting which would allow the data within the MVP to be presented in a human readable format.
+
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### status
@@ -189,7 +193,7 @@ For the purposes of this guidance, the scope of **status** extends to dispensing
 | `Active` | `Stopped` | This transition will trigger an update to the MedicationRequest from the ePMA system to the pharmacy system to stop dispensing activities. Within a RESTful implementation this would be typically implemented as either an HTTP PUT or PATCH. |
 | `Active` | `Completed` | Contained within the ePMA system. All dispensing activity has been received from the pharmacy system within **MedicationDispense** FHIR resources. The ePMA system has completed the recorded of medicine administration events. |
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### intent
@@ -217,7 +221,7 @@ The value `order` should always be used to denote this is a medication request o
 
 FHIR R4 extends the value set to; `proposal`, `plan`, `order`, `original-order`, `reflex-order`, `filler-order`, `instance-order` and `option`, but the recommendation for the target use case is to continue to use `order` unless it is locally decided that the extended R4 value set better supports the business requirements.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### category
@@ -259,7 +263,7 @@ For the target ePMA to hospital pharmacy systems use case, it would be expected 
 
 The only category that does not trigger the sending/sharing of a FHIR medicationRequest resource with the hospital pharmacy would be a `community` medication request. A `community` medication request would either trigger the printing and signing of a paper FP10HP prescription, or (when implemented by the Trust) an electronic prescription sent to the NHS Electronic Prescription Service.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### priority
@@ -293,7 +297,7 @@ The use of the term `stat` is potentially confusing as when used within a dosage
 
 If to be used, consider only initially supporting `routine` and `urgent` and set clear criteria for when a medication request should be marked as `urgent`.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### medicationReference
@@ -321,7 +325,7 @@ See the [Overview](develop_overview.htm) page for guidance on using FHIR Referen
 
 **Note**: At the time of writing an alpha implementation of a FHIR dm+d server is available from the North East CSU as a [demonstrator](https://dmdsite-uks-test-web.azurewebsites.net/Dosage) and associated [API]([https://apidmd001.azurewebsites.net/index.html](https://apidmd001.azurewebsites.net/index.html)).
 
-Q) How should `Medication.text` be populated? Should it be with the pukka dm+d description or the drug name as selected by the clinician, which may be slightly different is the clinical system has not fully implemented dm+d?
+It is recommended that the `medicationReference.display` is populated with the medication description as selected by the clinician. This may be slightly different to the medication described as returned by a SNOMED/dm+d terminology FHIR server if the ePMA system has not fully implemented dm+d into their medication picking list.
 
 Jump back to [top](develop_medicationrequest.html)
 <hr/>
@@ -351,7 +355,7 @@ See the [Overview](develop_overview.htm) page for guidance on using FHIR Referen
 
 **Note**: It is acknowledged that a typical Hospital Patient Administration System (PAS) available today will not expose a FHIR interface so referencing by URL will most likely not be available for some time. However this should be a target architecture so that the FHIR-enabled PAS can be used as a trusted source of Patient resources across multiple hospital systems.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### supportingInformation
@@ -377,19 +381,15 @@ Jump back to [top](develop_medicationrequest.htm)
 
 See the [Overview](develop_overview.htm) page for guidance on using FHIR References.
 
-Guidance TBC.
+Can reference any number of FHIR resources but is **not recommended** as part of an MVP.
 
-Can reference any number of FHIR resources...
+If implemented, some examples of use include;
+- Reference an **Observation** resource to share data like the patient's height and weight.
+- Reference a **Condition** resource to share a patient's condition if this influences the pharmacy dispensing process. For example; "105502003 | Dependence on renal dialysis (finding)“ or “46177005 | End stage renal disease (disorder)" would justify an unusual dosage on a prescription.
+- Reference an **AllergyIntolorance** resource to share a patient's allergy to make it clear why certain medication is being requested. For example, a Penicillin allergy.
+- Reference a **CarePlan** resource where medication dispensing is considered as part of a specific treatment regimen. For example, care plans for stroke patients.
 
-Reference an **Observation** resource to share data like the patient's height and weight.
-
-Reference a **Condition** resource to share a patient's condition if this influences the pharmacy dispensing process.
-
-Reference an **AllergyIntolorance** resource to share a patient's allergy to make it clear why certain medication is being requested.
-
-Reference a **CarePlan** resource where medication dispensing is considered as part of a specific treatment regimen.
-
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### authoredOn
@@ -419,10 +419,10 @@ Recommended to specify as a complete date and time, e.g. "2020-03-26T15:00:00".
 
 Recommended that the date and time is the same as recorded and visible within the ePMA system.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
-### requester
+### requester (to thrash out)
 
 <table class='resource-attributes'>
   <tr>
@@ -466,7 +466,7 @@ Where an implementation does not currently record the prescribing clinician then
 
 **Note**: STU3 allowed a request on behalf of another organisation to be defined using **requester.onBehalfOf**. This has been removed from R4 so is recommended not to be used within any STU3 or CareConnect implementation.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### recorder
@@ -494,7 +494,7 @@ See the [Overview](develop_overview.htm) page for guidance on using FHIR Referen
 
 Optional for most implementations and requires all system users to be individual authenticated. The primary purpose of capturing the recorder would be for the local audit trail. The data recorder will be of little relevance for most pharmacy implementations.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### reasonCode
@@ -522,9 +522,9 @@ Optional but useful to the wider clinical team as an additional safety check, es
 
 Where possible this should be a coded term from the SNOMED-CT hierarchy as a descendant of the concept 404684003 (Clinical finding) however but free-text reasons are also acceptable.
 
-FHIR 4 has several additional structures here?
+It is recommended that if implemented, **reasonCode** and **reasonReference** are mutually exclusive and not both populated.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### reasonReference
@@ -552,7 +552,11 @@ See the [Overview](develop_overview.htm) page for guidance on using FHIR Referen
 
 A reference to a FHIR **Condition** or **Observation** resource.
 
-Jump back to [top](develop_medicationrequest.htm)
+It is recommended this element is **not implemented** as part of an MVP. However if the clinical system has recorded the reason for medication, often known as the "indication", as either a **Condition** or **Observation** resource, a logical link to that resource has business benefit. 
+
+It is recommended that if implemented, **reasonCode** and **reasonReference** are mutually exclusive and not both populated.
+
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### basedOn
@@ -578,14 +582,14 @@ Jump back to [top](develop_medicationrequest.htm)
 
 See the [Overview](develop_overview.htm) page for guidance on using FHIR References.
 
-CarePlan | MedicationRequest | ServiceRequest | ImmunizationRecommendation)
+A reference to any number of **CarePlan**, **MedicationRequest**, **ServiceRequest** or **ImmunizationRecommendation** resources.
 
-Guidance TBC.
+It is recommended this element is **not implemented** as part of an MVP. However if the clinical system has implemented the **CarePlan** resource, a logical link to the care plan for which the medication request is based has business benefit.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
-### groupIdentifier
+### groupIdentifier (to do)
 
 <table class='resource-attributes'>
   <tr>
@@ -608,7 +612,7 @@ Jump back to [top](develop_medicationrequest.htm)
 
 Guidance TBC.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### note
@@ -636,7 +640,7 @@ A **business required** element for when the ePMA user wishes to provides suppor
 
 Where no supporting information is required, this element can be omitted.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### dosageInstruction
@@ -662,7 +666,7 @@ Jump back to [top](develop_medicationrequest.htm)
 
 Refer to [FHIR Dose Syntax Implementation Guidance](https://developer.nhs.uk/apis/dose-syntax-implementation-1-3-2-alpha/) (or any subsequent version) for guidance.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### dispenseRequest
@@ -690,7 +694,7 @@ It is recommended that this structure is **omitted**, unless required data to be
 
 Many elements within this structure are to support primary care prescribing processes using VMP and AMP dm+d concepts and where a structured dosage instruction is not populated.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### substitution
@@ -722,7 +726,7 @@ It could be unwise to assume all UK implementations will prevent substitution if
 
 Where substitution to be be allowed, set to "**true**". The inclusion of the coded reason is optional as the value-set defined in FHIR is of limited benefit to UK healthcare.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### priorPrescription
@@ -768,7 +772,7 @@ An order for the same medication but for a different dose can still be linked us
 
 The medicationRequest being replaced will be referenced within **priorPrescription**. It would be expected that the referenced resource would be updated with a **status** of `cancelled`, `entered-in-error` or `stopped`. This will allow both the ePMA and pharmacy systems to make it clear to the human user that one medication request replaces another.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### extension (repeatInformation)
@@ -794,7 +798,7 @@ Jump back to [top](develop_medicationrequest.htm)
 
 It is recommended that this structure is **omitted** for the target use case.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### extension (statusReason)
@@ -818,9 +822,9 @@ Jump back to [top](develop_medicationrequest.htm)
   </tr>
 </table>
 
-This extension was added to the international standard within FHIR R4 so provides a migration path from STU3 to R4.
+This extension was added to the international standard within FHIR R4 as [statusreason](develop_medicationrequest.html#statusreason) so provides a migration path from CareConnect to R4.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### extension (prescriptionType)
@@ -848,7 +852,7 @@ It is recommended that this structure is **omitted** for the target use case.
  
 **Note**: The value set for this STU3 extension aligns with the legacy HL7v3 'PrescriptionTreatmentType' vocab; `acute`, `repeat`, `repeat dispensing` and `delayed prescribing`. If UK Core R4 is extended to support this type of data then the extension name should ideally not be called 'prescriptionType' as it confused with a different legacy HL7v3 vocab for 'prescriptionType' which serves a different purpose.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### statusReason
@@ -872,9 +876,9 @@ Jump back to [top](develop_medicationrequest.htm)
   </tr>
 </table>
 
-Guidance TBC.
+Within the CareConnect implementation of STU3, this element was modelled as an [extension (statusreason)](develop_medicationrequest.html#extension-statusreason). If used as part of a CareConnect implementation then it would migrate to being the **statusReason** within an R4 implementation.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### doNotPerform
@@ -898,9 +902,9 @@ Jump back to [top](develop_medicationrequest.htm)
   </tr>
 </table>
 
-Guidance TBC.
+It is recommended this element is **not implemented** as part of an MVP.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### reported[x]
@@ -924,9 +928,9 @@ Jump back to [top](develop_medicationrequest.htm)
   </tr>
 </table>
 
-Guidance TBC.
+It is recommended this element is **not implemented** as part of an MVP.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### encounter
@@ -950,9 +954,11 @@ Jump back to [top](develop_medicationrequest.htm)
   </tr>
 </table>
 
-Guidance TBC.
+It is recommended this element is **not implemented** as part of an MVP.
 
-Jump back to [top](develop_medicationrequest.htm)
+Within STU3, this element was modelled as the [context](develop_medicationrequest.html#context) so if used as part of an STU3 implementation then it would migrate to being the **encounter** within an R4 implementation.
+
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### performer
@@ -980,7 +986,9 @@ See the [Overview](develop_overview.htm) page for guidance on using FHIR Referen
 
 **IMPORTANT**: Do not confuse this element with **dispenseRequest.performer** which defines any intended dispenser for the medication request using a referenced FHIR [Organization](develop_organization.html) resource.
 
-Jump back to [top](develop_medicationrequest.htm)
+It is recommended this element is **not implemented** as part of an MVP.
+
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### performerType
@@ -1004,9 +1012,9 @@ Jump back to [top](develop_medicationrequest.htm)
   </tr>
 </table>
 
-Guidance TBC.
+It is recommended this element is **not implemented** as part of an MVP.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### instantiatesCanonical
@@ -1030,9 +1038,9 @@ Jump back to [top](develop_medicationrequest.htm)
   </tr>
 </table>
 
-Guidance TBC.
+It is recommended this element is **not implemented** as part of an MVP.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### instantiatesUri
@@ -1056,12 +1064,12 @@ Jump back to [top](develop_medicationrequest.htm)
   </tr>
 </table>
 
-Guidance TBC.
+It is recommended this element is **not implemented** as part of an MVP.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
-### courseOfTherapyType
+### courseOfTherapyType (to do)
 
 <table class='resource-attributes'>
   <tr>
@@ -1084,7 +1092,7 @@ Jump back to [top](develop_medicationrequest.htm)
 
 Guidance TBC.
 
-Jump back to [top](develop_medicationrequest.htm)<hr/>
+Jump back to [top](develop_medicationrequest.html)<hr/>
 
 ### insurance
 
@@ -1107,9 +1115,9 @@ Jump back to [top](develop_medicationrequest.htm)<hr/>
   </tr>
 </table>
 
-Guidance TBC.
+It is recommended this element is **not implemented** as part of an MVP.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### context
@@ -1141,7 +1149,7 @@ If implemented as a reference to an **Encounter** resource, within R4 this is su
 
 Any reference to an **EpisodeOfCare** resource within an STU3 or CareConnect implementation will not be supported if migrated to FHIR R4. It is recommended not to reference an EpisodeOfCare resource within an STU3 implementation.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### definition
@@ -1167,5 +1175,5 @@ Jump back to [top](develop_medicationrequest.htm)
 
 This element has been removed from FHIR R4 therefore it's use within an STU3 or CareConnect implementation is **not recommended**.
 
-Jump back to [top](develop_medicationrequest.htm)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
