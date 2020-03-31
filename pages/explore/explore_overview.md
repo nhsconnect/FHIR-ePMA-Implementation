@@ -31,23 +31,23 @@ The interoperability requirement is to send or share an electronic medication or
 
 ![Status Transitions](images/interop_diagram.jpg)
 
-### POST, PATCH and PUT operations
+### POST, PATCH and PUT Operations
 
-In a RESTful implementation, it is recommended that the MedicationRequest is POSTed to the pharmacy system using an HTTP POST operation.
+In a RESTful implementation, it is recommended that the MedicationRequest is POSTed to the pharmacy system using an HTTP POST operation. Here, the pharmacy system is acting as the FHIR server.
 
-In a RESTful implementation, it is recommended that any update to an existing MedicationRequest is PATCHed to the pharmacy system using an HTTP PATCH operation. A PATCH operation sends just the changed elements of the resource to the server (the pharmacy system). It is an alternative to updating an entire resource using an HTTP PUT. Using a PUT requires more data bandwidth but is a simpler solution so is also acceptable.
+In a RESTful implementation, it is recommended that any update to an existing MedicationRequest is PATCHed to the pharmacy system using an HTTP PATCH operation. A PATCH operation sends just the changed elements of the resource to the FHIR server. It is an alternative to updating an entire resource using an HTTP PUT. Using a PUT requires more data bandwidth but is also a simpler solution so is also an acceptable solution.
 
 Refer to the [STU3 FHIR RESTful standards](http://hl7.org/fhir/STU3/http.html#update) and [R4 FHIR RESTful standards](https://hl7.org/fhir/R4/http.html) for more information.
 
 ### Dispensing and Administration Events
 
-The scope of this version of implementation guidance  excludes the reverse interaction; a send or share an electronic dispensing event entered into the hospital pharmacy system, with the ePMA system using the **MedicationDispense** FHIR resource. 
+The scope of this version of implementation guidance  excludes the reverse interaction; a send or share of an electronic dispensing event entered into the hospital pharmacy system, with the ePMA system, using the **MedicationDispense** FHIR resource. 
 
-The scope of this version of implementation guidance  excludes the sharing of medication administration events between systems using the **MedicationAdministration** FHIR resource. 
+The scope of this version of implementation guidance excludes the sharing of medication administration events between systems using the **MedicationAdministration** FHIR resource. 
 
 These will be added in a future versions of this guidance.
 
-## Medication orders within ePMA system and how they are supported in FHIR
+## Medication orders within UK ePMA systems and how they are supported with FHIR
 
 Typically within UK hospitals, ePMA systems support two types of medication request (or order);
 
@@ -56,22 +56,22 @@ Typically within UK hospitals, ePMA systems support two types of medication requ
 
 ### One-off Medication Request
 
-A request for medication for a given patient. Each request shall be for one medication. The structured dosage instruction shall specify the administration requirement, e.g. "50mg daily with food" (represented in a structured and machine readable set of FHIR elements).
+A request for medication for a given patient. Each request shall be for one medication treatment or course. The structured dosage instruction shall specify the administration requirement, e.g. "50mg daily with food" and any time or dosing bounds, e.g. "for 7 days", all represented in the structured and machine readable FHIR [**dosage**](develop_medicationrequest.html#dosageinstruction) structure.
 
-Most ePMA medication requests are deemed to be on-going unless specifically stated within the dosage instruction with time or dose bounds. Where no end criteria are specified within the dosage instruction the hospital pharmacy will typically dispense a quantity of medication as per their local agreed best practice. For example, sufficient medication for 7 days. When more medication is required, a re-fill medication request is submitted.
+Most ePMA medication requests are deemed to be on-going unless specifically stated within the dosage instruction with date, time or dose bounds. Where no end criteria is specified the hospital pharmacy will typically dispense a quantity of medication as per their local agreed best practice. For example, sufficient medication for a given number of days, depending on how frequently the ward and pharmacy want to re-order medication. When more medication is required, a re-fill medication request is submitted.
 
 ### Re-fill or Re-order Medication Request
 
-When a patient requires a re-fill or re-order of the same medication as previously ordered and dispensed then this is typically known as a re-fill order.
+When a patient requires a re-fill or re-order of the same medication as previously ordered then this is typically known as a "re-fill" order.
 
-For a minimum viable product (MVP) implementation it is recommended to reference a previous MedicationRequest using the **priorPrescription**. This can either reference the last MedicationRequest or the first MedicationRequest, and the choice can be a local implementation decision.
+For a minimum viable product (MVP) implementation it is recommended to reference a previous MedicationRequest using the [**priorPrescription**](develop_medicationrequest.html#priorprescription) element. This can either reference the last MedicationRequest or the first MedicationRequest. This choice can be a local implementation decision.
 
 Elements within the re-fill MedicationRequest that will differ from any previous order shall be;
-- **authoredOn** shall be the date/time of the re-fill request
-- **requster** shall be the prescribing clinician, that may be a different clinician to who original ordered the medication
+- [**authoredOn**](develop_medicationrequest.html#authoredon) shall be the date/time of the re-fill request
+- [**requster**](develop_medicationrequest.html#requester) shall be the prescribing clinician, that may be a different clinician to who original ordered the medication
 
 The **dosage** could be different in a re-fill order for the same medication.
 
 Dosage changes that do not affect the pharmacy dispensing process can be implemented as re-fills. For example a change in administration timing, e.g. from morning to evening.
 
-Dosage changes that do change the pharmacy dispensing process can be implemented as re-fills but it is recommended that the **supportingInformation** element is populated with clear instructions to the pharmacist for the nature of the change. For example, if changing from an oral solid to an oral liquid, then include free-text within **supportingInformation** entered by the ePMA user, e.g. "please note change from solid or liquid".
+Dosage changes that do change the pharmacy dispensing process can be implemented as re-fills but it is recommended that the [**note**](develop_medicationrequest.html#note) element is populated with clear instructions to the pharmacist for the nature of the change. For example, if changing from an oral solid to an oral liquid, then include this within a **note** entered by the ePMA user, e.g. "please note change from solid or liquid".
