@@ -79,7 +79,7 @@ If a client system creates the logical id and there are multiple clients sending
 
 For this reason, within an implementation where multiple clients are POSTing to a FHIR server, it is highly recommenced that the FHIR server creates the logical id to remove the risk of duplication.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### identifier
@@ -105,7 +105,7 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
 
 Guidance TBC.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### text
@@ -131,7 +131,7 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
 
 Guidance TBC.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### status
@@ -189,7 +189,7 @@ For the purposes of this guidance, the scope of **status** extends to dispensing
 | `Active` | `Stopped` | This transition will trigger an update to the MedicationRequest from the ePMA system to the pharmacy system to stop dispensing activities. Within a RESTful implementation this would be typically implemented as either an HTTP PUT or PATCH. |
 | `Active` | `Completed` | Contained within the ePMA system. All dispensing activity has been received from the pharmacy system within **MedicationDispense** FHIR resources. The ePMA system has completed the recorded of medicine administration events. |
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### intent
@@ -217,7 +217,7 @@ The value `order` should always be used to denote this is a medication request o
 
 FHIR R4 extends the value set to; `proposal`, `plan`, `order`, `original-order`, `reflex-order`, `filler-order`, `instance-order` and `option`, but the recommendation for the target use case is to continue to use `order` unless it is locally decided that the extended R4 value set better supports the business requirements.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### category
@@ -259,7 +259,7 @@ For the target ePMA to hospital pharmacy systems use case, it would be expected 
 
 The only category that does not trigger the sending/sharing of a FHIR medicationRequest resource with the hospital pharmacy would be a `community` medication request. A `community` medication request would either trigger the printing and signing of a paper FP10HP prescription, or (when implemented by the Trust) an electronic prescription sent to the NHS Electronic Prescription Service.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### priority
@@ -293,7 +293,7 @@ The use of the term `stat` is potentially confusing as when used within a dosage
 
 If to be used, consider only initially supporting `routine` and `urgent` and set clear criteria for when a medication request should be marked as `urgent`.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### medicationReference
@@ -317,11 +317,13 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
   </tr>
 </table>
 
+See the [Overview](develop_overview.htm) page for guidance on using FHIR References.
+
 **Note**: At the time of writing an alpha implementation of a FHIR dm+d server is available from the North East CSU as a [demonstrator](https://dmdsite-uks-test-web.azurewebsites.net/Dosage) and associated [API]([https://apidmd001.azurewebsites.net/index.html](https://apidmd001.azurewebsites.net/index.html)).
 
 Q) How should `Medication.text` be populated? Should it be with the pukka dm+d description or the drug name as selected by the clinician, which may be slightly different is the clinical system has not fully implemented dm+d?
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
 ### subject
@@ -345,9 +347,11 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
   </tr>
 </table>
 
+See the [Overview](develop_overview.htm) page for guidance on using FHIR References.
+
 **Note**: It is acknowledged that a typical Hospital Patient Administration System (PAS) available today will not expose a FHIR interface so referencing by URL will most likely not be available for some time. However this should be a target architecture so that the FHIR-enabled PAS can be used as a trusted source of Patient resources across multiple hospital systems.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### supportingInformation
@@ -371,6 +375,8 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
   </tr>
 </table>
 
+See the [Overview](develop_overview.htm) page for guidance on using FHIR References.
+
 Guidance TBC.
 
 Can reference any number of FHIR resources...
@@ -383,7 +389,7 @@ Reference an **AllergyIntolorance** resource to share a patient's allergy to mak
 
 Reference a **CarePlan** resource where medication dispensing is considered as part of a specific treatment regimen.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### authoredOn
@@ -413,7 +419,7 @@ Recommended to specify as a complete date and time, e.g. "2020-03-26T15:00:00".
 
 Recommended that the date and time is the same as recorded and visible within the ePMA system.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### requester
@@ -437,6 +443,8 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
   </tr>
 </table>
 
+See the [Overview](develop_overview.htm) page for guidance on using FHIR References.
+
 Recommended as a required business element for most implementations.
 
 Recommended to be the prescribing clinician recorded on the ePMA system for the medication request, as a reference to a FHIR **Practitioner** resource.
@@ -458,7 +466,7 @@ Where an implementation does not currently record the prescribing clinician then
 
 **Note**: STU3 allowed a request on behalf of another organisation to be defined using **requester.onBehalfOf**. This has been removed from R4 so is recommended not to be used within any STU3 or CareConnect implementation.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### recorder
@@ -482,9 +490,11 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
   </tr>
 </table>
 
+See the [Overview](develop_overview.htm) page for guidance on using FHIR References.
+
 Optional for most implementations and requires all system users to be individual authenticated. The primary purpose of capturing the recorder would be for the local audit trail. The data recorder will be of little relevance for most pharmacy implementations.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### reasonCode
@@ -514,7 +524,7 @@ Where possible this should be a coded term from the SNOMED-CT hierarchy as a des
 
 FHIR 4 has several additional structures here?
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### reasonReference
@@ -538,9 +548,11 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
   </tr>
 </table>
 
-Guidance TBC.
+See the [Overview](develop_overview.htm) page for guidance on using FHIR References.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+A reference to a FHIR **Condition** or **Observation** resource.
+
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### basedOn
@@ -560,13 +572,17 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>A plan or request that is fulfilled in whole or in part by this medication request.</td>
   </tr>
 </table>
 
+See the [Overview](develop_overview.htm) page for guidance on using FHIR References.
+
+CarePlan | MedicationRequest | ServiceRequest | ImmunizationRecommendation)
+
 Guidance TBC.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### groupIdentifier
@@ -586,13 +602,13 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>A shared identifier common to all requests that were authorized more or less simultaneously by a single author, representing the identifier of the requisition or prescription.</td>
   </tr>
 </table>
 
 Guidance TBC.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### note
@@ -620,7 +636,7 @@ A **business required** element for when the ePMA user wishes to provides suppor
 
 Where no supporting information is required, this element can be omitted.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### dosageInstruction
@@ -646,7 +662,7 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
 
 Refer to [FHIR Dose Syntax Implementation Guidance](https://developer.nhs.uk/apis/dose-syntax-implementation-1-3-2-alpha/) (or any subsequent version) for guidance.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### dispenseRequest
@@ -674,7 +690,7 @@ It is recommended that this structure is **omitted**, unless required data to be
 
 Many elements within this structure are to support primary care prescribing processes using VMP and AMP dm+d concepts and where a structured dosage instruction is not populated.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### substitution
@@ -706,7 +722,7 @@ It could be unwise to assume all UK implementations will prevent substitution if
 
 Where substitution to be be allowed, set to "**true**". The inclusion of the coded reason is optional as the value-set defined in FHIR is of limited benefit to UK healthcare.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### priorPrescription
@@ -730,6 +746,8 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
   </tr>
 </table>
 
+See the [Overview](develop_overview.htm) page for guidance on using FHIR References.
+
 The published FHIR specifications described this element is slightly different ways in different parts of the FHIR specification;
 
 "*A link to a resource representing an earlier order related order or prescription*" 
@@ -750,7 +768,7 @@ An order for the same medication but for a different dose can still be linked us
 
 The medicationRequest being replaced will be referenced within **priorPrescription**. It would be expected that the referenced resource would be updated with a **status** of `cancelled`, `entered-in-error` or `stopped`. This will allow both the ePMA and pharmacy systems to make it clear to the human user that one medication request replaces another.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### extension (repeatInformation)
@@ -776,7 +794,7 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
 
 It is recommended that this structure is **omitted** for the target use case.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### extension (statusReason)
@@ -802,7 +820,7 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
 
 This extension was added to the international standard within FHIR R4 so provides a migration path from STU3 to R4.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### extension (prescriptionType)
@@ -830,7 +848,7 @@ It is recommended that this structure is **omitted** for the target use case.
  
 **Note**: The value set for this STU3 extension aligns with the legacy HL7v3 'PrescriptionTreatmentType' vocab; `acute`, `repeat`, `repeat dispensing` and `delayed prescribing`. If UK Core R4 is extended to support this type of data then the extension name should ideally not be called 'prescriptionType' as it confused with a different legacy HL7v3 vocab for 'prescriptionType' which serves a different purpose.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### statusReason
@@ -838,11 +856,11 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>TBC</code></td>
+   <td><code>CodeableConcept</code></td>
   </tr>
   <tr>
    <td><b>Required / Cardinality:</b></td>
-   <td>TBC</td>
+   <td>Optional 0..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -850,13 +868,13 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>Captures the reason for the current state of the MedicationRequest.</td>
   </tr>
 </table>
 
 Guidance TBC.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### doNotPerform
@@ -864,11 +882,11 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>TBC</code></td>
+   <td><code>Boolean</code></td>
   </tr>
   <tr>
    <td><b>Required / Cardinality:</b></td>
-   <td>TBC</td>
+   <td>Optional 0..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -876,13 +894,13 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>If true indicates that the provider is asking for the medication request not to occur.</td>
   </tr>
 </table>
 
 Guidance TBC.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### reported[x]
@@ -890,11 +908,11 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>TBC</code></td>
+   <td><code>Boolean or Reference</code></td>
   </tr>
   <tr>
    <td><b>Required / Cardinality:</b></td>
-   <td>TBC</td>
+   <td>Optional 0..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -902,13 +920,13 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>Indicates if this record was captured as a secondary 'reported' record rather than as an original primary source-of-truth record. It may also indicate the source of the report.</td>
   </tr>
 </table>
 
 Guidance TBC.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### encounter
@@ -916,11 +934,11 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>TBC</code></td>
+   <td><code>Reference</code></td>
   </tr>
   <tr>
    <td><b>Required / Cardinality:</b></td>
-   <td>TBC</td>
+   <td>Optional 0..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -928,13 +946,13 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>The Encounter during which this MedicationRequest was created or to which the creation of this record is tightly associated.</td>
   </tr>
 </table>
 
 Guidance TBC.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### performer
@@ -958,9 +976,11 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
   </tr>
 </table>
 
+See the [Overview](develop_overview.htm) page for guidance on using FHIR References.
+
 **IMPORTANT**: Do not confuse this element with **dispenseRequest.performer** which defines any intended dispenser for the medication request using a referenced FHIR [Organization](develop_organization.html) resource.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### performerType
@@ -986,7 +1006,7 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
 
 Guidance TBC.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### instantiatesCanonical
@@ -994,11 +1014,11 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>TBC</code></td>
+   <td><code>canonical</code></td>
   </tr>
   <tr>
    <td><b>Required / Cardinality:</b></td>
-   <td>TBC</td>
+   <td>Optional 0..*</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -1006,13 +1026,13 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>The URL pointing to a protocol, guideline, orderset, or other definition that is adhered to in whole or in part by this MedicationRequest.</td>
   </tr>
 </table>
 
 Guidance TBC.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### instantiatesUri
@@ -1020,11 +1040,11 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>TBC</code></td>
+   <td><code>uri</code></td>
   </tr>
   <tr>
    <td><b>Required / Cardinality:</b></td>
-   <td>TBC</td>
+   <td>Optional 0..*</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -1032,13 +1052,13 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>The URL pointing to an externally maintained protocol, guideline, orderset or other definition that is adhered to in whole or in part by this MedicationRequest.</td>
   </tr>
 </table>
 
 Guidance TBC.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### courseOfTherapyType
@@ -1046,11 +1066,11 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>TBC</code></td>
+   <td><code>CodeableConcept</code></td>
   </tr>
   <tr>
    <td><b>Required / Cardinality:</b></td>
-   <td>TBC</td>
+   <td>Optional 0..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -1058,24 +1078,24 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>The description of the overall patte3rn of the administration of the medication to the patient.</td>
   </tr>
 </table>
 
 Guidance TBC.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)<hr/>
+Jump back to [top](develop_medicationrequest.htm)<hr/>
 
 ### insurance
 
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>TBC</code></td>
+   <td><code>Reference</code></td>
   </tr>
   <tr>
    <td><b>Required / Cardinality:</b></td>
-   <td>TBC</td>
+   <td>Optional 0..*</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -1083,13 +1103,13 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be required for delivering the requested service.</td>
   </tr>
 </table>
 
 Guidance TBC.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### context
@@ -1113,13 +1133,15 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
   </tr>
 </table>
 
+See the [Overview](develop_overview.htm) page for guidance on using FHIR References.
+
 This element has been removed from the FHIR R4 standard.
 
 If implemented as a reference to an **Encounter** resource, within R4 this is supported by a new **encounter** element, giving a clear migration path.
 
 Any reference to an **EpisodeOfCare** resource within an STU3 or CareConnect implementation will not be supported if migrated to FHIR R4. It is recommended not to reference an EpisodeOfCare resource within an STU3 implementation.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>
 
 ### definition
@@ -1145,5 +1167,5 @@ Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop
 
 This element has been removed from FHIR R4 therefore it's use within an STU3 or CareConnect implementation is **not recommended**.
 
-Jump back to [top](https://nhsconnect.github.io/FHIR-ePMA-Implementation/develop_medicationrequest.html)
+Jump back to [top](develop_medicationrequest.htm)
 <hr/>

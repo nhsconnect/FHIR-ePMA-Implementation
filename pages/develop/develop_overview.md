@@ -27,7 +27,7 @@ FHIR snippets using XML notation are as follows;
 
 <script src="https://gist.github.com/RobertGoochUK/8cd2ea86de816b00d5cc1e4f3d663194.js"></script>
 
-Using references by URL is the recommended / target solution where FHIR servers are available. These may be future nationally available FHIR servers or locally implemented FHIR servers. When referencing by URL it is recommended that the `reference.display` is populated with appropriate text. See guidance within this page for elements that use references.
+Using references by URL is the recommended / target solution where FHIR servers are available. These may be future nationally available FHIR servers or locally implemented FHIR servers. When referencing by URL it is recommended that the `reference.display` is populated with appropriate text as per the guidance within this document.
 
 Where a FHIR server is not available or not used within an implementation, the reference by identifier within the same Bundle is the next recommended implementation option.
 
