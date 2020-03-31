@@ -15,6 +15,7 @@ This guidance for the population of a **MedicationRequest** resource for the use
 **Medication (prescription) requests from a hospital electronic patient medication administration (ePMA) system to a hospital pharmacy system.**
 
 At this time, this guidance is not applicable for the following uses cases;
+- Orders for the supply of ward stock medications
 - Discharge medication requests to the patient's GP
 - Primary care medication requests to community pharmacy (aka an FP10)
 - Medication requests to a home care medicines provider from a Trust
