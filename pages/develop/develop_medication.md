@@ -54,11 +54,19 @@ Elements marked as **MVP** denote those recommended to be required for an MVP fo
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>This resource is primarily used for the identification and definition of a medication for the purposes of prescribing, dispensing, and administering a medication as well as for making statements about medication use.</td>
+   <td>Logical id of this artifact.</td>
   </tr>
 </table>
 
-TBC
+It is recommended this is the medication **unique dm+d concept id**. This use of this identifier will provide a unique mechanism to return a Medication resource in a RESTful implementation anywhere across the NHS.
+
+For example;
+
+`<reference value="https://myFHIRserver/medication/87652004"/>`
+
+Where `87652004` in this example is the unique dm+d concept id for the Virtual Therapeutic Moiety for **Atenolol**.
+
+**To DO**: Need to add the guidance for when a medication is not known within dm+d...
 
 ### text
 
