@@ -7,6 +7,13 @@ permalink: develop_medicationrequest.html
 summary: Implementation guidance for populating and consuming the FHIR MedicationRequest resource
 ---
 
+## Introduction
+
+Links to the definitions of the **MedicationRequest** resource within the specifications covered within this guidance.
+- [STU3](https://www.hl7.org/fhir/STU3/medicationrequest.html)
+- [CareConnect](https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-MedicationRequest-1)
+- [R4](http://hl7.org/fhir/medicationrequest.html)
+
 ## Minimum Viable Product (MVP)
 
 Elements marked as **MVP** denote those recommended to be required for an MVP for the target use case.
@@ -325,6 +332,8 @@ See the [Overview](develop_overview.html) page for guidance on using FHIR Refere
 
 **Note**: At the time of writing an alpha implementation of a FHIR dm+d server is available from the North East CSU as a [demonstrator](https://dmdsite-uks-test-web.azurewebsites.net) and associated [API](https://apidmd001.azurewebsites.net/index.html).
 
+Refer to this page for the population of a [Medication](develop_medication.html) resource.
+
 It is recommended that the `medicationReference.display` is populated with the medication description as selected by the clinician. This may be slightly different to the medication described as returned by a SNOMED/dm+d terminology FHIR server if the ePMA system has not fully implemented dm+d into their medication picking list.
 
 Jump back to [top](develop_medicationrequest.html)
@@ -448,6 +457,8 @@ See the [Overview](develop_overview.html) page for guidance on using FHIR Refere
 Recommended as a required business element for most implementations.
 
 Recommended to be the prescribing clinician recorded on the ePMA system for the medication request, as a reference to a FHIR **Practitioner** resource.
+
+Refer to this page for the population of a [Practitioner](develop_practitioner.html) resource.
 
 The requester can be a reference to a number of different FHIR resources; *Practitioner*, *PractitionerRole*, *Organization*, *Patient*, *RelatedPerson* or *Device*. For this use case it is recommended to always use **Practitioner** unless an implementation supports use cases like requests direct from patients or automated requests from medical or monitoring devices.
 
@@ -668,7 +679,7 @@ Jump back to [top](develop_medicationrequest.html)
 
 **Business required** for an MVP using the elements within the FHIR **dosage** structure. Population of just the `dosageInstruction.text` element would be unacceptable for a successful implementation.
 
-Refer to [FHIR Dose Syntax Implementation Guidance](https://developer.nhs.uk/apis/dose-syntax-implementation-1-3-2-alpha/) (or any subsequent version) for guidance.
+Refer to [FHIR Dose Syntax Implementation Guidance](https://developer.nhs.uk/apis/dose-syntax-implementation/) (or any subsequent version) for guidance.
 
 Jump back to [top](develop_medicationrequest.html)
 <hr/>

@@ -9,7 +9,10 @@ summary: Implementation guidance for populating and consuming the FHIR Patient r
 
 ## Introduction
 
-Here
+Links to the definitions of the **Patient** resource within the specifications covered within this guidance.
+- [STU3](https://www.hl7.org/fhir/STU3/patient.html)
+- [CareConnect](https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1)
+- [R4](http://hl7.org/fhir/patient.html)
 
 ### Overarching principles
 
