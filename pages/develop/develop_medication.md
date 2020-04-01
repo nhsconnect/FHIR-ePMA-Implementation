@@ -24,7 +24,7 @@ Elements marked as **MVP** denote those recommended to be required for an MVP fo
 | text |  | 
 | identifier |  | 
 | code | **MVP** | 
-| status | **MVP** | 
+| status |  | 
 | manufacturer |  | 
 | form |  | 
 | amount |  | 
@@ -127,13 +127,15 @@ The element is not required for an MVP implementation.
   </tr>
 </table>
 
-All medication must be represented using SNOMED/dm+d terminology.
+All medication must be represented using NHS dm+d terminology.
 
 The `code.coding.system` must be "http://snomed.info/sct".
 
-The `code.coding.code` must be the SNOMED/dm+d concept code.
+The `code.coding.code` must be the NHS dm+d concept code.
 
-The `code.coding.display` must be the SNOMED/dm+d UK preferred concept description.		
+The `code.coding.display` must be the NHS dm+d concept description.		
+
+**To DO**: Need to add the guidance for when a medication is not known within dm+d...
 
 ### status
 
@@ -144,7 +146,7 @@ The `code.coding.display` must be the SNOMED/dm+d UK preferred concept descripti
   </tr>
   <tr>
    <td><b>Required / Cardinality:</b></td>
-   <td>Required 0..1</td>
+   <td>Optional 0..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -156,7 +158,7 @@ The `code.coding.display` must be the SNOMED/dm+d UK preferred concept descripti
   </tr>
 </table>
 
-TBC
+Where populated it must align with the dm+d invalidity flag. If omitted, the medication must be assumed to be `active`.
 
 ### manufacturer
 

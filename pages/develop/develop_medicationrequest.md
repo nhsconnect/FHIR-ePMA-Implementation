@@ -458,11 +458,9 @@ See the [Overview](develop_overview.html) page for guidance on using FHIR Refere
 
 Recommended as a required business element for most implementations.
 
-Recommended to be the prescribing clinician recorded on the ePMA system for the medication request, as a reference to a FHIR **Practitioner** resource.
+Recommended to be the prescribing clinician recorded on the ePMA system for the medication request using a reference a FHIR [Practitioner](develop_practitioner.html) resource.
 
-Refer to this page for the population of a [Practitioner](develop_practitioner.html) resource.
-
-The requester can be a reference to a number of different FHIR resources; *Practitioner*, *PractitionerRole*, *Organization*, *Patient*, *RelatedPerson* or *Device*. For this use case it is recommended to always use **Practitioner** unless an implementation supports use cases like requests direct from patients or automated requests from medical or monitoring devices.
+The requester can be a reference to a number of different FHIR resources; *Practitioner*, *PractitionerRole*, *Organization*, *Patient*, *RelatedPerson* or *Device*. For this use case it is recommended to always use **PractitionerRole** unless an implementation supports use cases like requests direct from patients or automated requests from medical or monitoring devices.
 
 #### Additional guidance
 
