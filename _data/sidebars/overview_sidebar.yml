@@ -38,6 +38,9 @@ entries:
     - title: MedicationAdministration
       url: /develop_medicationadministration.html
       output: web
+    - title: Medication
+      url: /develop_medication.html
+      output: web
     - title: Patient
       url: /develop_patient.html
       output: web
