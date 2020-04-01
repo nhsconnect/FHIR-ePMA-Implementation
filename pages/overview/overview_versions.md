@@ -10,4 +10,4 @@ summary: Version history for this guidance.
 ## Version History
 
 ### 1.0.0-alpha
-First version published. March 2020.
+First version published. April 2020.
