@@ -89,7 +89,7 @@ Where `87652004` in this example is the unique dm+d concept id for the Virtual T
   </tr>
 </table>
 
-TBC
+**TO DO**: Should this be populated for an MVP? What should it populated with? Should it be the same text as per the `code.coding.display` or something else?
 
 ### identifier
 

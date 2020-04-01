@@ -23,11 +23,11 @@ The **MedicationRequest** can reference many other FHIR resources but these four
 
 This guidance aligns with three versions of the FHIR standard; **STU3**, **CareConnect** (UK extension of STU3) and *R4*.
 
-Work is on-going to define a UK-specific version of the R4 standard known as [UK Core](https://simplifier.net/UKCore). Until the implementation of the **MedicationRequest** resource has been published within UK Core, the use of the R4 standard is included here **for information only**, to inform a migration plan from STU3 or CareConnect once the Core UK resources are published as active.
+Work is on-going to define a UK-specific version of the R4 standard known as [R4 UK Core](https://simplifier.net/UKCore). Until the implementation of the **MedicationRequest** resource has been published within UK Core, the use of the R4 standard is included here **for information only**, to inform a migration plan from STU3 or CareConnect once the R4 Core UK resources are published as active.
 
 The MVP recommended within the guidance can be implemented with either STU3, CareConnect or R4 so the choice of FHIR standard will be dependent on other factors, such as alignment with existing or parallel integration projects.
 
-Projects at a discovery or early design phase should seek to implement against the Core UK  standard unless identified partner systems are already built on STU3 or CareConnect with unsuitable timescales to migrate to R4 Core UK.
+Projects at a discovery or early design phase should seek to implement against the R4 Core UK standard unless identified partner systems are already built on STU3 or CareConnect with unsuitable timescales to migrate to R4 Core UK.
 
 ## Using FHIR References
 
