@@ -27,7 +27,7 @@ Elements marked as **MVP** denote those recommended to be required for an MVP fo
 | **intent** | **MVP** | | | performer |  | | |
 | **category** | **MVP** | | | performerType |  |  | |
 | priority |  | | |  instantiatesCanonical |  |  | |
-| **medicationReference** | **MVP** | | | instantiatesUri |  |  | |
+| **medication[x]** | **MVP** | | | instantiatesUri |  |  | |
 | **subject** | **MVP** | | | courseOfTherapyType |  |  | |
 | supportingInformation |  | | | insurance |  |  | |
 | **authoredOn** | **MVP** | | | dispenseRequest. initialFill |  |  | |
@@ -307,12 +307,12 @@ If to be used, consider only initially supporting `routine` and `urgent` and set
 Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
-### medicationReference
+### medication[x]
 
 <table class='resource-attributes'>
   <tr>
    <td><b>Data Type:</b></td>
-   <td><code>Reference</code></td>
+   <td><code>Reference or CodeableConcept</code></td>
   </tr>
   <tr>
    <td><b>Required / Cardinality:</b></td>
@@ -328,13 +328,25 @@ Jump back to [top](develop_medicationrequest.html)
   </tr>
 </table>
 
+Where the requested medication is contained within the NHS dm+d then it must be recorded using the dm+d standard. Implementation is recommended to be via a referenced [Medication](develop_medication.html) resource.
+
 See the [Overview](develop_overview.html) page for guidance on using FHIR References.
 
 **Note**: At the time of writing an alpha implementation of a FHIR dm+d server is available from the North East CSU as a [demonstrator](https://dmdsite-uks-test-web.azurewebsites.net) and associated [API](https://apidmd001.azurewebsites.net/index.html).
 
-Refer to this page for the population of a [Medication](develop_medication.html) resource.
-
 It is recommended that the `medicationReference.display` is populated with the medication description as selected by the clinician. This may be slightly different to the medication described as returned by a SNOMED/dm+d terminology FHIR server if the ePMA system has not fully implemented dm+d into their medication picking list.
+
+#### Requested medication with no dm+d code
+
+Medication not published within the dm+d may be requested in the Acute care setting. In this scenario it is recommended to use the **CodeableConcept** variant for this element. Software logic can then clearly distinguish this from nationally coded dm+d medication.
+
+If the ePMA system has both a locally assigned code and description for the medication then;
+- The `medicationCodeableConcept.text` should be the description for the medication.
+- The `medicationCodeableConcept.coding.code` should be the code for the medication.
+- The `medicationCodeableConcept.coding.display` should be the description for the medication, i.e. the same value as `medicationCodeableConcept.text`.
+
+If the ePMA system only has a description for the medication then;
+- The `medicationCodeableConcept.text` should be the locally assigned description for the medication.
 
 Jump back to [top](develop_medicationrequest.html)
 <hr/>
