@@ -11,23 +11,23 @@ summary: Overarching development principles when using FHIR
 
 This implementation guidance defines a Minimum Viable Product (MVP) for each FHIR Resource required to support the target use case of medication requests from a hospital ePMA system to a hospital pharmacy system.
 
-An implementation is recommended to adhere to the MVP but can also choose to implement and other elements from the chosen FHIR standard. For the purposes of this guidance, an "implementation" is the partnership between an ePMA system supplier and a pharmacy system supplier within a given Trust.
+An implementation is recommended to adhere to the MVP but can also choose to implement other elements from the chosen FHIR standard. For the purposes of this guidance, an "implementation" is the partnership between an ePMA system supplier and a pharmacy system supplier within a given Trust.
 
-The MVP uses four FHIR Resources;
+The MVP requires the implementation of four FHIR Resources; [MedicationRequest](develop_medicationrequest.html), [Medication](develop_medication.html), [Patient](develop_patient.html) and [Practitioner](develop_practitioner.html)
 
 ![FHIR Resource Relationships (MVP)](images/develop_resources.jpg)
 
-The **MedicationRequest** can reference many other FHIR resources but these four are required for the recommended MVP. 
+The [MedicationRequest](develop_medicationrequest.html) can reference many other FHIR resources but the four above are required for the recommended MVP. 
 
 ## Which Version Of The FHIR Standard To Implement?
 
-This guidance aligns with three versions of the FHIR standard; **STU3**, **CareConnect** (UK extension of STU3) and *R4*.
+This guidance aligns with three versions of the FHIR standard; **STU3**, **CareConnect** (a UK extension of STU3) and **R4**.
 
-Work is on-going to define a UK-specific version of the R4 standard known as [R4 UK Core](https://simplifier.net/UKCore). Until the implementation of the **MedicationRequest** resource has been published within UK Core, the use of the R4 standard is included here **for information only**, to inform a migration plan from STU3 or CareConnect once the R4 Core UK resources are published as active.
+Work is on-going to define a UK-specific version of the R4 standard known as [R4 UK Core](https://simplifier.net/UKCore). Until the implementation of the MedicationRequest resource has been published within UK Core, the use of the R4 standard in this guidance is **for information only**. It can inform a migration plan from STU3 or CareConnect once the R4 Core UK resources are published as active.
 
-The MVP recommended within the guidance can be implemented with either STU3, CareConnect or R4 so the choice of FHIR standard will be dependent on other factors, such as alignment with existing or parallel integration projects.
+The MVP recommended within this guidance can be implemented with either STU3, CareConnect or R4 so the choice of FHIR standard will be dependent on other factors, such as alignment with existing or parallel integration projects.
 
-Projects at a discovery or early design phase should seek to implement against the R4 Core UK standard unless identified partner systems are already built on STU3 or CareConnect with unsuitable timescales to migrate to R4 Core UK.
+Projects at a discovery or early design phase should seek to implement against the R4 Core UK standard, unless identified partner systems are already available using STU3 or CareConnect and have incompatible timescales to migrate to R4 Core UK.
 
 ## Using FHIR References
 
