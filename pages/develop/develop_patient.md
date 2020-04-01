@@ -29,7 +29,7 @@ Elements marked as **MVP** denote those recommended to be required for an MVP fo
 | gender | **MVP** |
 | birthDate | **MVP** |
 | deceased |  |
-| address | **MVP** |
+| address |  |
 | martialStatus |  |
 | multipleBirth |  |
 | photo |  |
@@ -64,6 +64,8 @@ Elements marked as **MVP** denote those recommended to be required for an MVP fo
   </tr>
 </table>
 
+**TO DO**: What do we recommend as the logical id for a Patient? It feels like a local decision. It is most likely to be a local identifier as most Trusts use their own patient identifier, not the NHS Number.
+
 ### identifier
 
 <table class='resource-attributes'>
@@ -85,14 +87,15 @@ Elements marked as **MVP** denote those recommended to be required for an MVP fo
   </tr>
 </table>
 
+For an **STU3** or **R4** implementation record the patient's NHS Number as an identifier.
+- The `Patient.identifier.use` should be "official"
+- The `Patient.identifier.type` should be "MR"
+- The `Patient.identifier.value` must be the patient's NHS Number
+- The `Patient.identifier.period` can be omitted unless there is a known validity period for the NHS Number
 
+For a **CareConnect** implementation the **identifier (nhsNumber)** extension should be used for the patient's NHS Number.
 
-Here
-
-- Patient.identifier.use = "official"
-- Patient.identifier.type = "MR"
-- Patient.identifier.value = {patient's NHS Number}
-- Patient.identifier.period = {any known validity period, omit if unknown}
+Additionally an implementation can populate an additional identifier to record any local patient identifier that is necessary for local business process interoperability.
 
 ### identifier (nhsNumber)
 
@@ -115,7 +118,7 @@ Here
   </tr>
 </table>
 
-Business required for a CareConnect implementation. An STU3 extension to record the patient's NHS Number.
+Business required for a **CareConnect** implementation as an STU3 extension to record the patient's NHS Number.
 
 ### active
 
@@ -134,9 +137,11 @@ Business required for a CareConnect implementation. An STU3 extension to record 
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>Whether this patient's record is in active use</td>
   </tr>
 </table>  
+
+The element is not required for an MVP implementation.
 
 ### name
 
@@ -159,6 +164,10 @@ Business required for a CareConnect implementation. An STU3 extension to record 
   </tr>
 </table>
 
+A single full name, that is the patient's preferred name, must be recorded as a complete string with `name.text`.
+
+The composite name elements of `name.prefix`, `name.given` and `name.family` should be included if available. The complete string used for **name.text** must be the concatenation of these three elements separated by a single whitespace character.
+
 ### telecom
 
 <table class='resource-attributes'>
@@ -176,9 +185,11 @@ Business required for a CareConnect implementation. An STU3 extension to record 
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>A contact detail for the individual</td>
   </tr>
 </table>  
+
+The element is not required for an MVP implementation.
 
 ### gender
 
@@ -201,6 +212,10 @@ Business required for a CareConnect implementation. An STU3 extension to record 
   </tr>
 </table>
 
+Business required for two reasons;
+- Key patient demographic for patient identification
+- Can influence the medication dispensing decision process, e.g. pessary or suppository medicine formulations
+
 ### birthDate
 
 <table class='resource-attributes'>
@@ -222,6 +237,10 @@ Business required for a CareConnect implementation. An STU3 extension to record 
   </tr>
 </table>
 
+Business required for two reasons;
+- Key patient demographic for patient identification
+- Can influence the medication dispensing decision process, e.g. paediatric medication
+
 ### deceased[x]
 
 <table class='resource-attributes'>
@@ -239,9 +258,11 @@ Business required for a CareConnect implementation. An STU3 extension to record 
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>Indicates if the individual is deceased or not.</td>
   </tr>
 </table>  
+
+The element is not required for an MVP implementation.
 
 ### address
 
@@ -252,7 +273,7 @@ Business required for a CareConnect implementation. An STU3 extension to record 
   </tr>
   <tr>
    <td><b>Required / Cardinality:</b></td>
-   <td>Required 0..*</td>
+   <td>Optional 0..*</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -263,6 +284,8 @@ Business required for a CareConnect implementation. An STU3 extension to record 
    <td>An address for the individual.</td>
   </tr>
 </table>
+
+The element is not required for an MVP implementation.
 
 ### martialStatus
 
@@ -281,9 +304,11 @@ Business required for a CareConnect implementation. An STU3 extension to record 
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>Marital (civil) status of a patient.</td>
   </tr>
 </table>  
+
+The element is not required for an MVP implementation.
 
 ### multipleBirth[x]
 
@@ -302,9 +327,11 @@ Business required for a CareConnect implementation. An STU3 extension to record 
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>Whether patient is part of a multiple birth.</td>
   </tr>
 </table>   
+
+The element is not required for an MVP implementation.
 
 ### photo
 
@@ -323,9 +350,11 @@ Business required for a CareConnect implementation. An STU3 extension to record 
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>Image of the patient</td>
   </tr>
 </table>   
+
+The element is not required for an MVP implementation.
 
 ### contact
 
@@ -344,9 +373,11 @@ Business required for a CareConnect implementation. An STU3 extension to record 
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>A contact party (e.g. guardian, partner, friend) for the patient.</td>
   </tr>
 </table>   
+
+The element is not required for an MVP implementation.
 
 ### communication
 
@@ -365,9 +396,11 @@ Business required for a CareConnect implementation. An STU3 extension to record 
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>A spoken language which may be used to communicate with the patient about his or her health.</td>
   </tr>
 </table>  
+
+The element is not required for an MVP implementation.
 
 ### generalPractitioner
 
@@ -386,9 +419,11 @@ Business required for a CareConnect implementation. An STU3 extension to record 
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>Patient's nominated primary care provider.</td>
   </tr>
 </table> 
+
+The element is not required for an MVP implementation.
 
 ### managingOrganization
 
@@ -407,9 +442,11 @@ Business required for a CareConnect implementation. An STU3 extension to record 
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>Organization that is the custodian of the patient record.</td>
   </tr>
 </table>   
+
+The element is not required for an MVP implementation.
 
 ### link
 
@@ -428,9 +465,11 @@ Business required for a CareConnect implementation. An STU3 extension to record 
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>TBC</td>
+   <td>Link to another patient resource that concerns the same actual person.</td>
   </tr>
 </table>  
+
+The element is not required for an MVP implementation.
 
 ### animal
 
@@ -452,6 +491,10 @@ Business required for a CareConnect implementation. An STU3 extension to record 
    <td>This patient is known to be an animal (non-human).</td>
   </tr>
 </table> 
+
+The element is not required for an MVP implementation.
+
+This element has been removed from the FHIR R4 standard.
 
 ### other CareConnect extensions
 
