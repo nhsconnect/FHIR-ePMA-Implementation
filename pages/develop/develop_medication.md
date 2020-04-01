@@ -24,7 +24,7 @@ Elements marked as **MVP** denote those recommended to be required for an MVP fo
 | text |  | 
 | identifier |  | 
 | code | **MVP** | 
-| status | **MVP** | 
+| status |  | 
 | manufacturer |  | 
 | form |  | 
 | amount |  | 
@@ -54,11 +54,19 @@ Elements marked as **MVP** denote those recommended to be required for an MVP fo
   </tr>
   <tr>
    <td><b>Description:</b></td>
-   <td>This resource is primarily used for the identification and definition of a medication for the purposes of prescribing, dispensing, and administering a medication as well as for making statements about medication use.</td>
+   <td>Logical id of this artifact.</td>
   </tr>
 </table>
 
-TBC
+It is recommended this is the medication **unique dm+d concept id**. This use of this identifier will provide a unique mechanism to return a Medication resource in a RESTful implementation anywhere across the NHS.
+
+For example;
+
+`<reference value="https://myFHIRserver/medication/87652004"/>`
+
+Where `87652004` in this example is the unique dm+d concept id for the Virtual Therapeutic Moiety for **Atenolol**.
+
+**To DO**: Need to add the guidance for when a medication is not known within dm+d...
 
 ### text
 
@@ -127,13 +135,15 @@ The element is not required for an MVP implementation.
   </tr>
 </table>
 
-All medication must be represented using SNOMED/dm+d terminology.
+All medication must be represented using NHS dm+d terminology.
 
 The `code.coding.system` must be "http://snomed.info/sct".
 
-The `code.coding.code` must be the SNOMED/dm+d concept code.
+The `code.coding.code` must be the NHS dm+d concept code.
 
-The `code.coding.display` must be the SNOMED/dm+d UK preferred concept description.		
+The `code.coding.display` must be the NHS dm+d concept description.		
+
+**To DO**: Need to add the guidance for when a medication is not known within dm+d...
 
 ### status
 
@@ -144,7 +154,7 @@ The `code.coding.display` must be the SNOMED/dm+d UK preferred concept descripti
   </tr>
   <tr>
    <td><b>Required / Cardinality:</b></td>
-   <td>Required 0..1</td>
+   <td>Optional 0..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -156,7 +166,7 @@ The `code.coding.display` must be the SNOMED/dm+d UK preferred concept descripti
   </tr>
 </table>
 
-TBC
+Where populated it must align with the dm+d invalidity flag. If omitted, the medication must be assumed to be `active`.
 
 ### manufacturer
 
