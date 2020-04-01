@@ -19,13 +19,13 @@ An ePMA system is used to "*facilitate and enhance communication of a prescripti
 
 Definition taken from “*Safer Hospitals, Safer Wards: Achieving an Integrated Digital Care Record*”, published by NHS England, 2013.
 
-## What is an Hospital Pharmacy System?
+## What is a Hospital Pharmacy System?
 
 A hospital pharmacy system supports the provision of medicines across a hospital. It will typically be based around medicine stock control functionality. It can print medication labels. Most will have elements of a patient medication record and support the safe dispensing of medicines through knowledge and decision support.
 
 ## What is the Interoperability Requirement?
 
-The implementation of ePMA systems within UK hospitals continues to grow but many still operate with paper-based processes. Many of these paper-based processes require repeated stages of human interpretation of hand-written medicine order forms, and re-keying of medicine orders. For those who have implemented ePMA systems, there is no established interoperability standard between the ePMA system and hospital pharmacy systems.
+The sharing of data between the ward and hospital pharmacy is for the purpose of medicines supply. The implementation of ePMA systems within UK hospitals continues to grow but many still operate with paper-based processes. Many of these paper-based processes require repeated stages of human interpretation of hand-written medicine order forms, and re-keying of medicine orders. For those who have implemented ePMA systems, there is no established interoperability standard between the ePMA system and hospital pharmacy systems.
 
 The interoperability requirement is to send or share an electronic medication order (aka a prescription) entered into the ePMA system, with the hospital pharmacy system.
 
@@ -67,11 +67,11 @@ When a patient requires a re-fill or re-order of the same medication as previous
 For a minimum viable product (MVP) implementation it is recommended to reference a previous MedicationRequest using the [priorPrescription](develop_medicationrequest.html#priorprescription) element. This can either reference the last MedicationRequest or the first MedicationRequest. This choice can be a local implementation decision.
 
 Elements within the re-fill MedicationRequest that will differ from any previous order shall be;
-- [authoredOn](develop_medicationrequest.html#authoredon) shall be the date/time of the re-fill request
-- [requster](develop_medicationrequest.html#requester) shall be the prescribing clinician, that may be a different clinician to who original ordered the medication
+- [authoredOn](develop_medicationrequest.html#authoredon) shall be the date/time of the re-fill request, not the date/time of the previous order
+- [requster](develop_medicationrequest.html#requester) shall be the prescribing clinician, that may be a different clinician to that recorded on the previous order
 
-The **dosage** could be different in a re-fill order for the same medication.
+The [dosageInstruction](develop_medicationrequest.html#dosageInstruction) could be different in a re-fill order for the same medication.
 
 Dosage changes that do not affect the pharmacy dispensing process can be implemented as re-fills. For example a change in administration timing, e.g. from morning to evening.
 
-Dosage changes that do change the pharmacy dispensing process can be implemented as re-fills but it is recommended that the [note](develop_medicationrequest.html#note) element is populated with clear instructions to the pharmacist for the nature of the change. For example, if changing from an oral solid to an oral liquid, then include this within a **note** entered by the ePMA user, e.g. "please note change from solid or liquid".
+Dosage changes that do change the pharmacy dispensing process can be implemented as re-fills but it is recommended that the [note](develop_medicationrequest.html#note) element is populated with clear instructions to the pharmacist for the nature of the change. For example, if changing from an oral solid to an oral liquid, then include this within a [note](develop_medicationrequest.html#note) entered by the ePMA user, e.g. "please note change from solid or liquid".
