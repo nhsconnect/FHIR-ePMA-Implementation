@@ -28,6 +28,8 @@ This guidance is aligned to the following FHIR standards;
 - [CareConnect](https://fhir.hl7.org.uk/) based on STU3
 - [R4](https://hl7.org/fhir/R4/index.html)
 
+This guidance is being incorporated into the on-going work to define a UK-specific implementation of the R4 standard known as [R4 UK Core](https://simplifier.net/UKCore).
+
 ## Glossary of Terms
 
 Refer to the [NHS Digital Glossary of Developer Terms](https://digital.nhs.uk/developer/developer-reference/glossary-of-developer-terms).

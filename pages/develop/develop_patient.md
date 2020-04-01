@@ -10,9 +10,9 @@ summary: Implementation guidance for populating and consuming the FHIR Patient r
 ## Introduction
 
 Links to the definitions of the **Patient** resource within the specifications covered within this guidance.
-- [STU3](https://www.hl7.org/fhir/STU3/patient.html)
-- [CareConnect](https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1)
-- [R4](http://hl7.org/fhir/patient.html)
+- Patient resource within [STU3](https://www.hl7.org/fhir/STU3/patient.html)
+- Patient resource within [CareConnect](https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1)
+- Patient resource within [R4](http://hl7.org/fhir/patient.html)
 
 ## Minimum Viable Product (MVP)
 
@@ -22,6 +22,7 @@ Elements marked as **MVP** denote those recommended to be required for an MVP fo
 | -- | -- | 
 | id | **MVP** | 
 | identifier | **MVP** |
+| identifier (nhsNumber) | **MVP** |
 | active |  |
 | name | **MVP** |
 | telecom |  |
@@ -38,6 +39,7 @@ Elements marked as **MVP** denote those recommended to be required for an MVP fo
 | managingOrganization |  |
 | link |  |
 | animal |  |
+| other CareConnect extensions |  |
 
 ## Patient elements
 
@@ -83,9 +85,7 @@ Elements marked as **MVP** denote those recommended to be required for an MVP fo
   </tr>
 </table>
 
-For an implementation using CareConnect, replace `patient.identifier` with the extension specific for use with the NHS Number.
 
-CareConnect added a number of extensions to the STU3 Patient resource. The only one relevant to this use case is **identifier (nhsNumber)**. See below for the minimum data set.
 
 Here
 
@@ -93,6 +93,29 @@ Here
 - Patient.identifier.type = "MR"
 - Patient.identifier.value = {patient's NHS Number}
 - Patient.identifier.period = {any known validity period, omit if unknown}
+
+### identifier (nhsNumber)
+
+<table class='resource-attributes'>
+  <tr>
+   <td><b>Data Type:</b></td>
+   <td><code>Identifier</code></td>
+  </tr>
+  <tr>
+   <td><b>Required / Cardinality:</b></td>
+   <td>Required 0..1</td>
+  </tr>
+  <tr>
+    <td><b>Version Support:</b> </td>
+    <td><code>CareConnect</code></td>
+  </tr>
+  <tr>
+   <td><b>Description:</b></td>
+   <td>The patient's NHS number.</td>
+  </tr>
+</table>
+
+Business required for a CareConnect implementation. An STU3 extension to record the patient's NHS Number.
 
 ### active
 
@@ -429,3 +452,15 @@ Here
    <td>This patient is known to be an animal (non-human).</td>
   </tr>
 </table> 
+
+### other CareConnect extensions
+
+extension (ethnicCategory)
+extension (religiousAffiliation)
+extension (patient-cadavericDonor)
+extension (residentialStatus)
+extension (treatmentCategory)
+extension (nhsCommunication)
+extension (birthPlace)
+extension (nominatedPharmacy)
+extension (deathNotificationStatus)
