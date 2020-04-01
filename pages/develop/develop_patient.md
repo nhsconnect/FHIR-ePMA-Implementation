@@ -164,7 +164,7 @@ The element is not required for an MVP implementation.
   </tr>
 </table>
 
-A single full name, that is the patient's preferred name, must be recorded as a complete string with `name.text`.
+A single full name, that is the patient's preferred name, must be recorded as a complete string within `name.text`.
 
 The composite name elements of `name.prefix`, `name.given` and `name.family` should be included if available. The complete string used for **name.text** must be the concatenation of these three elements separated by a single whitespace character.
 
@@ -496,14 +496,22 @@ The element is not required for an MVP implementation.
 
 This element has been removed from the FHIR R4 standard.
 
-### other CareConnect extensions
+### other CareConnect extensions (to do)
 
 extension (ethnicCategory)
+
 extension (religiousAffiliation)
+
 extension (patient-cadavericDonor)
+
 extension (residentialStatus)
+
 extension (treatmentCategory)
+
 extension (nhsCommunication)
+
 extension (birthPlace)
+
 extension (nominatedPharmacy)
+
 extension (deathNotificationStatus)

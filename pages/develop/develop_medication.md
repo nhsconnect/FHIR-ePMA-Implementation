@@ -21,7 +21,7 @@ Elements marked as **MVP** denote those recommended to be required for an MVP fo
 | Elements |  | 
 | -- | -- | 
 | id | **MVP** | 
-| text |  | 
+| text | ??? | 
 | identifier |  | 
 | code | **MVP** | 
 | status |  | 
