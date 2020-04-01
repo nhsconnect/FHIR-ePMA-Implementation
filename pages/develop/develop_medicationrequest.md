@@ -10,9 +10,9 @@ summary: Implementation guidance for populating and consuming the FHIR Medicatio
 ## Introduction
 
 Links to the definitions of the **MedicationRequest** resource within the specifications covered within this guidance.
-- [STU3](https://www.hl7.org/fhir/STU3/medicationrequest.html)
-- [CareConnect](https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-MedicationRequest-1)
-- [R4](http://hl7.org/fhir/medicationrequest.html)
+- MedicationRequest resource within [STU3](https://www.hl7.org/fhir/STU3/medicationrequest.html)
+- MedicationRequest resource within [CareConnect](https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-MedicationRequest-1)
+- MedicationRequest resource within [R4](http://hl7.org/fhir/medicationrequest.html)
 
 ## Minimum Viable Product (MVP)
 
