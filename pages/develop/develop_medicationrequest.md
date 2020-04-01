@@ -364,6 +364,8 @@ See the [Overview](develop_overview.html) page for guidance on using FHIR Refere
 
 **Note**: It is acknowledged that a typical Hospital Patient Administration System (PAS) available today will not expose a FHIR interface so referencing by URL will most likely not be available for some time. However this should be a target architecture so that the FHIR-enabled PAS can be used as a trusted source of Patient resources across multiple hospital systems.
 
+Refer to this page for the population of a [Patient](develop_patient.html) resource.
+
 Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
