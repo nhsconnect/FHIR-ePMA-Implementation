@@ -44,9 +44,6 @@ entries:
     - title: Patient
       url: /develop_patient.html
       output: web
-    - title: Organization
-      url: /develop_organization.html
-      output: web
     - title: Practitioner
       url: /develop_practitioner.html
       output: web
