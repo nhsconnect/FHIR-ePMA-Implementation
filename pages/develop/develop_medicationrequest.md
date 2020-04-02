@@ -140,7 +140,7 @@ It is recommended this element is **not implemented** as part of an MVP.
 
 or
 
-This element may benefit an implementation if populated with a concatenation of the elements that form the MVP for a medication request. The **text** elements supports markdown formatting which would allow the data within the MVP to be presented in a human readable format.
+This element may benefit an implementation if populated with a concatenation of the elements that form the MVP for a medication request.
 
 Jump back to [top](develop_medicationrequest.html)
 <hr/>
