@@ -260,13 +260,13 @@ The STU3 suggested value-set is defined as; `inpatient`, `outpatient` and `commu
 
 The business meaning for some **Category** values for a UK implementation differs from the FHIR international standard definitions. The suggested value-set applicable for implementation within the UK is as follows;
 
-| Category | Implementation Guidance |
-| -- | -- |
-| `inpatient` | Requests for medications to be administered on a hospital ward or another acute care setting including Accident and Emergency (A&E). Typically requests would be dispensed by the **hospital pharmacy** and administered to the patient on the ward. |
-| `outpatient` | Requests for medication from an outpatient clinic. Typically requests would be dispensed by the **hospital pharmacy** for the patient to self-administer at home. |
-| `community` | Requests for medication to be dispensed by a community pharmacy (akin to an NHS FP10HP paper prescription) or other dispenser outside the hospital, such as a Homecare medicines provider. **Note**: This category is likely to be used for all medication requests from Primary Care (e.g. GPs) to community pharmacies or Dispensing Appliance Contractors (akin to an NHS FP10 paper prescription). |
-| `discharge` | Requests for medication the patient will take away with them on discharge from an inpatient stay. Typically requests would be dispensed by the **hospital pharmacy** for the patient to self-administer at home. |
-| `leave` | Requests for medications that the patient will take away with them during any short break from inpatient care. Typically requests would be dispensed by the **hospital pharmacy** to be self-administered at home with or without the assistance of community based nursing staff. |
+| Category | FHIR Definition | Implementation Guidance |
+| -- | -- | -- |
+| `inpatient` | Includes requests for medications to be administered or consumed in an inpatient or acute care setting. | Typically requests would be dispensed by the hospital pharmacy and administered to the patient on the ward. |
+| `outpatient` | Includes requests for medications to be administered or consumed in an outpatient setting (for example, Emergency Department, Outpatient Clinic, Outpatient Surgery, Doctor's office). | Typically requests would be dispensed by the hospital pharmacy for the patient to take away and self-administer. |
+| `community` | Includes requests for medications to be administered or consumed by the patient in their home (this would include long term care or nursing homes, hospices, etc.). | Requests to be dispensed by a community pharmacy, Dispensing Appliance Contractor (DAC) or other dispenser outside the hospital, such as a specialist Homecare medicines provider. |
+| `discharge` | Includes requests for medications created when the patient is being released from a facility. | Requests for medication the patient will take away with them on discharge from an inpatient stay. Typically requests would be dispensed by the hospital pharmacy for the patient to self-administer at home. |
+| `leave` | Not defined within FHIR. | Requests for medications that the patient will take away with them during any short break from inpatient care. Typically requests would be dispensed by the hospital pharmacy to be self-administered at home with or without the assistance of community based nursing staff. |
 
 For the target ePMA to hospital pharmacy systems use case, it would be expected the the ePMA system is capable to creating medication requests for all five categories.
 
