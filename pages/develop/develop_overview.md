@@ -24,7 +24,7 @@ The [MedicationRequest](develop_medicationrequest.html) can reference many other
 The elements available within each FHIR resource are described as follows;
 - **Mandatory**, must be populated as mandatory as per the FHIR standard
 - **Required**, optional within the FHIR standard but form part of the recommended MVP
-- **Optional**, optional within the FHIT standard which do not form part of the recommended MVP
+- **Optional**, optional within the FHIR standard which do not form part of the recommended MVP
 
 ## Which Version Of The FHIR Standard To Implement?
 

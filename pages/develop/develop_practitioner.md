@@ -56,6 +56,8 @@ Elements marked as **MVP** denote those recommended to be required for an MVP fo
   </tr>
 </table>
 
+*Still some thinking required here including a chat with Phil Stradling for a link with plans for NHS Passports...*
+
 **TO DO**: What do we recommend as the logical id for a Practitioner? It feels like a local decision as we don't have a single unique practitioner id standard across the NHS. IDs like the smart card user id are only available to those issued with a smart card. We could go a bit crazy and suggest a union of their professional code and issuing body. We'd need both as some code numbers are duplicated between professional bodies.
 
 For example;
@@ -302,9 +304,11 @@ The element is not required for an MVP implementation.
 
 A business required element to identify the clinical practitioner using their professional code issued by their professional body.
 
-The `qualifcation.code.coding.system` must be TBC?
+The `qualifcation.code.coding.system` must be the *TBC - need to get appropriate URLs for the professional bodies...*
 
-The `qualifcation.code.coding.code` must be the practitioner's professional code issued by their professional body, e.g. General Medical Council (GMC), Nursing and Midwifery Council (NMC), General Pharmaceutical Council (GPhC) etc.
+The `qualifcation.code.coding.code` must be the practitioner's professional code issued by their professional body, e.g. General Medical Council (GMC), Nursing and Midwifery Council (NMC), General Pharmaceutical Council (GPhC) etc.\
+
+The `qualifcation.code.coding.display` must be the name of the professional body that issued the code, e.g. "`General Medical Council`", "`Nursing and Midwifery Council`" or "`General Pharmaceutical Council`".
 
 ### communication 
 
