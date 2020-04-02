@@ -21,7 +21,7 @@ Elements marked as **MVP** denote those recommended to be required for an MVP fo
 | Elements |  | 
 | -- | -- | 
 | id | **MVP** | 
-| text | ??? | 
+| text |  | 
 | identifier |  | 
 | code | **MVP** | 
 | status |  | 
@@ -66,7 +66,7 @@ For example;
 
 Where `87652004` in this example is the unique dm+d concept id for the Virtual Therapeutic Moiety for **Atenolol**.
 
-**To DO**: Need to add the guidance for when a medication is not known within dm+d...
+**Note**: Where a medication is not within the dm+d and therefore does not have a dm+d code then do not use a Medication resource. See [medication with no dm+d code](develop_medicationrequest.html#requested-medication-with-no-dmd-code).
 
 ### text
 
@@ -77,7 +77,7 @@ Where `87652004` in this example is the unique dm+d concept id for the Virtual T
   </tr>
   <tr>
    <td><b>Required / Cardinality:</b></td>
-   <td>TBC 0..1</td>
+   <td>Optional 0..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -89,7 +89,7 @@ Where `87652004` in this example is the unique dm+d concept id for the Virtual T
   </tr>
 </table>
 
-**TO DO**: Should this be populated for an MVP? What should it populated with? Should it be the same text as per the `code.coding.display` or something else?
+The element is not required for an MVP implementation.
 
 ### identifier
 
@@ -143,8 +143,6 @@ The `code.coding.code` must be the NHS dm+d concept code.
 
 The `code.coding.display` must be the NHS dm+d concept description.		
 
-**To DO**: Need to add the guidance for when a medication is not known within dm+d...
-
 ### status
 
 <table class='resource-attributes'>
@@ -166,7 +164,7 @@ The `code.coding.display` must be the NHS dm+d concept description.
   </tr>
 </table>
 
-Where populated it must align with the dm+d invalidity flag. If omitted, the medication must be assumed to be `active`.
+*Bill to have a think about this one as could related to dm+d discontinued medication that may still be locally available...*
 
 ### manufacturer
 

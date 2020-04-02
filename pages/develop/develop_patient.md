@@ -64,7 +64,7 @@ Elements marked as **MVP** denote those recommended to be required for an MVP fo
   </tr>
 </table>
 
-**TO DO**: What do we recommend as the logical id for a Patient? It feels like a local decision. It is most likely to be a local identifier as most Trusts use their own patient identifier, not the NHS Number.
+Is is recommended that the logical id is the local patient identifier issued and managed within the Trust for the patient. This will typically be different to the patient's national NHS Number.
 
 ### identifier
 
@@ -212,9 +212,7 @@ The element is not required for an MVP implementation.
   </tr>
 </table>
 
-Business required for two reasons;
-- Key patient demographic for patient identification
-- Can influence the medication dispensing decision process, e.g. pessary or suppository medicine formulations
+Business required as a key patient demographic for patient identification.
 
 ### birthDate
 
@@ -402,6 +400,8 @@ The element is not required for an MVP implementation.
 
 The element is not required for an MVP implementation.
 
+A local implementation may wish to consider using this element if multi-lingual dispensing instructions are generated within the pharmacy.
+
 ### generalPractitioner
 
 <table class='resource-attributes'>
@@ -496,22 +496,15 @@ The element is not required for an MVP implementation.
 
 This element has been removed from the FHIR R4 standard.
 
-### other CareConnect extensions (to do)
+### other CareConnect extensions
 
-extension (ethnicCategory)
-
-extension (religiousAffiliation)
-
-extension (patient-cadavericDonor)
-
-extension (residentialStatus)
-
-extension (treatmentCategory)
-
-extension (nhsCommunication)
-
-extension (birthPlace)
-
-extension (nominatedPharmacy)
-
-extension (deathNotificationStatus)
+A number of additional extensions to STU3 were added to the CareConnect standard. All these extensions are not required for an MVP implementation.
+- extension (ethnicCategory)
+- extension (religiousAffiliation)
+- extension (patient-cadavericDonor)
+- extension (residentialStatus)
+- extension (treatmentCategory)
+- extension (nhsCommunication)
+- extension (birthPlace)
+- extension (nominatedPharmacy)
+- extension (deathNotificationStatus)

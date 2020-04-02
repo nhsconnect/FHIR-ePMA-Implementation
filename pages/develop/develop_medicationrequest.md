@@ -84,7 +84,7 @@ If either a client or server wants to use an additional business identifier this
 
 If a client system creates the logical id and there are multiple clients sending MedicationRequests there is a possibility a duplicate logical id occurs. In this event the duplicate id (the second code received) will be rejected with a response stating the logical id is duplicated. The requesting system will need to send the request again with a new logical identifier.
 
-For this reason, within an implementation where multiple clients are POSTing to a FHIR server, it is highly recommenced that the FHIR server creates the logical id to remove the risk of duplication.
+For this reason, within an implementation where multiple clients are POSTing to a FHIR server, it is highly recommended that the FHIR server creates the logical id to remove the risk of duplication.
 
 Jump back to [top](develop_medicationrequest.html)
 <hr/>
@@ -154,7 +154,7 @@ Jump back to [top](develop_medicationrequest.html)
   </tr>
   <tr>
    <td><b>Required / Cardinality:</b></td>
-   <td>Mandatory 1..1</td>
+   <td>Required (STU3) Mandatory (R4) 1..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -166,7 +166,9 @@ Jump back to [top](develop_medicationrequest.html)
   </tr>
 </table>
 
-If populated must use a fixed value set defined within the FHIR standard.
+The cardinality of **status* has been changed from 0..1 in STU3 to 1..1 in R4.
+
+When used it must be populated with a fixed value set defined within the FHIR standard.
 
 It is expected that most implementations will require the use of **status** to support workflow. 
 
@@ -195,7 +197,7 @@ For the purposes of this guidance, the scope of **status** extends to dispensing
 | `On-Hold` | `Draft` | Contained within the ePMA system. |
 | `On-Hold` | `Active` | This transition will trigger an update to the MedicationRequest from the ePMA system to the pharmacy system to restart dispensing activities. Within a RESTful implementation this would be typically implemented as either an HTTP PUT or PATCH. |
 | `Active` | `Active` | Not a MedicationRequest status transition but the pharmacy system would send/share dispensing activities with the ePMA system, typically using a FHIR profile based on **MedicationDispense**. Within a RESTful implementation this would be typically implemented as an HTTP POST. |
-| `Active` | `On-Hold` | This transition will trigger an update to the MedicationRequest from the ePMA system to the pharmacy system to suspend dispensing activities. Within a RESTful implementation this would be typically implemented as either an HTTP PUT or PATCH. |
+| `Active` | `On-Hold` | This transition will trigger an update to the MedicationRequest from the ePMA system to the pharmacy system to suspend dispensing activities. Within a RESTful implementation this would be typically implemented as either an HTTP PUT or PATCH. If dispensing has already occurred but meds have not been delivered to the ward then they can stay within the pharmacy until the request is re-activated. If meds have been delivered to the ward then there is no action required by the pharmacy system. |
 | `Active` | `Entered in Error` | This transition will trigger an update to the MedicationRequest from the ePMA system to the pharmacy system to stop dispensing activities. Within a RESTful implementation this would be typically implemented as either an HTTP PUT or PATCH. |
 | `Active` | `Stopped` | This transition will trigger an update to the MedicationRequest from the ePMA system to the pharmacy system to stop dispensing activities. Within a RESTful implementation this would be typically implemented as either an HTTP PUT or PATCH. |
 | `Active` | `Completed` | Contained within the ePMA system. All dispensing activity has been received from the pharmacy system within **MedicationDispense** FHIR resources. The ePMA system has completed the recorded of medicine administration events. |
@@ -332,7 +334,7 @@ Where the requested medication is contained within the NHS dm+d then it must be 
 
 See the [Overview](develop_overview.html) page for guidance on using FHIR References.
 
-**Note**: At the time of writing an alpha implementation of a FHIR dm+d server is available from the North East CSU as a [demonstrator](https://dmdsite-uks-test-web.azurewebsites.net) and associated [API](https://apidmd001.azurewebsites.net/index.html).
+**Note**: At the time of writing an alpha implementation of a dm+d FHIR Medication Resource Server is available from the North East CSU as a [demonstrator](https://dmdsite-uks-test-web.azurewebsites.net) and associated [API](https://apidmd001.azurewebsites.net/index.html).
 
 It is recommended that the `medicationReference.display` is populated with the medication description as selected by the clinician. This may be slightly different to the medication described as returned by a SNOMED/dm+d terminology FHIR server if the ePMA system has not fully implemented dm+d into their medication picking list.
 
@@ -438,7 +440,7 @@ Jump back to [top](develop_medicationrequest.html)
 
 Recommended as a mandatory element for most implementations.
 
-Recommended to specify as a complete date and time, e.g. "2020-03-26T15:00:00".
+Recommended to specify as a complete date and time, e.g. "2020-03-26T15:00:00". Note that the FHIR specification requires that if hours and minutes are specified, a time zone shall be populated, e.g. `give an example here!`.
 
 Recommended that the date and time is the same as recorded and visible within the ePMA system.
 
