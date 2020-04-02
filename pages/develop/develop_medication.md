@@ -140,6 +140,10 @@ All medication must be represented using NHS dm+d terminology.
 - The `code.coding.code` must be the NHS dm+d concept code.
 - The `code.coding.display` must be the NHS dm+d concept description.		
 
+**Note**: The dm+d standard may change the identifier for a medication concept and will publish the current and previous identifier together with the date of the change. A dm+d FHIR terminology server therefore may return two codes for a given medication. For example;
+
+<script src="https://gist.github.com/RobertGoochUK/f1c91565d53e94b53a1d27f23c8db5eb.js"></script>
+
 ### status
 
 <table class='resource-attributes'>
