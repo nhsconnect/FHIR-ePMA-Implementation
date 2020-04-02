@@ -13,7 +13,7 @@ This guidance document provides background information on the target ePMA to pha
 
 Guidance for the use of each element of the MedicationRequest FHIR resource is provided within the **Develop** section.
 
-## What is an Electronic Patient Medication Administration (ePMA) System?
+## What is an Electronic Prescribing and Medicines Administration (ePMA) System?
 
 An ePMA system is used to "*facilitate and enhance communication of a prescription or medicine order, aiding the choice, administration and supply of a medicine through knowledge and decision support and providing a robust audit trail for the entire medicines use process*".
 
@@ -27,15 +27,17 @@ A hospital pharmacy system supports the provision of medicines across a hospital
 
 The sharing of data between the ward and hospital pharmacy is for the purpose of medicines supply. The implementation of ePMA systems within UK hospitals continues to grow but many still operate with paper-based processes. Many of these paper-based processes require repeated stages of human interpretation of hand-written medicine order forms, and re-keying of medicine orders. For those who have implemented ePMA systems, there is no established interoperability standard between the ePMA system and hospital pharmacy systems.
 
-The interoperability requirement is to send or share an electronic medication order (aka a prescription) entered into the ePMA system, with the hospital pharmacy system.
+The interoperability requirement is to send or share an electronic medication order / prescription entered into the ePMA system, with the hospital pharmacy system.
 
 ![Status Transitions](images/interop_diagram.jpg)
 
-### POST, PATCH and PUT Operations
+### RESTful Implementations
 
 In a RESTful implementation, it is recommended that the MedicationRequest is POSTed to the pharmacy system using an HTTP POST operation. Here, the pharmacy system is acting as the FHIR server.
 
 In a RESTful implementation, it is recommended that any update to an existing MedicationRequest is PATCHed to the pharmacy system using an HTTP PATCH operation. A PATCH operation sends just the changed elements of the resource to the FHIR server. It is an alternative to updating an entire resource using an HTTP PUT. Using a PUT requires more data bandwidth but is also a simpler solution so is also an acceptable solution.
+
+A further alternative for the pharmacy system to obtain updates to MedicationRequest resources is to query the ePMA system with a GET operation. The design challenge here is knowing when to query. A polling approach would be inefficient unless updates are occurring frequently to individual resources. The ePMA system could notify the pharmacy in some way to trigger a query/GET operation. This is obviously a two-step operation (notification followed by a GET) instead of the single-step operation implemented with a PATCH (or PUT).
 
 Refer to the [STU3 FHIR RESTful standards](http://hl7.org/fhir/STU3/http.html#update) and [R4 FHIR RESTful standards](https://hl7.org/fhir/R4/http.html) for more information.
 
@@ -51,10 +53,10 @@ These will be added in a future versions of this guidance.
 
 Typically within UK hospitals, ePMA systems support two types of medication request (or order);
 
- 1. One-off medication request (**TO DO** need a better phrase than this!)
+ 1. Initial medication request (Is 'Initial' a better term that 'One-off'?)
  2. Re-fill or re-order of a previous medication request
 
-### One-off Medication Request
+### Initial Medication Request
 
 A request for medication for a given patient. Each request shall be for one medication treatment or course. The structured dosage instruction shall specify the administration requirement, e.g. "50mg daily with food", and any time or dosing bounds, e.g. "for 7 days", all represented in the structured and machine readable FHIR [dosage](develop_medicationrequest.html#dosageinstruction) structure.
 
@@ -68,7 +70,7 @@ For a minimum viable product (MVP) implementation it is recommended to reference
 
 Elements within the re-fill MedicationRequest that will differ from any previous order shall be;
 - [authoredOn](develop_medicationrequest.html#authoredon) shall be the date/time of the re-fill request, not the date/time of the previous order
-- [requster](develop_medicationrequest.html#requester) shall be the prescribing clinician, that may be a different clinician to that recorded on the previous order
+- [requester](develop_medicationrequest.html#requester) shall be the prescribing clinician, that may be a different clinician to that recorded on the previous order
 
 The [dosageInstruction](develop_medicationrequest.html#dosageInstruction) could be different in a re-fill order for the same medication.
 
