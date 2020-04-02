@@ -11,13 +11,20 @@ summary: Overarching development principles when using FHIR
 
 This implementation guidance defines a Minimum Viable Product (MVP) for each FHIR Resource required to support the target use case of medication requests from a hospital ePMA system to a hospital pharmacy system.
 
-An implementation is recommended to adhere to the MVP but can also choose to implement other elements from the chosen FHIR standard. For the purposes of this guidance, an "implementation" is the partnership between an ePMA system supplier and a pharmacy system supplier within a given Trust.
+An implementation is recommended to adhere to the MVP but can also choose to implement other elements from the chosen FHIR standard. For the purposes of this guidance, an "implementation" is the partnership between an ePMA system supplier and a hospital pharmacy system supplier within a given Trust.
 
 The MVP requires the implementation of four FHIR Resources; [MedicationRequest](develop_medicationrequest.html), [Medication](develop_medication.html), [Patient](develop_patient.html) and [Practitioner](develop_practitioner.html)
 
 ![FHIR Resource Relationships (MVP)](images/develop_resources.jpg)
 
 The [MedicationRequest](develop_medicationrequest.html) can reference many other FHIR resources but the four above are required for the recommended MVP. 
+
+## MVP Terms Used Within This Guidance
+
+The elements available within each FHIR resource are described as follows;
+- **Mandatory**, must be populated as mandatory as per the FHIR standard
+- **Required**, optional within the FHIR standard but form part of the recommended MVP
+- **Optional**, optional within the FHIT standard which do not form part of the recommended MVP
 
 ## Which Version Of The FHIR Standard To Implement?
 
