@@ -303,12 +303,9 @@ The element is not required for an MVP implementation.
 </table>
 
 A business required element to identify the clinical practitioner using their professional code issued by their professional body.
-
-The `qualifcation.code.coding.system` must be the *TBC - need to get appropriate URLs for the professional bodies...*
-
-The `qualifcation.code.coding.code` must be the practitioner's professional code issued by their professional body, e.g. General Medical Council (GMC), Nursing and Midwifery Council (NMC), General Pharmaceutical Council (GPhC) etc.\
-
-The `qualifcation.code.coding.display` must be the name of the professional body that issued the code, e.g. "`General Medical Council`", "`Nursing and Midwifery Council`" or "`General Pharmaceutical Council`".
+- The `qualifcation.code.coding.system` must be the *TBC - need to get appropriate URLs for the professional bodies...*
+- The `qualifcation.code.coding.code` must be the practitioner's professional code issued by their professional body, e.g. General Medical Council (GMC), Nursing and Midwifery Council (NMC), General Pharmaceutical Council (GPhC) etc.\
+- The `qualifcation.code.coding.display` must be the name of the professional body that issued the code, e.g. "General Medical Council", "Nursing and Midwifery Council" or "General Pharmaceutical Council".
 
 ### communication 
 
