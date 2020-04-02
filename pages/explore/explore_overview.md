@@ -54,7 +54,7 @@ These will be added in a future versions of this guidance.
 Typically within UK hospitals, ePMA systems support two types of medication request (or order);
 
  1. Initial medication request
- 2. Re-fill or re-order of a previous medication request
+ 2. Re-fill, re-supply or re-order of a previous medication request
 
 ### Initial Medication Request
 
@@ -69,10 +69,10 @@ Most ePMA medication requests are deemed to be on-going unless specifically stat
 When a patient requires a re-fill, re-supply or re-order of the same medication as previously ordered.
 
 *Remaining Questions...*
-* 1. Do we reference the previous order using **priorPrescription** or **basedOn**? 
-* 2. Does the order have to be IDENTICAL to the previous one references, or can it be slightly different, e.g. different form, route, dosage, etc?
-* 3. Does the pharmacist do anything differently if the order is a re-fill/re-supply? What value is there in referencing a previous order?
-* 4. We are proposing NOT using the extended **intent** value-set that includes weird terms like `reflex-order`. 
+1. Does the pharmacist do anything differently if the order is a re-fill/re-supply? What value is there in referencing a previous order?
+2. Do we reference the previous order using **priorPrescription** or **basedOn**? 
+3. Does the order have to be IDENTICAL to the previous one referenced, or can it be slightly different, e.g. different form, route, dosage, etc?
+4. We are proposing NOT using the extended **intent** value-set that includes weird terms like `reflex-order`. So the **intent** does not identify the order as a re-fill/re-supply.
 
 For a minimum viable product (MVP) implementation it is recommended to reference a previous MedicationRequest using the [priorPrescription](develop_medicationrequest.html#priorprescription) element. This can either reference the last MedicationRequest or the first MedicationRequest. This choice can be a local implementation decision.
 
