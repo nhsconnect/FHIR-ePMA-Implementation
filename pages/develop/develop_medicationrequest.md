@@ -115,7 +115,7 @@ Use if a local implementation requires bespoke identifiers to track medication r
 Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
-### text (to thrash out)
+### text
 
 <table class='resource-attributes'>
   <tr>
@@ -136,11 +136,13 @@ Jump back to [top](develop_medicationrequest.html)
   </tr>
 </table>
 
+{% include important.html content="The use of this element is under NHS Digital technical review." %}
+
 It is recommended this element is **not implemented** as part of an MVP.
 
 or
 
-This element may benefit an implementation if populated with a concatenation of the elements that form the MVP for a medication request.
+Where the user of the ePMA system has selected a pre-defined medication order, often known as an "*order sentence*", the textual description of the order sentence should be populated as the **text** for this resource. This is so that the text chosen on-screen by the user is captured within the MedicationRequest resource. Where an ePMA system does not use a concept akin to selecting an order sentence then this element does not form part of the recommended MVP.
 
 Jump back to [top](develop_medicationrequest.html)
 <hr/>
@@ -225,6 +227,8 @@ Jump back to [top](develop_medicationrequest.html)
    <td>Describes the nature of the medication request.</td>
   </tr>
 </table>
+
+{% include important.html content="The use of this element is under NHS Digital technical review for consideration of using other values from the FHIR value-set when the order is a re-fill/re-supply/re-order of previous medication." %}
 
 The value `order` should always be used to denote this is a medication request order.
 
@@ -447,7 +451,7 @@ Recommended that the date and time is the same as recorded and visible within th
 Jump back to [top](develop_medicationrequest.html)
 <hr/>
 
-### requester (to thrash out)
+### requester
 
 <table class='resource-attributes'>
   <tr>
@@ -477,6 +481,8 @@ Recommended to be the prescribing clinician recorded on the ePMA system for the 
 The requester can be a reference to a number of different FHIR resources; *Practitioner*, *PractitionerRole*, *Organization*, *Patient*, *RelatedPerson* or *Device*. For this use case it is recommended to always use **PractitionerRole** unless an implementation supports use cases like requests direct from patients or automated requests from medical or monitoring devices.
 
 #### Additional guidance
+
+{% include important.html content="This additional guidance is under NHS Digital review." %}
 
 Where an implementation does not currently record the prescribing clinician then consider the following;
 - If the prescribing clinician is authorising new medication then populate with their details.
@@ -604,6 +610,8 @@ Jump back to [top](develop_medicationrequest.html)
    <td>A plan or request that is fulfilled in whole or in part by this medication request.</td>
   </tr>
 </table>
+
+{% include important.html content="The use of this element is under NHS Digital technical review along with 'priorPrescription' when the order is for a re-fill/re-supply/re-order of previous medication." %}
 
 See the [Overview](develop_overview.html) page for guidance on using FHIR References.
 
@@ -778,6 +786,8 @@ Jump back to [top](develop_medicationrequest.html)
    <td>An order/prescription that is being replaced AND a link to a resource representing an earlier order related order or prescription.</td>
   </tr>
 </table>
+
+{% include important.html content="The use of this element is under NHS Digital technical review along with 'basedOn' when the order is for a re-fill/re-supply/re-order of previous medication." %}
 
 See the [Overview](develop_overview.html) page for guidance on using FHIR References.
 
