@@ -58,7 +58,7 @@ Typically within UK hospitals, ePMA systems support two types of medication requ
 
 ### Initial Medication Request
 
-*Tahmina will try and provide some better words here...*
+{% include important.html content="The definition of an 'Initial Medication Request' shown here is under NHS Digital clinical review." %}
 
 An initial or first request for medication for a given patient. Each request shall be for one medication treatment or course. The structured dosage instruction shall specify the administration requirement, e.g. "50mg daily with food", and any time or dosing bounds, e.g. "for 7 days", all represented in the structured and machine readable FHIR [dosage](develop_medicationrequest.html#dosageinstruction) structure.
 
@@ -68,11 +68,7 @@ Most ePMA medication requests are deemed to be on-going unless specifically stat
 
 When a patient requires a re-fill, re-supply or re-order of the same medication as previously ordered.
 
-*Remaining Questions...*
-1. Does the pharmacist do anything differently if the order is a re-fill/re-supply? What value is there in referencing a previous order?
-2. Do we reference the previous order using **priorPrescription** or **basedOn**? 
-3. Does the order have to be IDENTICAL to the previous one referenced, or can it be slightly different, e.g. different form, route, dosage, etc?
-4. We are proposing NOT using the extended **intent** value-set that includes weird terms like `reflex-order`. So the **intent** does not identify the order as a re-fill/re-supply.
+{% include important.html content="How FHIR elements should be used for re-fill orders is under NHS Digital technical and clinical review." %}
 
 For a minimum viable product (MVP) implementation it is recommended to reference a previous MedicationRequest using the [priorPrescription](develop_medicationrequest.html#priorprescription) element. This can either reference the last MedicationRequest or the first MedicationRequest. This choice can be a local implementation decision.
 
