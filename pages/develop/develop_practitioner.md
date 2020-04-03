@@ -56,19 +56,11 @@ Elements marked as **MVP** denote those recommended to be required for an MVP fo
   </tr>
 </table>
 
-*Still some thinking required here including a chat with Phil Stradling for a link with plans for NHS Passports...*
+{% include important.html content="The recommended implementation of the logical id for this resource is under NHS Digital technical review." %}
 
-**TO DO**: What do we recommend as the logical id for a Practitioner? It feels like a local decision as we don't have a single unique practitioner id standard across the NHS. IDs like the smart card user id are only available to those issued with a smart card. We could go a bit crazy and suggest a union of their professional code and issuing body. We'd need both as some code numbers are duplicated between professional bodies.
+Until such time as there is an approved and adopted national identifier for NHS staff it is recommended that the logical id is a locally issued employee/user identifier. Such an identifier must be unique across the domain of the Acute Trust and not re-used by another member of staff after someone leaves as this could invalidate historic records.
 
-For example;
-
-`https://myFHIRserver/practitioner/gmc-945000`
-
-`https://myFHIRserver/practitioner/nmc-71A2998E`
-
-`https://myFHIRserver/practitioner/gphc-2033467`
-
-etc.
+If no suitable local staff identifier exists then consider using a UUID.
 
 ### text
 
@@ -116,7 +108,7 @@ The element is not required for an MVP implementation.
 
 The element is not required for an MVP implementation.
 
-Where an implementation requires the use of a locally issued clinician or employee number then this can be recorded as an identifier.
+Where an implementation does not use a locally issued clinician or employee number as the logical [id](develop_practitioner.html#id), such an identifier can be recorded within this element to support local business process interoperability.
 
 ### active
 
@@ -302,10 +294,15 @@ The element is not required for an MVP implementation.
   </tr>
 </table>
 
+{% include important.html content="The appropriate uri to use when using GMC, NMC or GPhC professional codes has not been confirmed." %}
+
 A business required element to identify the clinical practitioner using their professional code issued by their professional body.
-- The `qualifcation.code.coding.system` must be the *TBC - need to get appropriate URLs for the professional bodies...*
-- The `qualifcation.code.coding.code` must be the practitioner's professional code issued by their professional body, e.g. General Medical Council (GMC), Nursing and Midwifery Council (NMC), General Pharmaceutical Council (GPhC) etc.\
-- The `qualifcation.code.coding.display` must be the name of the professional body that issued the code, e.g. "General Medical Council", "Nursing and Midwifery Council" or "General Pharmaceutical Council".
+- The `qualifcation.code.coding.system` must be the appropriate uri for the professional body;
+  - General Medical Council = https://fhir.hl7.org.uk/Id/gmc-number
+  - Nursing and Midwifery Council  = https://fhir.hl7.org.uk/Id/nmc-number
+  - General Pharmaceutical Council = https://fhir.hl7.org.uk/Id/gphc-number
+- The `qualifcation.code.coding.code` must be the practitioner's professional code issued by their professional body.
+- The `qualifcation.code.coding.display` must be the name of the professional body that issued the code, e.g. "*General Medical Council*", "*Nursing and Midwifery Council*" or "*General Pharmaceutical Council*".
 
 ### communication 
 

@@ -165,7 +165,9 @@ All medication must be represented using NHS dm+d terminology.
   </tr>
 </table>
 
-*Bill to have a think about this one as could related to dm+d discontinued medication that may still be locally available...*
+{% include important.html content="The use of the 'status' element within the recommended MVP is under NHS Digital review." %}
+
+Guidance to follow...
 
 ### manufacturer
 

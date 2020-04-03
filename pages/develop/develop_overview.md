@@ -46,6 +46,8 @@ The method by which other FHIR resources, e.g. **Medication** or **Patient**, ar
 
 FHIR snippets using XML notation are as follows;
 
+{% include important.html content="These XML examples are under NHS Digital technical review." %}
+
 <script src="https://gist.github.com/RobertGoochUK/8cd2ea86de816b00d5cc1e4f3d663194.js"></script>
 
 Using references by URL is the recommended / target solution where FHIR servers are available. These may be future nationally available FHIR servers or locally implemented FHIR servers. When referencing by URL it is recommended that the `reference.display` is populated with appropriate text as per the guidance within this document.
