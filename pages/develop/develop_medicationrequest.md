@@ -18,28 +18,65 @@ Links to the definitions of the **MedicationRequest** resource within the specif
 
 Elements marked as **MVP** denote those recommended to be required for an MVP for the target use case.
 
-| Common Elements |  | CareConnect Extension |  | New in R4 |  | Removed from R4 |  |
-| -- | -- | -- | -- | -- | -- | -- | -- |  -- | -- |
-| **id** | **MVP** | repeatInformation |  | statusReason |  | context |  | 
-| text |  | statusReason |  | doNotPerform |  | definition |  | 
-| identifier |  | prescriptionType |  | reported[x] |  | requester. agent |  | 
-| **status** | **MVP** | | | encounter |  | requester. onBehalfOf |  |
-| **intent** | **MVP** | | | performer |  | | |
-| **category** | **MVP** | | | performerType |  |  | |
-| priority |  | | |  instantiatesCanonical |  |  | |
-| **medication[x]** | **MVP** | | | instantiatesUri |  |  | |
-| **subject** | **MVP** | | | courseOfTherapyType |  |  | |
-| supportingInformation |  | | | insurance |  |  | |
-| **authoredOn** | **MVP** | | | dispenseRequest. initialFill |  |  | |
-| **requester** | **MVP** | | | dispenseRequest. initialFill.quantity |  |  | |
-| **recorder** | **MVP** | | | dispenseRequest. initialFill.duration |  |  | |
-| reasonCode |  |  | | dispenseRequest. dispenseInterval |  |  | |
-| reasonReference |  |  | | dispenseRequest. numberOfRepeatsAllowed |  |  | |
-| note | | | | | |
-| **dosageInstruction** | **MVP** |  | | | |
-| dispenseRequest |  |  | | | |
-| **substitution** | **MVP** |  | | | |
-| priorPrescription |  |  | | | |
+### Common Elements
+
+| Element | MVP | 
+| -- | -- | 
+| **id** | **MVP** |
+| text | | 
+| identifier | | 
+| **status** | **MVP** | 
+| **intent** | **MVP** |
+| **category** | **MVP** |
+| priority | | 
+| **medication[x]** | **MVP** |
+| **subject** | **MVP** | 
+| supportingInformation | |
+| **authoredOn** | **MVP** |
+| **requester** | **MVP** |
+| **recorder** | **MVP** |
+| reasonCode | |
+| reasonReference | | 
+| note | |
+| **dosageInstruction** | **MVP** |
+| dispenseRequest | |
+| **substitution** | **MVP** |
+| priorPrescription | |
+
+### CareConnect Extension Elements
+
+| Element | MVP | 
+| -- | -- | 
+| repeatInformation | |
+| statusReason | |
+| prescriptionType | |
+
+### Elements New in R4 
+
+| Element | MVP | 
+| -- | -- | 
+| statusReason | | 
+| doNotPerform | | 
+| reported[x] | | 
+| encounter | | 
+| performer | | 
+| performerType | | 
+| instantiatesCanonical | | 
+| instantiatesUri | | 
+| courseOfTherapyType | | 
+| insurance | | 
+| dispenseRequest.initialFill | |
+| dispenseRequest.dispenseInterval | |
+| dispenseRequest.numberOfRepeatsAllowed | |
+
+### Elements Removed from R4
+
+| Element | MVP | 
+| -- | -- | 
+| context | | 
+| definition | | 
+| requester.agent | | 
+| requester.onBehalfOf | | 
 
 ## MedicationRequest elements
 
@@ -168,13 +205,18 @@ Jump back to [top](develop_medicationrequest.html)
   </tr>
 </table>
 
-The cardinality of **status* has been changed from 0..1 in STU3 to 1..1 in R4.
+The cardinality of **status** has been changed from 0..1 in STU3 to 1..1 in R4.
 
 When used it must be populated with a fixed value set defined within the FHIR standard.
 
 It is expected that most implementations will require the use of **status** to support workflow. 
 
-For the purposes of this guidance, the scope of **status** extends to dispensing and administration events. 
+The scope of **status** may vary depending on the nature of the implementation. The FHIR standard defines the status of `Completed` as "*All actions that are implied by the prescription have occurred*". This allows for different design decisions for tracking a medication request status.
+- An implementation may track the status through to the receipt of the medication request at the pharmacy, after which the status is `completed`
+- An implementation may track the status through to completion of dispensing events, after which the status is `completed`
+- An implementation may track the status through to completion of administration events for the medication that has been dispened, after which the status is `completed`.
+
+The following guidance is based on **an implementation tracking the status through to completion of dispensing events**.
 
 | Status | FHIR Definition | Implementation Guidance |
 | -- | -- | -- | -- |
@@ -268,7 +310,7 @@ The STU3 suggested value-set is defined as; `inpatient`, `outpatient` and `commu
 | `discharge` | Includes requests for medications created when the patient is being released from a facility. |
 | `leave` | **Note: Not included within the FHIR standard.** Requests for medications that the patient will take away with them during any short break from inpatient care. Typically requests would be dispensed by the hospital pharmacy to be self-administered at home with or without the assistance of community based nursing staff. |
 
-For the target use cases, it would be expected the the ePMA system is capable to creating medication requests for all categories except `community`. A `community` medication request would either trigger the printing and signing of a paper FP10HNC prescription, or (when implemented by the Trust) an electronic prescription sent to the NHS Electronic Prescription Service.
+For the target use cases, it would be expected the the ePMA system is capable to creating medication requests for all categories except `community`. A community medication request would either trigger the printing and signing of a paper FP10HNC prescription, or (when implemented by the Trust) an electronic prescription sent to the NHS Electronic Prescription Service.
 
 Jump back to [top](develop_medicationrequest.html)
 <hr/>
@@ -376,7 +418,7 @@ See the [Overview](develop_overview.html) page for guidance on using FHIR Refere
 
 **Note**: It is acknowledged that a typical Hospital Patient Administration System (PAS) available today will not expose a FHIR interface so referencing by URL will most likely not be available for some time. However this should be a target architecture so that the FHIR-enabled PAS can be used as a trusted source of Patient resources across multiple hospital systems.
 
-Refer to this page for the population of a [Patient](develop_patient.html) resource.
+See population of a [Patient](develop_patient.html) resource.
 
 Jump back to [top](develop_medicationrequest.html)
 <hr/>
@@ -436,7 +478,7 @@ Jump back to [top](develop_medicationrequest.html)
   </tr>
 </table>
 
-Recommended as a mandatory element for most implementations.
+Recommended as business required element for most implementations.
 
 Recommended to specify as a complete date and time, e.g. "2020-03-26T15:00:00". Note that the FHIR specification requires that if hours and minutes are specified, a time zone shall be populated, e.g. `give an example here!`.
 
@@ -690,7 +732,7 @@ Jump back to [top](develop_medicationrequest.html)
   </tr>
 </table>
 
-**Business required** for an MVP using the elements within the FHIR **dosage** structure. Population of just the `dosageInstruction.text` element would be unacceptable for a successful implementation.
+A required business element for all implementations. Population of just the `dosageInstruction.text` element would be unacceptable for a successful implementation.
 
 Refer to [FHIR Dose Syntax Implementation Guidance](https://developer.nhs.uk/apis/dose-syntax-implementation/) (or any subsequent version) for guidance.
 
@@ -722,7 +764,7 @@ Used to convey specific dispensing requests to the pharmacy that are not otherwi
 
 The element is not deemed business required for the MVP as most hospital pharmacies will typically dispense medication appropriate for the medication and dosage, with a quantity as per their local agreed best practice. Medication is re-order when required via a [re-supply medication request](explore_overview.html#re-supply-medication-request). Any medication unused on the ward will either go into ward stock or will be returned to the pharmacy.
 
-The **dispenseRequest** may be used to cater for the scenario where a re-supply is required only for a certain number of days, or quantity of medication. For example, a final supply prior to the end of the treatment or course or before the patient is to be discharged.
+The **dispenseRequest** may be used to cater for the scenario where a re-supply is required only for a certain number of days, or quantity of medication. For example, a final supply prior to the end of the treatment/course or before the patient is to be discharged.
 
 For example;
 
