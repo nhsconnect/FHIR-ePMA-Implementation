@@ -25,7 +25,7 @@ At this time, this guidance is not applicable for the following uses cases;
 - Primary care medication requests to community pharmacy (aka an FP10)
 - Medication requests to a home care medicines provider from a Trust
 - Outpatient medication requests dispensed by the hospital pharmacy
-- Outpatient medication requests to be dispensed by a community pharmacy (aka an FP10HCN)
+- Outpatient medication requests to be dispensed by a community pharmacy (aka an FP10HNC)
 - Medication requests between two Trusts where there is a local shortage of supply
 
 ## Alignment with Standards

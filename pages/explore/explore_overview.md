@@ -60,7 +60,7 @@ Typically within UK hospitals, ePMA systems support two types of medication requ
 
 An "Initial Medication Request" is the first time a request for a medicine is made for a patient. This can include a long term medicine or an acute medicine for a specified duration. Each request shall be for one medication. The structured dosage instruction shall specify the administration requirement, e.g. “50mg daily with food”, and any time or dosing bounds, e.g. “for 7 days”, all represented in the structured and machine readable FHIR [dosage](develop_medicationrequest.html#dosageinstruction) structure.
 
-Most ePMA medication requests are deemed to be on-going unless specifically stated within the dosage instruction with date, time or dose bounds. Where no end criteria is specified the hospital pharmacy will typically dispense a quantity of medication as per their local agreed best practice. For example, sufficient medication for a given number of days, depending on how frequently the ward and pharmacy want to re-order medication. When more medication is required, a "Re-fill Medication Request" should be submitted.
+Most ePMA medication requests are deemed to be on-going unless specifically stated within the dosage instruction with date, time or dose bounds. Where no end criteria is specified the hospital pharmacy will typically dispense a quantity of medication as per their local agreed best practice. For example, sufficient medication for a given number of days, depending on how frequently the ward and pharmacy want to re-order medication. When more medication is required, a "Re-Supply Medication Request" should be submitted.
 
 ### Re-Supply Medication Request
 
