@@ -54,30 +54,22 @@ These will be added in a future versions of this guidance.
 Typically within UK hospitals, ePMA systems support two types of medication request (or order);
 
  1. Initial medication request
- 2. Re-fill, re-supply or re-order of a previous medication request
+ 2. Re-Supply of a previous medication request
 
 ### Initial Medication Request
 
-{% include important.html content="The definition of an 'Initial Medication Request' shown here is under NHS Digital clinical review." %}
+An "Initial Medication Request" is the first time a request for a medicine is made for a patient. This can include a long term medicine or an acute medicine for a specified duration. Each request shall be for one medication. The structured dosage instruction shall specify the administration requirement, e.g. “50mg daily with food”, and any time or dosing bounds, e.g. “for 7 days”, all represented in the structured and machine readable FHIR [dosage](develop_medicationrequest.html#dosageinstruction) structure.
 
-An initial or first request for medication for a given patient. Each request shall be for one medication treatment or course. The structured dosage instruction shall specify the administration requirement, e.g. "50mg daily with food", and any time or dosing bounds, e.g. "for 7 days", all represented in the structured and machine readable FHIR [dosage](develop_medicationrequest.html#dosageinstruction) structure.
+Most ePMA medication requests are deemed to be on-going unless specifically stated within the dosage instruction with date, time or dose bounds. Where no end criteria is specified the hospital pharmacy will typically dispense a quantity of medication as per their local agreed best practice. For example, sufficient medication for a given number of days, depending on how frequently the ward and pharmacy want to re-order medication. When more medication is required, a "Re-fill Medication Request" should be submitted.
 
-Most ePMA medication requests are deemed to be on-going unless specifically stated within the dosage instruction with date, time or dose bounds. Where no end criteria is specified the hospital pharmacy will typically dispense a quantity of medication as per their local agreed best practice. For example, sufficient medication for a given number of days, depending on how frequently the ward and pharmacy want to re-order medication. When more medication is required, a re-fill medication request is submitted.
+### Re-Supply Medication Request
 
-### Re-fill, Re-Supply or Re-order Medication Request
+When a patient requires a re-supply of the same medication as previously ordered.
 
-When a patient requires a re-fill, re-supply or re-order of the same medication as previously ordered.
+For a minimum viable product (MVP) implementation it is recommended to reference a previous MedicationRequest using the [priorPrescription](develop_medicationrequest.html#priorprescription) element. This can either reference the last MedicationRequest or the first MedicationRequest. This choice can be a local implementation decision. Note that the FHIR standard also allows a previous supply to be reference using the [basedOn](develop_medicationrequest.html#basedOn) element. For this guidance it is recommended **basedOn**, if used, it used to reference a **CarePlan** resource. 
 
-{% include important.html content="How FHIR elements should be used for re-fill orders is under NHS Digital technical and clinical review." %}
-
-For a minimum viable product (MVP) implementation it is recommended to reference a previous MedicationRequest using the [priorPrescription](develop_medicationrequest.html#priorprescription) element. This can either reference the last MedicationRequest or the first MedicationRequest. This choice can be a local implementation decision.
-
-Elements within the re-fill MedicationRequest that will differ from any previous order shall be;
-- [authoredOn](develop_medicationrequest.html#authoredon) shall be the date/time of the re-fill request, not the date/time of the previous order
-- [requester](develop_medicationrequest.html#requester) shall be the prescribing clinician, that may be a different clinician to that recorded on the previous order
-
-The [dosageInstruction](develop_medicationrequest.html#dosageInstruction) could be different in a re-fill order for the same medication.
-
-Dosage changes that do not affect the pharmacy dispensing process can be implemented as re-fills. For example a change in administration timing, e.g. from morning to evening.
-
-Dosage changes that do change the pharmacy dispensing process can be implemented as re-fills but it is recommended that the [note](develop_medicationrequest.html#note) element is populated with clear instructions to the pharmacist for the nature of the change. For example, if changing from an oral solid to an oral liquid, then include this within a [note](develop_medicationrequest.html#note) entered by the ePMA user, e.g. "please note change from solid or liquid".
+It is recommended that a re-supply should;
+- only be made against a previous order that has a [status](develop_medicationrequest.html#status) of `active` or `complete`
+- be identical to the previous supply with regard to the [medication](develop_medicationrequest.html#medicationx) and [dosageInstruction](develop_medicationrequest.html#dosageInstruction)
+- allow a different [requester](develop_medicationrequest.html#requester) and/or [recorder](develop_medicationrequest.html#recorder) to the previous supply
+- allow a different [dispenseRequest](develop_medicationrequest.html#dispenseRequest) (if implemented within the system) to the previous supply to cater for the scenario where a re-supply is required for a certain number of days or quantity of medication. For example, a final supply prior to the end of the treatment or course or before the patient is to be discharged.

@@ -12,9 +12,12 @@ summary: A brief introduction to getting started.
 
 ## Scope of this Implementation Guidance
 
-This guidance for the population of a **MedicationRequest** resource for the use case of;
+This guidance for the population of a **MedicationRequest** resource for the use cases of;
+- Inpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy and intended for administration on a hospital ward, or at discharge for administration at home
+- Outpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy and intended for administration in the Outpatients department, Accident and Emergency department, or Day unit
+- Medication requests, for a named patient who is on short-term leave from an inpatient stay (but is not discharged), to be dispensed by the hospital pharmacy and intended for administration at home.
 
-**Medication (prescription) requests from a hospital electronic prescribing and medicines administration (ePMA) system to a hospital pharmacy system for a named patient**
+## Out of Scope for this Version
 
 At this time, this guidance is not applicable for the following uses cases;
 - Orders for the supply of ward stock medications
@@ -24,6 +27,8 @@ At this time, this guidance is not applicable for the following uses cases;
 - Outpatient medication requests dispensed by the hospital pharmacy
 - Outpatient medication requests to be dispensed by a community pharmacy (aka an FP10HCN)
 - Medication requests between two Trusts where there is a local shortage of supply
+
+## Alignment with Standards
 
 This guidance is aligned to the following FHIR standards;
 - [STU3](https://hl7.org/fhir/STU3/index.html)
