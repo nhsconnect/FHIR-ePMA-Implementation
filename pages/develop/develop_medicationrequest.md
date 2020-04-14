@@ -32,10 +32,10 @@ Elements marked as **MVP** denote those recommended to be required for an MVP fo
 | supportingInformation |  | | | insurance |  |  | |
 | **authoredOn** | **MVP** | | | dispenseRequest. initialFill |  |  | |
 | **requester** | **MVP** | | | dispenseRequest. initialFill.quantity |  |  | |
-| recorder |  | | | dispenseRequest. initialFill.duration |  |  | |
+| **recorder** | **MVP** | | | dispenseRequest. initialFill.duration |  |  | |
 | reasonCode |  |  | | dispenseRequest. dispenseInterval |  |  | |
 | reasonReference |  |  | | dispenseRequest. numberOfRepeatsAllowed |  |  | |
-| **note** | **MVP** | | | | |
+| note | | | | | |
 | **dosageInstruction** | **MVP** |  | | | |
 | dispenseRequest |  |  | | | |
 | **substitution** | **MVP** |  | | | |
@@ -228,11 +228,9 @@ Jump back to [top](develop_medicationrequest.html)
   </tr>
 </table>
 
-{% include important.html content="The use of this element is under NHS Digital technical review for consideration of using other values from the FHIR value-set when the order is a re-fill/re-supply/re-order of previous medication." %}
-
 The value `order` should always be used to denote this is a medication request order.
 
-FHIR R4 extends the value set to; `proposal`, `plan`, `order`, `original-order`, `reflex-order`, `filler-order`, `instance-order` and `option`, but the recommendation for the target use case is to continue to use `order` unless it is locally decided that the extended R4 value set better supports the business requirements.
+FHIR R4 extends the value set to; `proposal`, `plan`, `order`, `original-order`, `reflex-order`, `filler-order`, `instance-order` and `option`. The recommendation for the target use case MVP is to continue to use `order` unless it is locally decided that the extended R4 value set better supports the business requirements.
 
 Jump back to [top](develop_medicationrequest.html)
 <hr/>
@@ -262,19 +260,15 @@ It is expected that any implementation will need to distinguish between medicati
 
 The STU3 suggested value-set is defined as; `inpatient`, `outpatient` and `community`. The R4 suggested value-set is extended with `discharge`. For a UK implementation, it is recommended to further extend with `leave`.
 
-The business meaning for some **Category** values for a UK implementation differs from the FHIR international standard definitions. The suggested value-set applicable for implementation within the UK is as follows;
-
-| Category | FHIR Definition | Implementation Guidance |
+| Category | FHIR Definition / Description |
 | -- | -- | -- |
-| `inpatient` | Includes requests for medications to be administered or consumed in an inpatient or acute care setting. | Typically requests would be dispensed by the hospital pharmacy and administered to the patient on the ward. |
-| `outpatient` | Includes requests for medications to be administered or consumed in an outpatient setting (for example, Emergency Department, Outpatient Clinic, Outpatient Surgery, Doctor's office). | Typically requests would be dispensed by the hospital pharmacy for the patient to take away and self-administer. |
-| `community` | Includes requests for medications to be administered or consumed by the patient in their home (this would include long term care or nursing homes, hospices, etc.). | Requests to be dispensed by a community pharmacy, Dispensing Appliance Contractor (DAC) or other dispenser outside the hospital, such as a specialist Homecare medicines provider. |
-| `discharge` | Includes requests for medications created when the patient is being released from a facility. | Requests for medication the patient will take away with them on discharge from an inpatient stay. Typically requests would be dispensed by the hospital pharmacy for the patient to self-administer at home. |
-| `leave` | Not defined within FHIR. | Requests for medications that the patient will take away with them during any short break from inpatient care. Typically requests would be dispensed by the hospital pharmacy to be self-administered at home with or without the assistance of community based nursing staff. |
+| `inpatient` | Includes requests for medications to be administered or consumed in an inpatient or acute care setting. |
+| `outpatient` | Includes requests for medications to be administered or consumed in an outpatient setting (for example, Emergency Department, Outpatient Clinic, Outpatient Surgery, Doctor's office). |
+| `community` | Includes requests for medications to be administered or consumed by the patient in their home (this would include long term care or nursing homes, hospices, etc.). |
+| `discharge` | Includes requests for medications created when the patient is being released from a facility. |
+| `leave` | **Note: Not included within the FHIR standard.** Requests for medications that the patient will take away with them during any short break from inpatient care. Typically requests would be dispensed by the hospital pharmacy to be self-administered at home with or without the assistance of community based nursing staff. |
 
-For the target ePMA to hospital pharmacy systems use case, it would be expected the the ePMA system is capable to creating medication requests for all five categories.
-
-The only category that does not trigger the sending/sharing of a FHIR medicationRequest resource with the hospital pharmacy would be a `community` medication request. A `community` medication request would either trigger the printing and signing of a paper FP10HP prescription, or (when implemented by the Trust) an electronic prescription sent to the NHS Electronic Prescription Service.
+For the target use cases, it would be expected the the ePMA system is capable to creating medication requests for all categories except `community`. A `community` medication request would either trigger the printing and signing of a paper FP10HNC prescription, or (when implemented by the Trust) an electronic prescription sent to the NHS Electronic Prescription Service.
 
 Jump back to [top](develop_medicationrequest.html)
 <hr/>
@@ -476,26 +470,11 @@ See the [Overview](develop_overview.html) page for guidance on using FHIR Refere
 
 Recommended as a required business element for most implementations.
 
-Recommended to be the prescribing clinician recorded on the ePMA system for the medication request using a reference a FHIR [Practitioner](develop_practitioner.html) resource.
+Recommended to be the clinically responsible clinician recorded on the ePMA system for the medication request.
 
-The requester can be a reference to a number of different FHIR resources; *Practitioner*, *PractitionerRole*, *Organization*, *Patient*, *RelatedPerson* or *Device*. For this use case it is recommended to always use **PractitionerRole** unless an implementation supports use cases like requests direct from patients or automated requests from medical or monitoring devices.
+Recommended to implement as a reference a FHIR [Practitioner](develop_practitioner.html) resource.
 
-#### Additional guidance
-
-{% include important.html content="This additional guidance is under NHS Digital review." %}
-
-Where an implementation does not currently record the prescribing clinician then consider the following;
-- If the prescribing clinician is authorising new medication then populate with their details.
-- If the prescribing clinician is re-ordering from a previous medication request that they authorised then populate with their details, and consider populating **priorPrescription**.
-- If the prescribing clinician is acting on behalf of a colleague to authorise new medication then populate with the details of the colleague and consider also populating **recorder**.
-- If the prescribing clinician is re-ordering from a previous medication request authorised by a colleague then populate with their details (not the colleagues) and consider populating **priorPrescription**.
-- If the prescribing clinician is acting on behalf of a colleague to re-order from a previous medication request authorised by someone else then populate with the details of the colleague and consider also populating **recorder** and **priorPrescription**.
-
-**Note**: If the user is not a qualified prescriber but performing the task of data entry then they are instead acting as the **recorder**.
-
-**TBC**: What if a nurse is requesting more supply of a drug from an original prescription?
-
-**Note**: STU3 allowed a request on behalf of another organisation to be defined using **requester.onBehalfOf**. This has been removed from R4 so is recommended not to be used within any STU3 or CareConnect implementation.
+Where an implementation requires the identification of a person plus an organisation then the solution differs depending on the version of FHIR. Within an STU3 implementation, reference an **Organization** resource within the **requester.onBehalfOf** element. Within an R4 implementation replace the **Practitioner** resource with a **PractitionerRole** resource.
 
 Jump back to [top](develop_medicationrequest.html)
 <hr/>
@@ -509,7 +488,7 @@ Jump back to [top](develop_medicationrequest.html)
   </tr>
   <tr>
    <td><b>Required / Cardinality:</b></td>
-   <td>Optional 0..1</td>
+   <td>Required 0..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -523,7 +502,19 @@ Jump back to [top](develop_medicationrequest.html)
 
 See the [Overview](develop_overview.html) page for guidance on using FHIR References.
 
-Optional for most implementations and requires all system users to be individual authenticated. The primary purpose of capturing the recorder would be for the local audit trail. The data recorder will be of little relevance for most pharmacy implementations.
+Recommended as a required business element for most implementations to be used as an **additional point of contact for the pharmacy**, together with the [requester](develop_medicationrequest.html#requester) for any queries related to the medication request.
+
+#### Requester and Recorder combination examples
+
+| Scenario | Requester | Recorder |
+| -- | -- | -- |
+| Prescribing clinician 'Fred' is authorising new medication | Fred | Fred |
+| Prescribing clinician 'Fred' is re-ordering previous medication he authorised | Fred | Fred |
+| Prescribing clinician 'Jane' is acting on behalf of 'Fred' to authorise new medication | Fred | Jane |
+| Prescribing clinician 'Jane' is re-ordering previous medication 'Fred' authorised | Jane | Jane |
+| Nurse 'Roger' is recording new medication requested by 'Fred' | Fred | Roger |
+| Pharmacist 'Sally' is recording new medication requested by 'Jane' acting on behalf of 'Fred' | Jane | Sally |
+| Pharmacist 'Sally' is re-ordering previous medication requested by 'Fred' | Fred | Sally |
 
 Jump back to [top](develop_medicationrequest.html)
 <hr/>
@@ -611,13 +602,13 @@ Jump back to [top](develop_medicationrequest.html)
   </tr>
 </table>
 
-{% include important.html content="The use of this element is under NHS Digital technical review along with 'priorPrescription' when the order is for a re-fill/re-supply/re-order of previous medication." %}
-
 See the [Overview](develop_overview.html) page for guidance on using FHIR References.
 
 A reference to any number of **CarePlan**, **MedicationRequest**, **ServiceRequest** or **ImmunizationRecommendation** resources.
 
-It is recommended this element is **not implemented** as part of an MVP. However if the clinical system has implemented the **CarePlan** resource, a logical link to the care plan for which the medication request is based has business benefit.
+It is recommended this element is **not implemented** as part of an MVP to reference a previous medication request. Instead use [priorPrescription](develop_medicationrequest.html#priorPrescription).
+
+If the clinical system has implemented the **CarePlan** resource, a logical link to the care plan for which the medication request is based has business benefit.
 
 Jump back to [top](develop_medicationrequest.html)
 <hr/>
@@ -659,7 +650,7 @@ Jump back to [top](develop_medicationrequest.html)
   </tr>
   <tr>
    <td><b>Required / Cardinality:</b></td>
-   <td>Required 0..1</td>
+   <td>Optional 0..1</td>
   </tr>
   <tr>
     <td><b>Version Support:</b> </td>
@@ -671,7 +662,7 @@ Jump back to [top](develop_medicationrequest.html)
   </tr>
 </table>
 
-A **business required** element for when the ePMA user wishes to provides supporting textual information to the pharmacy. For example, if there has been a change in dosing requirements that changes what the pharmacy is required to dispense, e.g. a change from an oral solid to an oral liquid formulation of the same medicine.
+An optional element for when the ePMA user wishes to provides supporting textual information to the pharmacy. This element **must not** be used for dosing instructions, see [dosageInstruction](develop_medicationrequest.html#dosageInstruction). 
 
 Where no supporting information is required, this element can be omitted.
 
@@ -727,9 +718,17 @@ Jump back to [top](develop_medicationrequest.html)
   </tr>
 </table>
 
-It is recommended that this structure is **omitted** for an MVP.
+Used to convey specific dispensing requests to the pharmacy that are not otherwise detailed within the [dosageInstruction](develop_medicationrequest.html#dosageinstruction).
 
-A typical UK implementation will use the [medicationReference](develop_medicationrequest.html#medicationreference) with a [dosageInstruction](develop_medicationrequest.html#dosageinstruction) to convey the necessary clinical information to the pharmacy to perform dispensing of the requested medication. The additional elements within **dispenseRequest** are not required for this use case.
+The element is not deemed business required for the MVP as most hospital pharmacies will typically dispense medication appropriate for the medication and dosage, with a quantity as per their local agreed best practice. Medication is re-order when required via a [re-supply medication request](explore_overview.html#re-supply-medication-request). Any medication unused on the ward will either go into ward stock or will be returned to the pharmacy.
+
+The **dispenseRequest** may be used to cater for the scenario where a re-supply is required only for a certain number of days, or quantity of medication. For example, a final supply prior to the end of the treatment or course or before the patient is to be discharged.
+
+For example;
+
+Original order = Medication:`Paracetomol` Dosage:`500mg daily`
+
+Re-Supply order = Medication:`Paracetomol` Dosage:`500mg daily` Dispense Request:`3 days`
 
 Jump back to [top](develop_medicationrequest.html)
 <hr/>
@@ -787,8 +786,6 @@ Jump back to [top](develop_medicationrequest.html)
   </tr>
 </table>
 
-{% include important.html content="The use of this element is under NHS Digital technical review along with 'basedOn' when the order is for a re-fill/re-supply/re-order of previous medication." %}
-
 See the [Overview](develop_overview.html) page for guidance on using FHIR References.
 
 The published FHIR specifications described this element is slightly different ways in different parts of the FHIR specification;
@@ -803,9 +800,7 @@ The following guidance applies to each use case.
 
 #### Linking to an earlier order
 
-A medication request that is a repeat of an earlier request would be referenced within **priorPrescription**. This would allow both the ePMA and pharmacy systems to logically link requests and add verification checks to flag any differences to the user.
-
-An order for the same medication but for a different dose can still be linked using **priorPrescription**. In this scenario it would be expected that the prescribing clinician provides [notes](develop_medicationrequest.html#notes) for the pharmacy to confirm the change in the medication request.
+A medication request that is a [re-supply medication request](explore_overview.html#re-supply-medication-request) based on a previous request referenced within **priorPrescription**. This would allow both the ePMA and pharmacy systems to logically link requests and add verification checks to flag any differences to the user. 
 
 #### Linking to an order that is being replaced
 
