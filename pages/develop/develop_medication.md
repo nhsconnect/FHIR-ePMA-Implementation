@@ -66,7 +66,9 @@ For example;
 
 Where `87652004` in this example is the unique dm+d concept id for the Virtual Therapeutic Moiety for **Atenolol**.
 
-**Note**: Where a medication is not within the dm+d and therefore does not have a dm+d code then do not use a Medication resource. See [medication with no dm+d code](develop_medicationrequest.html#requested-medication-with-no-dmd-code).
+**Note**: Where a medication is not within the dm+d and therefore does not have a dm+d code then the approach will be a local implementation decision. If you have a local FHIR Medication Resource server that is being used to share drug data locally then using the Medication Reference URL is OK. If the data is being shared outside of the local environment then the Medication resource should only reference dm+d data.
+
+See [medication with no dm+d code](develop_medicationrequest.html#requested-medication-with-no-dmd-code).
 
 ### text
 
@@ -112,7 +114,7 @@ The element is not required for an MVP implementation.
   </tr>
 </table>
 
-The element is not required for an MVP implementation.
+The element is not required for an MVP implementation. It could be used to share a local or alternative medication identifier.
 
 ### code
 
@@ -140,7 +142,17 @@ All medication must be represented using NHS dm+d terminology.
 - The `code.coding.code` must be the NHS dm+d concept code.
 - The `code.coding.display` must be the NHS dm+d concept description.		
 
-**Note**: The dm+d standard may change the identifier for a medication concept and will publish the current and previous identifier together with the date of the change. A dm+d FHIR terminology server therefore may return two codes for a given medication. For example;
+**Note**: The dm+d standard may change the identifier for a medication concept and publishes the current and previous identifier. The release version of dm+d where the identifier is changed is denoted by the following reference.
+
+`YYYY.MM.WW.R`
+
+Where;
+- YYYY is the year that the dm+d was released
+- MM is the month number (e.g. 2 = February)
+- WW is the week in the month (can very from 0 to 5)
+- R is the number of releases in that week (usually zero, but could be more).
+
+A dm+d FHIR terminology server therefore may return two codes for a given medication. For example;
 
 <script src="https://gist.github.com/RobertGoochUK/f1c91565d53e94b53a1d27f23c8db5eb.js"></script>
 
@@ -165,9 +177,7 @@ All medication must be represented using NHS dm+d terminology.
   </tr>
 </table>
 
-{% include important.html content="The use of the 'status' element within the recommended MVP is under NHS Digital review." %}
-
-Guidance to follow...
+The element is not required for an MVP implementation.
 
 ### manufacturer
 
@@ -191,8 +201,6 @@ Guidance to follow...
 </table>
 
 The element is not required for an MVP implementation.
-
-Within the dm+d terminology, the AMP and AMPP concepts include a coded manufacturer.
 
 ### form
 
@@ -218,6 +226,8 @@ Within the dm+d terminology, the AMP and AMPP concepts include a coded manufactu
 The element is not required for an MVP implementation.
 
 Within the dm+d terminology, the VMP, AMP, VMPP and AMPP concepts include a coded form.
+
+Where a medication is identified using a VTM concept **and** the prescriber wishes to qualify with a form then use this element. 
 
 ### amount
 
