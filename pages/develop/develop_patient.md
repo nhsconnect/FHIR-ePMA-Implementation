@@ -30,7 +30,7 @@ Elements marked as **MVP** denote those recommended to be required for an MVP fo
 | birthDate | **MVP** |
 | deceased |  |
 | address |  |
-| martialStatus |  |
+| maritalStatus |  |
 | multipleBirth |  |
 | photo |  |
 | contact |  |
@@ -285,7 +285,9 @@ The element is not required for an MVP implementation.
 
 The element is not required for an MVP implementation.
 
-### martialStatus
+The hospital Patient Administration System (PAS) will have a record of the patient address but this information is not required to be shared with the hospital pharmacy system to support the dispensing process.
+
+### maritalStatus 
 
 <table class='resource-attributes'>
   <tr>

@@ -18,32 +18,32 @@ Links to the definitions of the **MedicationRequest** resource within the specif
 
 Elements marked as **MVP** denote those recommended to be required for an MVP for the target use case.
 
-### Common Elements
+### Elements common across FHIR Versions
 
 | Element | MVP | 
 | -- | -- | 
-| **id** | **MVP** |
+| [id](develop_medicationrequest.html#id) | **MVP** |
 | text | | 
 | identifier | | 
-| **status** | **MVP** | 
-| **intent** | **MVP** |
-| **category** | **MVP** |
+| [status](develop_medicationrequest.html#status) | **MVP** | 
+| [intent](develop_medicationrequest.html#intent) | **MVP** |
+| [category](develop_medicationrequest.html#category) | **MVP** |
 | priority | | 
-| **medication[x]** | **MVP** |
-| **subject** | **MVP** | 
+| [medicationx](develop_medicationrequest.html#medicationx) | **MVP** |
+| [subject](develop_medicationrequest.html#subject) | **MVP** | 
 | supportingInformation | |
-| **authoredOn** | **MVP** |
-| **requester** | **MVP** |
-| **recorder** | **MVP** |
+| [authoredOn](develop_medicationrequest.html#authoredOn) | **MVP** |
+| [requester](develop_medicationrequest.html#requester) | **MVP** |
+| [recorder](develop_medicationrequest.html#recorder) | **MVP** |
 | reasonCode | |
 | reasonReference | | 
 | note | |
-| **dosageInstruction** | **MVP** |
+| [dosageInstruction](develop_medicationrequest.html#dosageInstruction) | **MVP** |
 | dispenseRequest | |
-| **substitution** | **MVP** |
+| [substitution](develop_medicationrequest.html#substitution) | **MVP** |
 | priorPrescription | |
 
-### CareConnect Extension Elements
+### Elements as CareConnect Extensions
 
 | Element | MVP | 
 | -- | -- | 
@@ -372,7 +372,7 @@ Jump back to [top](develop_medicationrequest.html)
 
 Where the requested medication is contained within the NHS dm+d then it must be recorded using the dm+d standard. Implementation is recommended to be via a referenced [Medication](develop_medication.html) resource.
 
-See the [Overview](develop_overview.html) page for guidance on using FHIR References.
+See the [Overview](develop_overview.html#using-fhir-references) page for guidance on using FHIR References.
 
 **Note**: At the time of writing an alpha implementation of a dm+d FHIR Medication Resource Server is available from the North East CSU as a [demonstrator](https://dmdsite-uks-test-web.azurewebsites.net) and associated [API](https://apidmd001.azurewebsites.net/index.html).
 
@@ -414,7 +414,7 @@ Jump back to [top](develop_medicationrequest.html)
   </tr>
 </table>
 
-See the [Overview](develop_overview.html) page for guidance on using FHIR References.
+See the [Overview](develop_overview.html#using-fhir-references) page for guidance on using FHIR References.
 
 **Note**: It is acknowledged that a typical Hospital Patient Administration System (PAS) available today will not expose a FHIR interface so referencing by URL will most likely not be available for some time. However this should be a target architecture so that the FHIR-enabled PAS can be used as a trusted source of Patient resources across multiple hospital systems.
 
@@ -508,7 +508,7 @@ Jump back to [top](develop_medicationrequest.html)
   </tr>
 </table>
 
-See the [Overview](develop_overview.html) page for guidance on using FHIR References.
+See the [Overview](develop_overview.html#using-fhir-references) page for guidance on using FHIR References.
 
 Recommended as a required business element for most implementations.
 
@@ -542,7 +542,7 @@ Jump back to [top](develop_medicationrequest.html)
   </tr>
 </table>
 
-See the [Overview](develop_overview.html) page for guidance on using FHIR References.
+See the [Overview](develop_overview.html#using-fhir-references) page for guidance on using FHIR References.
 
 Recommended as a required business element for most implementations to be used as an **additional point of contact for the pharmacy**, together with the [requester](develop_medicationrequest.html#requester) for any queries related to the medication request.
 
@@ -612,7 +612,7 @@ Jump back to [top](develop_medicationrequest.html)
   </tr>
 </table>
 
-See the [Overview](develop_overview.html) page for guidance on using FHIR References.
+See the [Overview](develop_overview.html#using-fhir-references) page for guidance on using FHIR References.
 
 A reference to a FHIR **Condition** or **Observation** resource.
 
@@ -644,7 +644,7 @@ Jump back to [top](develop_medicationrequest.html)
   </tr>
 </table>
 
-See the [Overview](develop_overview.html) page for guidance on using FHIR References.
+See the [Overview](develop_overview.html#using-fhir-references) page for guidance on using FHIR References.
 
 A reference to any number of **CarePlan**, **MedicationRequest**, **ServiceRequest** or **ImmunizationRecommendation** resources.
 
@@ -828,7 +828,7 @@ Jump back to [top](develop_medicationrequest.html)
   </tr>
 </table>
 
-See the [Overview](develop_overview.html) page for guidance on using FHIR References.
+See the [Overview](develop_overview.html#using-fhir-references) page for guidance on using FHIR References.
 
 The published FHIR specifications described this element is slightly different ways in different parts of the FHIR specification;
 
@@ -1060,7 +1060,7 @@ Jump back to [top](develop_medicationrequest.html)
 
 It is recommended this element is **not implemented** as part of an MVP.
 
-See the [Overview](develop_overview.html) page for guidance on using FHIR References.
+See the [Overview](develop_overview.html#using-fhir-references) page for guidance on using FHIR References.
 
 **IMPORTANT**: Do not confuse this element with **dispenseRequest.performer** which defines any intended dispenser for the medication request using a referenced FHIR [Organization](develop_organization.html) resource.
 
@@ -1217,7 +1217,7 @@ Jump back to [top](develop_medicationrequest.html)
   </tr>
 </table>
 
-See the [Overview](develop_overview.html) page for guidance on using FHIR References.
+See the [Overview](develop_overview.html#using-fhir-references) page for guidance on using FHIR References.
 
 This element has been removed from the FHIR R4 standard.
 
