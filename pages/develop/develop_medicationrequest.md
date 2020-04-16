@@ -512,7 +512,7 @@ See the [Overview](develop_overview.html#using-fhir-references) page for guidanc
 
 Recommended as a required business element for most implementations.
 
-Recommended to be the clinically responsible clinician recorded on the ePMA system for the medication request.
+Recommended to be the **prescriber** recorded on the ePMA system for the medication request.
 
 Recommended to implement as a reference a FHIR [Practitioner](develop_practitioner.html) resource.
 
