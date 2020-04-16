@@ -550,13 +550,11 @@ Recommended as a required business element for most implementations to be used a
 
 | Scenario | Requester | Recorder |
 | -- | -- | -- |
-| Prescribing clinician 'Fred' is authorising new medication | Fred | Fred |
-| Prescribing clinician 'Fred' is re-ordering previous medication he authorised | Fred | Fred |
-| Prescribing clinician 'Jane' is acting on behalf of 'Fred' to authorise new medication | Fred | Jane |
-| Prescribing clinician 'Jane' is re-ordering previous medication 'Fred' authorised | Jane | Jane |
-| Nurse 'Roger' is recording new medication requested by 'Fred' | Fred | Roger |
-| Pharmacist 'Sally' is recording new medication requested by 'Jane' acting on behalf of 'Fred' | Jane | Sally |
-| Pharmacist 'Sally' is re-ordering previous medication requested by 'Fred' | Fred | Sally |
+| Prescribing clinician 'Fred' is requesting new medication | Fred | Fred |
+| Prescribing clinician 'Fred' is re-ordering previous medication he prescribed | Fred | Fred |
+| Prescribing clinician 'Jane' is re-ordering previous medication that 'Fred' prescribed | Fred | Jane |
+| Nurse 'Roger' is ordering medication prescribed by 'Fred' | Fred | Roger |
+| Pharmacy technician 'Sally' is re-ordering previous medication prescribed by 'Fred' | Fred | Sally |
 
 Jump back to [top](develop_medicationrequest.html)
 <hr/>
