@@ -214,7 +214,7 @@ It is expected that most implementations will require the use of **status** to s
 The scope of **status** may vary depending on the nature of the implementation. The FHIR standard defines the status of `Completed` as "*All actions that are implied by the prescription have occurred*". This allows for different design decisions for tracking a medication request status.
 - An implementation may track the status through to the receipt of the medication request at the pharmacy, after which the status is `completed`
 - An implementation may track the status through to completion of dispensing events, after which the status is `completed`
-- An implementation may track the status through to completion of administration events for the medication that has been dispened, after which the status is `completed`.
+- An implementation may track the status through to completion of administration events for the medication that has been dispensed, after which the status is `completed`.
 
 The following guidance is based on **an implementation tracking the status through to completion of dispensing events**.
 
@@ -480,7 +480,7 @@ Jump back to [top](develop_medicationrequest.html)
 
 Recommended as business required element for most implementations.
 
-Recommended to specify as a complete date and time, e.g. "2020-03-26T15:00:00". Note that the FHIR specification requires that if hours and minutes are specified, a time zone shall be populated, e.g. `give an example here!`.
+Recommended to specify as a complete date and time, e.g. "2020-03-26T15:00:00". Note that the FHIR specification requires that if hours and minutes are specified, a time zone shall be populated, e.g. `2020-03-26T15:00:00+01:00`.
 
 Recommended that the date and time is the same as recorded and visible within the ePMA system.
 
