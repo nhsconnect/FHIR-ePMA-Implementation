@@ -42,6 +42,8 @@ Elements marked as **MVP** denote those recommended to be required for an MVP fo
 | dispenseRequest | |
 | [substitution](develop_medicationrequest.html#substitution) | **MVP** |
 | priorPrescription | |
+| detectedIssue | |
+| eventHistory | |
 
 ### Elements as CareConnect Extensions
 
@@ -222,12 +224,12 @@ The following guidance is based on **an implementation tracking the status throu
 | -- | -- | -- | -- |
 | `Draft`  | The prescription is not yet 'actionable', e.g. it is a work in progress, requires sign-off, verification or needs to be run through decision support process. | The order is work in progress within the ePMA system and has not yet sent to the pharmacy. |
 | `Active` | The prescription is 'actionable', but not all actions that are implied by it have occurred yet. | The order has been sent and accepted by the pharmacy. Dispensing and administration activities may of started but are not yet complete. |
-| `Completed`  | All actions that are implied by the prescription have occurred. | Dispensing and administration activities have been completed for the medication defined within the order. |
+| `Completed`  | All actions that are implied by the prescription have occurred. | Dispensing activities have been completed for the medication defined within the order. |
 | `On Hold` | Actions implied by the prescription are to be temporarily halted, but are expected to continue later. May also be called 'suspended'. | Will prevent the order being sent to the pharmacy. If already sent, an update needs to be sent to the pharmacy to temporarily halt further dispensing. |
 | `Cancelled` | The prescription has been withdrawn before any administrations have occurred. | Will prevent the order being sent to the pharmacy. If already sent, an update needs to be sent to the pharmacy so that no further medication is dispensed. |
 | `Stopped` | Actions implied by the prescription are to be permanently halted, before all of the administrations occurred. This should not be used if the original order was entered in error. | The order needs to be stopped on clinical grounds. An update needs to be sent to the pharmacy so that no further medication is dispensed. |
 | `Entered in Error` | Some of the actions that are implied by the medication request may have occurred. For example, the medication may have been dispensed and the patient may have taken some of the medication. Clinical decision support systems should take this status into account. | The order needs to be stopped due to human data entry error. An update needs to be sent to the pharmacy so that no further medication is dispensed. |
-| `Unknown` | The authoring/source system does not know which of the status values currently applies for this observation. Note: This concept is not to be used for 'other' - one of the listed statuses is presumed to apply, but the authoring/source system does not know which. | Recommended not to be supported as the use case for this status value is unclear. |
+| `Unknown` | The authoring/source system does not know which of the status values currently applies for this observation. Note: This concept is not to be used for 'other' - one of the listed statuses is presumed to apply, but the authoring/source system does not know which. | **Recommended not to be supported** as the use case for this status value is unclear. |
 
 #### Status transitions 
 
@@ -240,11 +242,11 @@ The following guidance is based on **an implementation tracking the status throu
 | `Draft` | `On-Hold` | Contained within the ePMA system. |
 | `On-Hold` | `Draft` | Contained within the ePMA system. |
 | `On-Hold` | `Active` | This transition will trigger an update to the MedicationRequest from the ePMA system to the pharmacy system to restart dispensing activities. Within a RESTful implementation this would be typically implemented as either an HTTP PUT or PATCH. |
-| `Active` | `Active` | Not a MedicationRequest status transition but the pharmacy system would send/share dispensing activities with the ePMA system, typically using a FHIR profile based on **MedicationDispense**. Within a RESTful implementation this would be typically implemented as an HTTP POST. |
+| `Active` | `Active` | Not a MedicationRequest status transition but the pharmacy system could send/share dispensing activities with the ePMA system, typically using a FHIR profile based on **MedicationDispense**. Within a RESTful implementation this would be typically implemented as an HTTP POST. |
 | `Active` | `On-Hold` | This transition will trigger an update to the MedicationRequest from the ePMA system to the pharmacy system to suspend dispensing activities. Within a RESTful implementation this would be typically implemented as either an HTTP PUT or PATCH. If dispensing has already occurred but meds have not been delivered to the ward then they can stay within the pharmacy until the request is re-activated. If meds have been delivered to the ward then there is no action required by the pharmacy system. |
 | `Active` | `Entered in Error` | This transition will trigger an update to the MedicationRequest from the ePMA system to the pharmacy system to stop dispensing activities. Within a RESTful implementation this would be typically implemented as either an HTTP PUT or PATCH. |
 | `Active` | `Stopped` | This transition will trigger an update to the MedicationRequest from the ePMA system to the pharmacy system to stop dispensing activities. Within a RESTful implementation this would be typically implemented as either an HTTP PUT or PATCH. |
-| `Active` | `Completed` | Contained within the ePMA system. All dispensing activity has been received from the pharmacy system within **MedicationDispense** FHIR resources. The ePMA system has completed the recorded of medicine administration events. |
+| `Active` | `Completed` | Contained within the ePMA system. All requested medication has been received from pharmacy and has been recorded/confirmed within the ePMA system. |
 
 Jump back to [top](develop_medicationrequest.html)
 <hr/>
@@ -310,7 +312,16 @@ The STU3 suggested value-set is defined as; `inpatient`, `outpatient` and `commu
 | `discharge` | Includes requests for medications created when the patient is being released from a facility. |
 | `leave` | **Note: Not included within the FHIR standard.** Requests for medications that the patient will take away with them during any short break from inpatient care. Typically requests would be dispensed by the hospital pharmacy to be self-administered at home with or without the assistance of community based nursing staff. |
 
-For the target use cases, it would be expected the the ePMA system is capable to creating medication requests for all categories except `community`. A community medication request would either trigger the printing and signing of a paper FP10HNC prescription, or (when implemented by the Trust) an electronic prescription sent to the NHS Electronic Prescription Service.
+#### Category values mapped to target use cases
+
+The in-scope use cases for this version of implementation guidance are;
+- Inpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy and intended for administration on a hospital ward, or at discharge for administration at home... **Use** `inpatient'
+- Outpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy and intended for administration in the Outpatients department, Accident and Emergency department, or Day unit... **Use** `outpatient'
+- Medication requests, for a named patient who is on short-term leave from an inpatient stay (but is not discharged), to be dispensed by the hospital pharmacy and intended for administration at home... **Use** `leave'
+
+**Note**: **A `discharge` medication request would ????**
+
+**Note**: A `community` medication request would either trigger the printing and signing of a paper FP10HNC prescription, or (when implemented by the Trust) an electronic prescription sent to the NHS Electronic Prescription Service.
 
 Jump back to [top](develop_medicationrequest.html)
 <hr/>
@@ -510,7 +521,7 @@ Jump back to [top](develop_medicationrequest.html)
 
 See the [Overview](develop_overview.html#using-fhir-references) page for guidance on using FHIR References.
 
-Recommended as a required business element for most implementations.
+Recommended as a required business element for most MVP implementations.
 
 Recommended to be the **prescriber** recorded on the ePMA system for the medication request.
 
@@ -542,17 +553,18 @@ Jump back to [top](develop_medicationrequest.html)
   </tr>
 </table>
 
-See the [Overview](develop_overview.html#using-fhir-references) page for guidance on using FHIR References.
+Recommended as a required business element for most MVP implementations to be used as an **additional point of contact for the pharmacy**, together with the [requester](develop_medicationrequest.html#requester) for any queries related to the medication request.
 
-Recommended as a required business element for most implementations to be used as an **additional point of contact for the pharmacy**, together with the [requester](develop_medicationrequest.html#requester) for any queries related to the medication request.
+See the [Overview](develop_overview.html#using-fhir-references) page for guidance on using FHIR References.
 
 #### Requester and Recorder combination examples
 
 | Scenario | Requester | Recorder |
 | -- | -- | -- |
 | Prescribing clinician 'Fred' is requesting new medication | Fred | Fred |
-| Prescribing clinician 'Fred' is re-ordering previous medication he prescribed | Fred | Fred |
-| Prescribing clinician 'Jane' is re-ordering previous medication that 'Fred' prescribed | Fred | Jane |
+| Prescribing clinician 'Fred' is re-ordering previous medication he previously prescribed | Fred | Fred |
+| Prescribing clinician 'Jane' is re-ordering previous medication, without any clinical changes, that 'Fred' previously prescribed | Fred | Jane |
+| Prescribing clinician 'Jane' is re-ordering previous medication that 'Fred' previously prescribed, with clinical changes | Jane | Jane |
 | Nurse 'Roger' is ordering medication prescribed by 'Fred' | Fred | Roger |
 | Pharmacy technician 'Sally' is re-ordering previous medication prescribed by 'Fred' | Fred | Sally |
 
@@ -730,7 +742,7 @@ Jump back to [top](develop_medicationrequest.html)
   </tr>
 </table>
 
-A required business element for all implementations. Population of just the `dosageInstruction.text` element would be unacceptable for a successful implementation.
+A required business element for all MVP implementations. Population of just the `dosageInstruction.text` element would be unacceptable for a successful implementation.
 
 Refer to [FHIR Dose Syntax Implementation Guidance](https://developer.nhs.uk/apis/dose-syntax-implementation/) (or any subsequent version) for guidance.
 
@@ -826,6 +838,8 @@ Jump back to [top](develop_medicationrequest.html)
   </tr>
 </table>
 
+An optional element for when either the ePMA or pharmacy system would benefit from being able to link re-supply requests with a previous request.
+
 See the [Overview](develop_overview.html#using-fhir-references) page for guidance on using FHIR References.
 
 The published FHIR specifications described this element is slightly different ways in different parts of the FHIR specification;
@@ -845,6 +859,58 @@ A medication request that is a [re-supply medication request](explore_overview.h
 #### Linking to an order that is being replaced
 
 The medicationRequest being replaced will be referenced within **priorPrescription**. It would be expected that the referenced resource would be updated with a [status](develop_medicationrequest.html#status) of `cancelled`, `entered-in-error` or `stopped`. This will allow both the ePMA and pharmacy systems to make it clear to the human user that one medication request replaces another.
+
+Jump back to [top](develop_medicationrequest.html)
+<hr/>
+
+### detectedIssue
+
+<table class='resource-attributes'>
+  <tr>
+   <td><b>Data Type:</b></td>
+   <td><code>Reference</code></td>
+  </tr>
+  <tr>
+   <td><b>Required / Cardinality:</b></td>
+   <td>Optional 0..*</td>
+  </tr>
+  <tr>
+    <td><b>Version Support:</b> </td>
+    <td><code>STU3</code> <code>R4</code></td>
+  </tr>
+  <tr>
+   <td><b>Description:</b></td>
+   <td>Indicates an actual or potential clinical issue with or between one or more active or proposed clinical actions for a patient; e.g. Drug-drug interaction, duplicate therapy, dosage alert etc.</td>
+  </tr>
+</table>
+
+It is recommended this element is **optional** for an MVP implementation.
+
+Jump back to [top](develop_medicationrequest.html)
+<hr/>
+
+### eventHistory
+
+<table class='resource-attributes'>
+  <tr>
+   <td><b>Data Type:</b></td>
+   <td><code>Reference</code></td>
+  </tr>
+  <tr>
+   <td><b>Required / Cardinality:</b></td>
+   <td>Optional 0..*</td>
+  </tr>
+  <tr>
+    <td><b>Version Support:</b> </td>
+    <td><code>STU3</code> <code>R4</code></td>
+  </tr>
+  <tr>
+   <td><b>Description:</b></td>
+   <td>Links to Provenance records for past versions of this resource or fulfilling request or event resources that identify key state transitions or updates that are likely to be relevant to a user looking at the current version of the resource.</td>
+  </tr>
+</table>
+
+It is recommended this element is **optional** for an MVP implementation.
 
 Jump back to [top](develop_medicationrequest.html)
 <hr/>
