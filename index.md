@@ -13,7 +13,7 @@ summary: A brief introduction to getting started.
 ## Scope of this Implementation Guidance
 
 This guidance for the population of a **MedicationRequest** resource for the use cases of;
-- Inpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy and intended for administration on a hospital ward, or at discharge for administration at home
+- Inpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy and intended for administration on a hospital ward, **or at discharge for administration at home ????**
 - Outpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy and intended for administration in the Outpatients department, Accident and Emergency department, or Day unit
 - Medication requests, for a named patient who is on short-term leave from an inpatient stay (but is not discharged), to be dispensed by the hospital pharmacy and intended for administration at home.
 
@@ -21,10 +21,10 @@ This guidance for the population of a **MedicationRequest** resource for the use
 
 At this time, this guidance is not applicable for the following uses cases;
 - Orders for the supply of ward stock medications
-- Discharge medication requests to the patient's GP
+- **Discharge medications to be issued on discharge from hospital for administration at home ????**
 - Primary care medication requests to community pharmacy (aka an FP10)
 - Medication requests to a home care medicines provider from a Trust
-- Outpatient medication requests dispensed by the hospital pharmacy
+- Outpatient medication requests dispensed by the hospital pharmacy for administration at home
 - Outpatient medication requests to be dispensed by a community pharmacy (aka an FP10HNC)
 - Medication requests between two Trusts where there is a local shortage of supply
 
