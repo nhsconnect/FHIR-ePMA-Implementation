@@ -315,13 +315,16 @@ The STU3 suggested value-set is defined as; `inpatient`, `outpatient` and `commu
 #### Category values mapped to target use cases
 
 The in-scope use cases for this version of implementation guidance are;
-- Inpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy and intended for administration on a hospital ward, or at discharge for administration at home... **Use** `inpatient'
-- Outpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy and intended for administration in the Outpatients department, Accident and Emergency department, or Day unit... **Use** `outpatient'
-- Medication requests, for a named patient who is on short-term leave from an inpatient stay (but is not discharged), to be dispensed by the hospital pharmacy and intended for administration at home... **Use** `leave'
+- Inpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy and intended for administration on a hospital ward
+  - Use `inpatient`
+- Outpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy and intended for administration in the Outpatients department, Accident and Emergency department, or Day unit
+  - Use `outpatient`
+- Medication requests, for a named patient who is on short-term leave from an inpatient stay (but is not discharged), to be dispensed by the hospital pharmacy and intended for administration at home.
+  - Use `leave`
 
-**Note**: **A `discharge` medication request would ????**
+**Note**:  A `discharge` medication request would be dispensed by the hospital pharmacy for the patient to take medication away with them for administration at home. The `discharge` medication request (or at least the information included in it) could also form part of discharge instructions for the patient's GP for medication that should be continued.
 
-**Note**: A `community` medication request would either trigger the printing and signing of a paper FP10HNC prescription, or (when implemented by the Trust) an electronic prescription sent to the NHS Electronic Prescription Service.
+**Note**: A `community` medication request would trigger the printing and signing of a paper FP10HNC prescription, or (when implemented by the Trust) an electronic prescription sent to the NHS Electronic Prescription Service.
 
 Jump back to [top](develop_medicationrequest.html)
 <hr/>
