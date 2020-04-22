@@ -29,7 +29,7 @@ Elements marked as **MVP** denote those recommended to be required for an MVP fo
 | [intent](develop_medicationrequest.html#intent) | **MVP** |
 | [category](develop_medicationrequest.html#category) | **MVP** |
 | priority | | 
-| [medicationx](develop_medicationrequest.html#medicationx) | **MVP** |
+| [medication](develop_medicationrequest.html#medicationx) | **MVP** |
 | [subject](develop_medicationrequest.html#subject) | **MVP** | 
 | supportingInformation | |
 | [authoredOn](develop_medicationrequest.html#authoredOn) | **MVP** |
@@ -232,6 +232,8 @@ The following guidance is based on **an implementation tracking the status throu
 | `Unknown` | The authoring/source system does not know which of the status values currently applies for this observation. Note: This concept is not to be used for 'other' - one of the listed statuses is presumed to apply, but the authoring/source system does not know which. | **Recommended not to be supported** as the use case for this status value is unclear. |
 
 #### Status transitions 
+
+This state transition diagram is an enhancement over the generic [State Machine](https://www.hl7.org/fhir/request.html#statemachine) defined within the FHIR R4 specification. It includes the status values associated with a medication request with transitions applicable to a UK implementation.
 
 ![Status Transitions](images/medicationrequest_status_diagram.jpg)
 
