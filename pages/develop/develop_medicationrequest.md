@@ -321,10 +321,14 @@ The in-scope use cases for this version of implementation guidance are;
   - Use `inpatient`
 - Outpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy and intended for administration in the Outpatients department, Accident and Emergency department, or Day unit
   - Use `outpatient`
+- Outpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy for administration at home
+  - Use `discharge`
+- Discharge medications requests, for a named patient, to be dispensed by the hospital pharmacy and issued on discharge for administration at home
+  - Use `discharge`
 - Medication requests, for a named patient who is on short-term leave from an inpatient stay (but is not discharged), to be dispensed by the hospital pharmacy and intended for administration at home.
   - Use `leave`
 
-**Note**:  A `discharge` medication request would be dispensed by the hospital pharmacy for the patient to take medication away with them for administration at home. The `discharge` medication request (or at least the information included in it) could also form part of discharge instructions for the patient's GP for medication that should be continued.
+**Note**:  A `discharge` medication request could be for an inpatient or outpatient, to be dispensed by the hospital pharmacy , and for the patient to take the medication away with them **for administration at home**. The `discharge` medication request (or at least the information included in it) could also form part of discharge instructions for the patient's GP for medication that should be continued.
 
 **Note**: A `community` medication request would trigger the printing and signing of a paper FP10HNC prescription, or (when implemented by the Trust) an electronic prescription sent to the NHS Electronic Prescription Service.
 
@@ -777,15 +781,25 @@ Jump back to [top](develop_medicationrequest.html)
 
 Used to convey specific dispensing requests to the pharmacy that are not otherwise detailed within the [dosageInstruction](develop_medicationrequest.html#dosageinstruction).
 
-The element is not deemed business required for the MVP as most hospital pharmacies will typically dispense medication appropriate for the medication and dosage, with a quantity as per their local agreed best practice. Medication is re-order when required via a [re-supply medication request](explore_overview.html#re-supply-medication-request). Any medication unused on the ward will either go into ward stock or will be returned to the pharmacy.
+The element is not deemed business required for the MVP but should be considered for an implementation.
 
-The **dispenseRequest** may be used to cater for the scenario where a re-supply is required only for a certain number of days, or quantity of medication. For example, a final supply prior to the end of the treatment/course or before the patient is to be discharged.
+For most medication requests the hospital pharmacy will typically dispense a quantity of medication appropriate for the medication and dosage, as per their local agreed best practice, to balance the quantity of medication held in pharmacy to that held on the ward.
+
+The inclusion of a **dispenseRequest** may be useful when requesting **discharge** medication requests. It would instruct the pharmacy to dispense a specific quantity of medication, either expressed as a number of days or as a dose form quantity. 
 
 For example;
 
 Original order = Medication:`Paracetomol` Dosage:`500mg daily`
 
-Re-Supply order = Medication:`Paracetomol` Dosage:`500mg daily` Dispense Request:`3 days`
+Discharge order = Medication:`Paracetomol` Dosage:`500mg daily` Dispense Request:`7 days` or `7 tablet`
+
+Another use case would be any inpatient scenario where the pharmacy is instructed to dispensed a specific quantity of medication. For example, if the patient is to be given medication partly supplied from ward stock and partly re-supplied from pharmacy.
+
+For example;
+
+Original order = Medication:`Atenolol` Dosage:`200mg daily`
+
+Re-Supply order = Medication:`Atenolol` Dosage:`200mg daily` Dispense Request:`6 tablet`
 
 Jump back to [top](develop_medicationrequest.html)
 <hr/>

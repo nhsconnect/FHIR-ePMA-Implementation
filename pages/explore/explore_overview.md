@@ -51,11 +51,12 @@ These will be added in a future versions of this guidance.
 
 ## Medication orders within UK ePMA systems and how they are supported with FHIR
 
-Typically within UK hospitals, ePMA systems support two types of medication request (or order);
+Typically within UK hospitals, ePMA systems support three types of medication request (or order);
 
  1. Initial medication request
  2. Re-Supply of a previous medication request
-
+ 3. Discharge medication request
+ 
 ### Initial Medication Request
 
 An "Initial Medication Request" is the first time a request for a medicine is made for a patient. This can include a long term medicine or an acute medicine for a specified duration. Each request shall be for one medication. The structured dosage instruction shall specify the administration requirement, e.g. “50mg daily with food”, and any time or dosing bounds, e.g. “for 7 days”, all represented in the structured and machine readable FHIR [dosage](develop_medicationrequest.html#dosageinstruction) structure.
@@ -73,3 +74,15 @@ It is recommended that a re-supply should;
 - be identical to the previous supply with regard to the [medication](develop_medicationrequest.html#medicationx) and [dosageInstruction](develop_medicationrequest.html#dosageInstruction)
 - allow a different [requester](develop_medicationrequest.html#requester) and/or [recorder](develop_medicationrequest.html#recorder) to the previous supply
 - allow a different [dispenseRequest](develop_medicationrequest.html#dispenseRequest) (if implemented within the system) to the previous supply to cater for the scenario where a re-supply is required for a certain number of days or quantity of medication. For example, a final supply prior to the end of the treatment or course or before the patient is to be discharged.
+
+### Discharge Medication Request
+
+When a patient requires medication that they will take away with them for administration at home. This could be following an inpatient stay or from an outpatient department.
+
+A discharge medication request is identified using the [category](develop_medicationrequest.html#category) element with a value of `discharge`. 
+
+Discharge medication for patient self-administration at home may be;
+- labelled differently to medications administered within the hospital
+- include specific dispensing instructions for pharmacy within the [dispenseRequest](develop_medicationrequest.html#dispenseRequest) element
+- identified differently within the ePMA system to ensure the patient receives the medication before they leave the hospital
+- used as in input for discharge instructions for the patient's GP for medication that should be continued
