@@ -77,7 +77,7 @@ It is recommended that a re-supply should;
 
 ### Discharge Medication Request
 
-When a patient requires medication that they will take away with them for administration at home. This could be following an inpatient stay or from an outpatient department.
+When a patient requires medication that they will take away with them on discharge from hospital for administration at home. This could be following an inpatient stay or from an outpatient department.
 
 A discharge medication request is identified using the [category](develop_medicationrequest.html#category) element with a value of `discharge`. 
 
