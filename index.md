@@ -13,18 +13,21 @@ summary: A brief introduction to getting started.
 ## Scope of this Implementation Guidance
 
 This guidance for the population of a **MedicationRequest** resource for the use cases of;
-- Inpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy and intended for administration on a hospital ward
-- Outpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy and intended for administration in the Outpatients department, Accident and Emergency department, or Day unit
-- Outpatient medication requests dispensed by the hospital pharmacy for administration at home
-- Discharge medications to be dispensed by the hospital pharmacy and issued on discharge for administration at home
-- Medication requests, for a named patient who is on short-term leave from an inpatient stay (but is not discharged), to be dispensed by the hospital pharmacy and intended for administration at home.
 
+- Inpatients
+  - Inpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy and intended for administration on a hospital ward
+  - Medication requests, for a named patient who is on short-term leave from an inpatient stay (but is not discharged), to be dispensed by the hospital pharmacy and intended for administration at home
+  - Discharge medications requests, for a named patient, to be dispensed by the hospital pharmacy and issued on discharge for administration at home
+- Outpatients
+  - Outpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy and intended for administration in the Outpatients department, Accident and Emergency department, or Day unit
+  - Outpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy for administration at home
+  
 ## Out of Scope for this Version
 
 At this time, this guidance is not applicable for the following uses cases;
 - Orders for the supply of ward stock medications
 - Primary care medication requests to community pharmacy (aka an FP10)
-- Medication requests to a home care medicines provider from a Trust
+- Medication requests to a Homecare medicines provider from a Trust
 - Outpatient medication requests to be dispensed by a community pharmacy (aka an FP10HNC)
 - Medication requests between two Trusts where there is a local shortage of supply
 

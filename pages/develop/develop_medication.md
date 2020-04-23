@@ -142,22 +142,6 @@ All medication must be represented using NHS dm+d terminology.
 - The `code.coding.code` must be the NHS dm+d concept code.
 - The `code.coding.display` must be the NHS dm+d concept description.		
 
-**Note**: The dm+d standard may change the identifier for a medication concept and publishes the current and previous identifier.
-
-The [FHIR Medication Resource Server](https://apidmd001.azurewebsites.net/index.html) identifies the current code with the latest dm+d version stored in the database (only one version, the latest, is captured at the moment). The previous code is identified as having a code version value set to “PREVIOUS” to identify it is as the previous code. Within the FHIR Medication Resource Server the year of release is put in front of the dm+d version, thus the version is denoted by the following reference.
-
-`YYYY.MM.WW.R`
-
-Where;
-- YYYY is the year that the dm+d was released
-- MM is the month number (e.g. 2 = February)
-- WW is the week in the month (can very from 0 to 5)
-- R is the number of releases in that week (usually zero, but could be more).
-
-The FHIR Medication Resource Server, or any equivalent FHIR server, therefore may return two codes for a given medication. For example;
-
-<script src="https://gist.github.com/RobertGoochUK/f1c91565d53e94b53a1d27f23c8db5eb.js"></script>
-
 ### status
 
 <table class='resource-attributes'>

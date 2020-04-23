@@ -317,16 +317,14 @@ The STU3 suggested value-set is defined as; `inpatient`, `outpatient` and `commu
 #### Category values mapped to target use cases
 
 The in-scope use cases for this version of implementation guidance are;
-- Inpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy and intended for administration on a hospital ward
-  - Use `inpatient`
-- Outpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy and intended for administration in the Outpatients department, Accident and Emergency department, or Day unit
-  - Use `outpatient`
-- Outpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy for administration at home
-  - Use `discharge`
-- Discharge medications requests, for a named patient, to be dispensed by the hospital pharmacy and issued on discharge for administration at home
-  - Use `discharge`
-- Medication requests, for a named patient who is on short-term leave from an inpatient stay (but is not discharged), to be dispensed by the hospital pharmacy and intended for administration at home.
-  - Use `leave`
+
+- Inpatients
+  - Inpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy and intended for administration on a hospital ward; **category** = `inpatient`
+  - Medication requests, for a named patient who is on short-term leave from an inpatient stay (but is not discharged), to be dispensed by the hospital pharmacy and intended for administration at home; **category** = `leave` 
+  - Discharge medications requests, for a named patient, to be dispensed by the hospital pharmacy and issued on discharge for administration at home; **category** = `discharge`
+- Outpatients
+  - Outpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy and intended for administration in the Outpatients department, Accident and Emergency department, or Day unit; **category** = `outpatient`
+  - Outpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy for administration at home; **category** = `discharge`
 
 **Note**:  A `discharge` medication request could be for an inpatient or outpatient, to be dispensed by the hospital pharmacy , and for the patient to take the medication away with them **for administration at home**. The `discharge` medication request (or at least the information included in it) could also form part of discharge instructions for the patient's GP for medication that should be continued.
 
@@ -789,17 +787,17 @@ The inclusion of a **dispenseRequest** may be useful when requesting **discharge
 
 For example;
 
-Original order = Medication:`Paracetomol` Dosage:`500mg daily`
+Original order = Medication:`Paracetomol` Dosage:`1g four times a day`
 
-Discharge order = Medication:`Paracetomol` Dosage:`500mg daily` Dispense Request:`7 days` or `7 tablet`
+Discharge order = Medication:`Paracetomol` Dosage:`1g four times a day` Dispense Request:`7 days` or `56 tablet`
 
-Another use case would be any inpatient scenario where the pharmacy is instructed to dispensed a specific quantity of medication. For example, if the patient is to be given medication partly supplied from ward stock and partly re-supplied from pharmacy.
+Another use case would be any inpatient scenario where the pharmacy is instructed to dispense a specific quantity of medication. For example, if the patient is known to be discharged soon.
 
 For example;
 
-Original order = Medication:`Atenolol` Dosage:`200mg daily`
+Original order = Medication:`Atenolol` Dosage:`50mg daily`
 
-Re-Supply order = Medication:`Atenolol` Dosage:`200mg daily` Dispense Request:`6 tablet`
+Re-Supply order = Medication:`Atenolol` Dosage:`50mg daily` Dispense Request:`3 tablet`
 
 Jump back to [top](develop_medicationrequest.html)
 <hr/>

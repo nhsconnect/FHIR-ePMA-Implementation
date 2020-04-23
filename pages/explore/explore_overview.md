@@ -77,12 +77,12 @@ It is recommended that a re-supply should;
 
 ### Discharge Medication Request
 
-When a patient requires medication that they will take away with them for administration at home. This could be following an inpatient stay or from an outpatient department.
+When a patient requires medication that they will take away with them on discharge from hospital for administration at home. This could be following an inpatient stay or from an outpatient department.
 
 A discharge medication request is identified using the [category](develop_medicationrequest.html#category) element with a value of `discharge`. 
 
 Discharge medication for patient self-administration at home may be;
 - labelled differently to medications administered within the hospital
-- include specific dispensing instructions for pharmacy within the [dispenseRequest](develop_medicationrequest.html#dispenseRequest) element
+- include specific dispensing instructions for pharmacy within the [dispenseRequest](develop_medicationrequest.html#dispenserequest) element
 - identified differently within the ePMA system to ensure the patient receives the medication before they leave the hospital
 - used as in input for discharge instructions for the patient's GP for medication that should be continued
