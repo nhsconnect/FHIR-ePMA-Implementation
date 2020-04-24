@@ -318,15 +318,30 @@ The STU3 suggested value-set is defined as; `inpatient`, `outpatient` and `commu
 
 The in-scope use cases for this version of implementation guidance are;
 
-- Inpatients
-  - Inpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy and intended for administration on a hospital ward; **category** = `inpatient`
-  - Medication requests, for a named patient who is on short-term leave from an inpatient stay (but is not discharged), to be dispensed by the hospital pharmacy and intended for administration at home; **category** = `leave` 
-  - Discharge medications requests, for a named patient, to be dispensed by the hospital pharmacy and issued on discharge for administration at home; **category** = `discharge`
-- Outpatients
-  - Outpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy and intended for administration in the Outpatients department, Accident and Emergency department, or Day unit; **category** = `outpatient`
-  - Outpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy for administration at home; **category** = `discharge`
+**Inpatient**
+- *Use case* : Inpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy and intended for administration on a hospital ward
+- *Category* : `inpatient`
+- *Example scenario* : Patient Ruby White is admitted as an inpatient is prescribed Amoxicillin 500mg orally three times daily for a suspected chest infection
 
-**Note**:  A `discharge` medication request could be for an inpatient or outpatient, to be dispensed by the hospital pharmacy , and for the patient to take the medication away with them **for administration at home**. The `discharge` medication request (or at least the information included in it) could also form part of discharge instructions for the patient's GP for medication that should be continued.
+**Inpatient**
+  - *Use case* : Medication requests, for a named patient who is on short-term leave from an inpatient stay (but is not discharged), to be dispensed by the hospital pharmacy and intended for administration at home
+  - *Category* : `leave`
+  - *Example scenario* : Current inpatient Susan Scarlet is going home for weekend leave and is prescribed 3 days supply of Citalopram 20mg tablets one to be taken in the morning.
+
+**Inpatient**
+  - *Use case* : Discharge medications requests, for a named patient, to be dispensed by the hospital pharmacy and issued on discharge for administration at home
+  - *Category* : `discharge`
+  - *Example scenario* : Patient Laura Brown is discharged from hospital following an admission where she was diagnosed as being diabetic. She was prescribed 4 weeks quantity of Metformin 500mg tablets to take twice daily on an on-going basis. Her GP will be instructed to continue this course of medication within a discharge note.
+
+**Outpatient**
+ - *Use case* : Outpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy and intended for administration in the Outpatients department, Accident and Emergency department, or Day unit
+ - *Category* : `outpatient`
+ - *Example scenario* : Patient John Green is prescribed a Goserelin 3.6mg implant to be administered by IM injection in the Outpatients department on 1st May 2020.
+
+**Outpatient**
+ - *Use case* : Outpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy for administration at home
+ - *Category* : `discharge`
+ - *Example scenario* : Patient James Black has attended the dermatology outpatients clinic and is prescribed Betamethasone 0.1% cream to be applied sparingly twice daily for 2 weeks.
 
 **Note**: A `community` medication request would trigger the printing and signing of a paper FP10HNC prescription, or (when implemented by the Trust) an electronic prescription sent to the NHS Electronic Prescription Service.
 
