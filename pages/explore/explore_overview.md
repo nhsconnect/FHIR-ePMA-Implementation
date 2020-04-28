@@ -85,4 +85,4 @@ Discharge medication for patient self-administration at home may be;
 - labelled differently to medications administered within the hospital
 - include specific dispensing instructions for pharmacy within the [dispenseRequest](develop_medicationrequest.html#dispenserequest) element
 - identified differently within the ePMA system to ensure the patient receives the medication before they leave the hospital
-- used as in input for discharge instructions for the patient's GP for medication that should be continued
+- used as in input for discharge instructions for the patient's GP for medication that should be continued.
