@@ -20,7 +20,7 @@ This guidance for the population of a **MedicationRequest** resource for the use
   - Discharge medications requests, for a named patient, to be dispensed by the hospital pharmacy and issued on discharge for administration at home
 - Outpatients
   - Outpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy and intended for administration in the Outpatients department, Accident and Emergency department, or Day unit
-  - Outpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy for administration at home
+  - Outpatient medication requests, for a named patient, to be dispensed by the hospital pharmacy for administration at home.
   
 ## Out of Scope for this Version
 
@@ -29,7 +29,7 @@ At this time, this guidance is not applicable for the following uses cases;
 - Primary care medication requests to community pharmacy (aka an FP10)
 - Medication requests to a Homecare medicines provider from a Trust
 - Outpatient medication requests to be dispensed by a community pharmacy (aka an FP10HNC)
-- Medication requests between two Trusts where there is a local shortage of supply
+- Medication requests between two Trusts where there is a local shortage of supply.
 
 ## Alignment with Standards
 
