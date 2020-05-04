@@ -1,0 +1,17 @@
+topnav:
+- title: Topnav
+  items:
+    - title: Health Developer Network
+      external_url: https://developer.nhs.uk/
+      
+topnav_dropdowns:
+- title: Topnav dropdowns
+  folders:
+    - title: External Links
+      folderitems:        
+        - title: FHIR STU3 Specification
+          external_url: https://www.hl7.org/fhir/STU3/medicationrequest.html
+        - title: CareConnect FHIR Profiles
+          external_url: https://fhir.hl7.org.uk/
+        - title: FHIR R4 Specification
+          external_url: http://hl7.org/fhir/
