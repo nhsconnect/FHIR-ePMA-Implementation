@@ -7,13 +7,17 @@ permalink: develop_errorhandling.html
 summary: Implementation guidance for error handling
 ---
 
-The error handling approach defined below closely follows the approach implemented within GPConnect and the Spine Core FHIR API Framework.
+The error handling approach defined below closely follows the approach implemented within GPConnect and the Spine Core FHIR API Framework, based on FHIR STU3.
+
+Guidance for error handling within a FHIR R4 implementation may differ. Refer to [FHIR R4 UK Core](https://simplifier.net/UKCore) documentation when available.
 
 ## Operation outcome usage
 
 When a RESTful interaction or operation fails an **OperationOutcome** resource is used to convey specific detailed processable error information back to the client as part of the HTTP response.
 
-In the event of an error, provider systems **SHALL** respond by providing an OperationOutcome resource profiled to [GPConnect-OperationOutcome-1](https://fhir.nhs.uk/STU3/StructureDefinition/GPConnect-OperationOutcome-1). **To be changed to DigitalMedicines-OperationOutcome-1 when available**
+In the event of an error, provider systems **SHALL** respond by providing an OperationOutcome resource profiled to [GPConnect-OperationOutcome-1](https://fhir.nhs.uk/STU3/StructureDefinition/GPConnect-OperationOutcome-1).
+
+**To be changed to DigitalMedicines-OperationOutcome-1 when available**
 
 The `GPConnect-OperationOutcome-1`:
 - **SHALL** contain a definition of severity in the `OperationOutcome.issue.severity` field providing a value from the [valueset-issue-severity](http://hl7.org/fhir/STU3/valueset-issue-severity.html) value set. In all cases described in this guidance, the value used will be `error`.
@@ -33,7 +37,6 @@ Provider systems **SHALL** respond by returning one of the following `OperationO
 | `400`     | value | INVALID_IDENTIFIER_SYSTEM | Invalid identifier system |
 | `400`     | value | INVALID_IDENTIFIER_VALUE | Invalid identifier value |
 | `400`     | value | INVALID_NHS_NUMBER   | NHS number invalid |
-| `400`     | business-rule | INVALID_PATIENT_DEMOGRAPHICS | Invalid patient demographics (that is, PDS trace failed) |
 | `404`     | not-found | ORGANISATION_NOT_FOUND   | Organisation record not found |
 | `404`     | not-found | PATIENT_NOT_FOUND   | Patient record not found |
 | `404`     | not-found | PRACTITIONER_NOT_FOUND   | Practitioner record not found |
@@ -101,7 +104,7 @@ For example, if a valid NHS number value is supplied but no local record exists 
 
 ### Security validation errors ###
 
-When responding to consumer API requests, provider systems **SHALL** return one of the following `OperationOutcome` details when enforcement of local consent rules result in an error condition: 
+When a client system does not present correct security parameters, provider systems **SHALL** return one of the following `OperationOutcome` details: 
 
 | HTTP code | Issue type | Error code - code | Error code - display |
 | --------- | -----------|------------|-------------|
