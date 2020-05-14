@@ -19,11 +19,11 @@ In the event of an error, provider systems **SHALL** respond by providing an Ope
 
 **To be changed to DigitalMedicines-OperationOutcome-1 when available**
 
-The `GPConnect-OperationOutcome-1`:
+The `DigitalMedicines-OperationOutcome-1`:
 - **SHALL** contain a definition of severity in the `OperationOutcome.issue.severity` field providing a value from the [valueset-issue-severity](http://hl7.org/fhir/STU3/valueset-issue-severity.html) value set. In all cases described in this guidance, the value used will be `error`.
 - **SHALL** contain a definition of the type of error in the `OperationOutcome.issue.code` element, providing a value from the [issue-type](http://hl7.org/fhir/STU3/valueset-issue-type.html) value set.
 - **SHALL** contain details of the `Spine error code` in the `OperationOutcome.issue.details.coding.code` and `OperationOutcome.issue.details.coding.display` fields. These shall be taken from the standard set of NHS Spine error codes as defined in the [spine-error-or-warning-code-1](https://fhir.nhs.uk/STU3/ValueSet/Spine-ErrorOrWarningCode-1) value set. The Spine error and warning codes provide a greater degree of error handling granularity, and also ensure a standardised error handling approach across NHS APIs.
-- **SHOULD** provide additional diagnostic details of the error in the `OperationOutcome.diagnostics` property where such details securely provide additional error context for consumer applications.
+- **SHOULD** provide additional diagnostic details of the error in the `OperationOutcome.diagnostics` property where such details securely provide additional error context for consumer applications. Patient identifiable data should not be included within this property.
 
 
 The sections below provide guidance on the error details to be returned in a number of key scenarios.
@@ -172,7 +172,7 @@ For example, if the ePMA system attempted to send a MedicationRequest that is al
           }
         ]
       },
-      "diagnostics": "MedicationRequest record already exists with that logical identifer"
+      "diagnostics": "MedicationRequest record already exists with that logical identifier"
     }
   ]
 }
@@ -242,14 +242,14 @@ When the server cannot or will not process a request due to an apparent client e
 
 BAD_REQUEST Spine error codes should be used in the following types of scenario:
 - JWT claims information is not valid JSON, is null, or has an invalid value 
-- invalid FHIR resource in JWT claim (for example, patient resource when practitioner expected)
+- invalid FHIR resource in JWT claim (for example, Patient resource when Practitioner expected)
 - malformed JSON or XML content in request body
 - an expected header is missing or invalid
 - invalid HTTP verb used
 
 #### Example: Malformed JSON Web Token in request #####
 
-For example, if the request contained a null `aud` claim in the JWT, then the following error details would be returned:
+For example, if the request contained a null claim within a JSON Web Token (JWT), then the following error details would be returned:
 
 ```json
 {
