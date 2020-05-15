@@ -50,3 +50,6 @@ entries:
     - title: Error Handling
       url: /develop_errorhandling.html
       output: web
+    - title: Examples
+      url: /develop_examples.html
+      output: web
