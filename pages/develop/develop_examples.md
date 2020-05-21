@@ -33,6 +33,6 @@ Patient John Green is prescribed a Goserelin 3.6mg implant by Dr Peter Smith to 
 
 ## Scenario: James Black / Outpatient discharge
 
-Patient James Black has attended the dermatology outpatients clinic and is prescribed Betamethasone 0.1% cream to be applied twice daily for 2 weeks.
+Patient James Black has attended the dermatology outpatients clinic and is prescribed Betamethasone valerate 0.1% cream to be applied twice daily for 2 weeks.
 
 <script src="https://gist.github.com/RobertGoochUK/59fc7ce5c96e8630fe6fc32c00c51bb6.js"></script>
