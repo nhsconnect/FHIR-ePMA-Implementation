@@ -7,7 +7,7 @@ permalink: develop_errorhandling.html
 summary: Implementation guidance for error handling
 ---
 
-The error handling approach defined below closely follows the approach implemented within GPConnect and the Spine Core FHIR API Framework, based on FHIR STU3.
+The error handling approach defined below follows the approach implemented within GPConnect and the Spine Core FHIR API Framework, based on FHIR STU3.
 
 Guidance for error handling within a FHIR R4 implementation may differ. Refer to [FHIR R4 UK Core](https://simplifier.net/UKCore) documentation when available.
 
@@ -15,11 +15,9 @@ Guidance for error handling within a FHIR R4 implementation may differ. Refer to
 
 When a RESTful interaction or operation fails an **OperationOutcome** resource is used to convey specific detailed processable error information back to the client as part of the HTTP response.
 
-In the event of an error, provider systems **SHALL** respond by providing an OperationOutcome resource profiled to [GPConnect-OperationOutcome-1](https://fhir.nhs.uk/STU3/StructureDefinition/GPConnect-OperationOutcome-1).
+In the event of an error, provider systems **SHALL** respond by providing an OperationOutcome resource profiled to [Spine-OperationOutcome-1](https://fhir.nhs.uk/STU3/StructureDefinition/Spine-OperationOutcome-1).
 
-**To be changed to DigitalMedicines-OperationOutcome-1 when available**
-
-The `DigitalMedicines-OperationOutcome-1`:
+The `Spine-OperationOutcome-1`:
 - **SHALL** contain a definition of severity in the `OperationOutcome.issue.severity` field providing a value from the [valueset-issue-severity](http://hl7.org/fhir/STU3/valueset-issue-severity.html) value set. In all cases described in this guidance, the value used will be `error`.
 - **SHALL** contain a definition of the type of error in the `OperationOutcome.issue.code` element, providing a value from the [issue-type](http://hl7.org/fhir/STU3/valueset-issue-type.html) value set.
 - **SHALL** contain details of the `Spine error code` in the `OperationOutcome.issue.details.coding.code` and `OperationOutcome.issue.details.coding.display` fields. These shall be taken from the standard set of NHS Spine error codes as defined in the [spine-error-or-warning-code-1](https://fhir.nhs.uk/STU3/ValueSet/Spine-ErrorOrWarningCode-1) value set. The Spine error and warning codes provide a greater degree of error handling granularity, and also ensure a standardised error handling approach across NHS APIs.
@@ -51,7 +49,7 @@ If an invalid NHS number value is supplied the following error details would be 
   "resourceType": "OperationOutcome",
   "meta": {
     "profile": [
-      "https://fhir.nhs.uk/STU3/StructureDefinition/DigitalMedicines-OperationOutcome-1"
+      "https://fhir.nhs.uk/STU3/StructureDefinition/Spine-OperationOutcome-1"
     ]
   },
   "issue": [
@@ -81,7 +79,7 @@ For example, if a valid NHS number value is supplied but no local record exists 
   "resourceType": "OperationOutcome",
   "meta": {
     "profile": [
-      "https://fhir.nhs.uk/STU3/StructureDefinition/DigitalMedicines-OperationOutcome-1"
+      "https://fhir.nhs.uk/STU3/StructureDefinition/Spine-OperationOutcome-1"
     ]
   },
   "issue": [
@@ -118,7 +116,7 @@ When a client system does not present correct security parameters, provider syst
   "resourceType": "OperationOutcome",
   "meta": {
     "profile": [
-      "https://fhir.nhs.uk/STU3/StructureDefinition/DigitalMedicines-OperationOutcome-1"
+      "https://fhir.nhs.uk/STU3/StructureDefinition/Spine-OperationOutcome-1"
     ]
   },
   "issue": [
@@ -156,7 +154,7 @@ For example, if the ePMA system attempted to send a MedicationRequest that is al
   "resourceType": "OperationOutcome",
   "meta": {
     "profile": [
-      "https://fhir.nhs.uk/STU3/StructureDefinition/DigitalMedicines-OperationOutcome-1"
+      "https://fhir.nhs.uk/STU3/StructureDefinition/Spine-OperationOutcome-1"
     ]
   },
   "issue": [
@@ -209,7 +207,7 @@ For example, if a MedicationRequest referenced a Practitioner resource that coul
   "resourceType": "OperationOutcome",
   "meta": {
     "profile": [
-      "https://fhir.nhs.uk/STU3/StructureDefinition/DigitalMedicines-OperationOutcome-1"
+      "https://fhir.nhs.uk/STU3/StructureDefinition/Spine-OperationOutcome-1"
     ]
   },
   "issue": [
@@ -256,7 +254,7 @@ For example, if the request contained a null claim within a JSON Web Token (JWT)
   "resourceType": "OperationOutcome",
   "meta": {
     "profile": [
-      "https://fhir.nhs.uk/STU3/StructureDefinition/DigitalMedicines-OperationOutcome-1"
+      "https://fhir.nhs.uk/STU3/StructureDefinition/Spine-OperationOutcome-1"
     ]
   },
   "issue": [
@@ -304,7 +302,7 @@ For example, if an unexpected internal exception is thrown by either an Operatio
   "resourceType": "OperationOutcome",
   "meta": {
     "profile": [
-      "https://fhir.nhs.uk/STU3/StructureDefinition/DigitalMedicines-OperationOutcome-1"
+      "https://fhir.nhs.uk/STU3/StructureDefinition/Spine-OperationOutcome-1"
     ]
   },
   "issue": [
