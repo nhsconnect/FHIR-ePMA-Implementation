@@ -1,7 +1,7 @@
 entries:
 - title: ePMA to Pharmacy FHIR MedicationRequest Implementation Guidance
   product: ePMA FHIR Implementation Guidance
-  version: 1.0.1-alpha
+  version: 1.0.2-beta
   levels: one
   folders:
 
@@ -37,6 +37,9 @@ entries:
       output: web
     - title: MedicationAdministration
       url: /develop_medicationadministration.html
+      output: web
+    - title: MedicationStatement
+      url: /develop_medicationstatement.html
       output: web
     - title: Medication
       url: /develop_medication.html

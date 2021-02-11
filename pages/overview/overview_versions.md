@@ -9,9 +9,16 @@ summary: Version history for this guidance.
 
 ## Version History
 
+### 1.0.2-beta (February 2021)
+
+- Initial draft to medicationDispense
+- Added medicationStatement placeholder to sidebar
+
 ### 1.0.1-alpha (July 2020)
+
 - Guidance on [error handling](develop_errorhandling.html) using the OperationOutcome resource
-- Added complete [XML examples](develop_examples.html)  
+- Added complete [XML examples](develop_examples.html)
 
 ### 1.0.0-alpha (May 2020)
+
 - First version published
