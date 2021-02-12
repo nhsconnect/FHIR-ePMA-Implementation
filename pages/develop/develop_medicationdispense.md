@@ -23,7 +23,8 @@ Elements marked as **MVP** denote those recommended to be required for an MVP fo
 
 | Element                                                                                   |   MVP   |   STU3   | CareConnect |    R4    |
 | :---------------------------------------------------------------------------------------- | :-----: | :------: | :---------: | :------: |
-| [`identifier`](#identifier)                                                               | **MVP** | &#x2714; |  &#x2714;   | &#x2714; |
+| [`id`](#id)                                                                               | **MVP** | &#x2714; |  &#x2714;   | &#x2714; |
+| [`identifier`](#identifier)                                                               |  **?**  | &#x2714; |  &#x2714;   | &#x2714; |
 | [`partOf`](#partof)                                                                       |         | &#x2714; |  &#x2714;   | &#x2714; |
 | [`status`](#status)                                                                       | **MVP** | &#x2714; |  &#x2714;   | &#x2714; |
 | [`statusReason[x]`](#statusreasonx)                                                       |  **?**  | &#x2716; |  &#x2716;   | &#x2714; |
@@ -47,18 +48,27 @@ Elements marked as **MVP** denote those recommended to be required for an MVP fo
 | [`dosageInstruction`](#dosageinstruction)                                                 | **MVP** | &#x2714; |  &#x2714;   | &#x2714; |
 | [`substitution`](#substitution)                                                           | **MVP** | &#x2714; |  &#x2714;   | &#x2714; |
 | [`detectedIssue`](#detectedissue)                                                         |         | &#x2714; |  &#x2714;   | &#x2714; |
-| [`notDone`](#notdone)                                                                     |         | &#x2714; |  &#x2714;   | &#x2716; |
-| [`notDoneReason[x]`](#notdonereasonx)                                                     |         | &#x2714; |  &#x2714;   | &#x2716; |
+| [`notDone`](#notdone)                                                                     |         | &#x2714; |  &#x2714;   | &#x2714; |
+| [`notDoneReason[x]`](#notdonereasonx)                                                     |         | &#x2714; |  &#x2714;   | &#x2714; |
 | [`eventHistory`](#eventhistory)                                                           |         | &#x2714; |  &#x2714;   | &#x2714; |
-| [`id`](#id)                                                                               |         | &#x2716; |  &#x2714;   | &#x2716; |
-| [`meta`](#meta)                                                                           |         | &#x2716; |  &#x2714;   | &#x2716; |
-| [`implicitRules`](#implicitrules)                                                         |         | &#x2716; |  &#x2714;   | &#x2716; |
-| [`language`](#language)                                                                   |         | &#x2716; |  &#x2714;   | &#x2716; |
-| [`text`](#text)                                                                           |         | &#x2716; |  &#x2714;   | &#x2716; |
-| [`contained`](#contained)                                                                 |         | &#x2716; |  &#x2714;   | &#x2716; |
-| [`modifierExtension`](#modifierextension)                                                 |         | &#x2716; |  &#x2714;   | &#x2716; |
+| [`meta`](#meta)                                                                           |         | &#x2714; |  &#x2714;   | &#x2714; |
+| [`implicitRules`](#implicitrules)                                                         |         | &#x2714; |  &#x2714;   | &#x2714; |
+| [`language`](#language)                                                                   |         | &#x2714; |  &#x2714;   | &#x2714; |
+| [`text`](#text)                                                                           |         | &#x2714; |  &#x2714;   | &#x2714; |
+| [`contained`](#contained)                                                                 |         | &#x2714; |  &#x2714;   | &#x2714; |
+| [`modifierExtension`](#modifierextension)                                                 |         | &#x2714; |  &#x2714;   | &#x2714; |
 
 ## Medication Dispense Elements
+
+### id
+
+| **Date Type:** | `Id` |
+| **Required / Cardinality** | `Required 0..1` |
+| **Version Support** | [`STU3 / CareConnect`](https://www.hl7.org/fhir/STU3/datatypes.html#id), [`R4`](http://hl7.org/fhir/datatypes.html#id) |
+
+The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
+
+[top of page](develop_medicationdispense.html){: .btn .btn-default .btm-sm}
 
 ### identifier
 
@@ -401,23 +411,11 @@ It is recommended this element is **not implemented** as part of an MVP.
 
 [top of page](develop_medicationdispense.html){: .btn .btn-default .btm-sm}
 
-### id
-
-| **Date Type:** | `Id` |
-| **Required / Cardinality** | `Required 0..1` |
-| **Version Support** | [`CareConnect`](https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-MedicationDispense-1) |
-
-The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
-
-It is recommended this element is **not implemented** as part of an MVP.
-
-[top of page](develop_medicationdispense.html){: .btn .btn-default .btm-sm}
-
 ### meta
 
-| **Date Type:** | `Id` |
+| **Date Type:** | `Meta` |
 | **Required / Cardinality** | `Required 0..1` |
-| **Version Support** | [`CareConnect`](https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-MedicationDispense-1) |
+| **Version Support** | [`STU3 / CareConnect`](https://www.hl7.org/fhir/STU3/medicationdispense-definitions.html#MedicationDispense.meta), [`R4`](http://hl7.org/fhir/medicationdispense-definitions.html#MedicationDispense.meta) |
 
 The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content may not always be associated with version changes to the resource.
 
@@ -429,7 +427,7 @@ It is recommended this element is **not implemented** as part of an MVP.
 
 | **Date Type:** | `Uri` |
 | **Required / Cardinality** | `Required 0..1` |
-| **Version Support** | [`CareConnect`](https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-MedicationDispense-1) |
+| **Version Support** | [`STU3 / CareConnect`](https://www.hl7.org/fhir/STU3/medicationdispense-definitions.html#MedicationDispense.implicitRules), [`R4`](http://hl7.org/fhir/medicationdispense-definitions.html#MedicationDispense.implicitRules) |
 
 A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content.
 
@@ -441,7 +439,7 @@ It is recommended this element is **not implemented** as part of an MVP.
 
 | **Date Type:** | `Code` |
 | **Required / Cardinality** | `Required 0..1` |
-| **Version Support** | [`CareConnect`](https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-MedicationDispense-1) |
+| **Version Support** | [`STU3 / CareConnect`](https://www.hl7.org/fhir/STU3/medicationdispense-definitions.html#MedicationDispense.language), [`R4`](http://hl7.org/fhir/medicationdispense-definitions.html#MedicationDispense.language) |
 
 The base language in which the resource is written.
 
@@ -453,7 +451,7 @@ It is recommended this element is **not implemented** as part of an MVP.
 
 | **Date Type:** | `Narrative` |
 | **Required / Cardinality** | `Required 0..1` |
-| **Version Support** | [`CareConnect`](https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-MedicationDispense-1) |
+| **Version Support** | [`STU3 / CareConnect`](https://www.hl7.org/fhir/STU3/medicationdispense-definitions.html#MedicationDispense.text), [`R4`](http://hl7.org/fhir/medicationdispense-definitions.html#MedicationDispense.text) |
 
 A human-readable narrative that contains a summary of the resource, and may be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.
 
@@ -465,7 +463,7 @@ It is recommended this element is **not implemented** as part of an MVP.
 
 | **Date Type:** | `Resource` |
 | **Required / Cardinality** | `Required 0..1` |
-| **Version Support** | [`CareConnect`](https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-MedicationDispense-1) |
+| **Version Support** | [`STU3 / CareConnect`](https://www.hl7.org/fhir/STU3/medicationdispense-definitions.html#MedicationDispense.contained), [`R4`](http://hl7.org/fhir/medicationdispense-definitions.html#MedicationDispense.contained) |
 
 These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.
 
@@ -477,7 +475,7 @@ It is recommended this element is **not implemented** as part of an MVP.
 
 | **Date Type:** | `Extension` |
 | **Required / Cardinality** | `Required 0..1` |
-| **Version Support** | [`CareConnect`](https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-MedicationDispense-1) |
+| **Version Support** | [`STU3 / CareConnect`](https://www.hl7.org/fhir/STU3/medicationdispense-definitions.html#MedicationDispense.modifierExtension), [`R4`](http://hl7.org/fhir/medicationdispense-definitions.html#MedicationDispense.modifierExtension) |
 
 May be used to represent additional information that is not part of the basic definition of the resource, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
 
