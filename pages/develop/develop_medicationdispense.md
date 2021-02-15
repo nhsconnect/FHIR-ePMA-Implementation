@@ -24,7 +24,7 @@ Elements marked as **MVP** denote those recommended to be required for an MVP fo
 | Element                                                                                   |   MVP   |   STU3   | CareConnect |    R4    |
 | :---------------------------------------------------------------------------------------- | :-----: | :------: | :---------: | :------: |
 | [`id`](#id)                                                                               | **MVP** | &#x2714; |  &#x2714;   | &#x2714; |
-| [`identifier`](#identifier)                                                               |  **?**  | &#x2714; |  &#x2714;   | &#x2714; |
+| [`identifier`](#identifier)                                                               | **MVP** | &#x2714; |  &#x2714;   | &#x2714; |
 | [`partOf`](#partof)                                                                       |         | &#x2714; |  &#x2714;   | &#x2714; |
 | [`status`](#status)                                                                       | **MVP** | &#x2714; |  &#x2714;   | &#x2714; |
 | [`statusReason[x]`](#statusreasonx)                                                       |  **?**  | &#x2716; |  &#x2716;   | &#x2714; |
@@ -66,7 +66,7 @@ Elements marked as **MVP** denote those recommended to be required for an MVP fo
 | **Required / Cardinality** | `Required 0..1` |
 | **Version Support** | [`STU3 / CareConnect`](https://www.hl7.org/fhir/STU3/datatypes.html#id), [`R4`](http://hl7.org/fhir/datatypes.html#id) |
 
-The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
+The logical internal id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
 
 [top of page](develop_medicationdispense.html){: .btn .btn-default .btm-sm}
 
