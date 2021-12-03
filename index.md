@@ -8,7 +8,7 @@ toc: true
 summary: A brief introduction to getting started.
 ---
 
-{% include important.html content="This guidance is DRAFT and under active development by NHS Digital and content may be added or updated on a regular basis." %}
+{% include important.html content="This guidance has moved to [ePMA Implementation Guidance for FHIR STU3](https://simplifier.net/guide/epmaimplementationguidanceforfhirstu3)." %}
 
 ## Scope of this Implementation Guidance
 
